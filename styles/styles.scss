@@ -1,0 +1,26 @@
+@import "./partials/global";
+@import "./partials/mixin";
+
+@import "./partials/variables";
+
+.navbar {
+    &__item {
+        margin: 1rem 1rem 1rem 0.5rem;
+    }
+
+    &__list {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+
+
+
+    }
+
+}
+
+.main-content {
+    background-color: rgba(0, 153, 255, 0.647);
+}
