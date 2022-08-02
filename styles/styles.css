@@ -10406,12 +10406,14 @@ h6 {
 
 h1 {
   font-size: 2rem;
+  text-align: center;
 }
 
 p {
   font-family: "Barlow Semi Condensed";
   font-weight: 100;
   line-height: 1.4;
+  text-align: center;
 }
 
 .main-logo {
@@ -10431,13 +10433,8 @@ p {
 }
 
 .main-content__title {
-  text-align: center;
   margin: 1rem 0;
 }
-.main-content__text {
-  text-align: center;
-}
-
 .hero {
   display: flex;
   flex-direction: column;
