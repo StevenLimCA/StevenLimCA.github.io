@@ -3,6 +3,11 @@
 
 @import "./partials/variables";
 
+.main-logo {
+    font-size: 3rem;
+    text-align: center;
+}
+
 .navbar {
     &__item {
         margin: 1rem 1rem 1rem 0.5rem;
@@ -14,13 +19,34 @@
         display: flex;
         flex-direction: row;
         list-style: none;
-
-
-
     }
+
 
 }
 
 .main-content {
-    background-color: rgba(0, 153, 255, 0.647);
+
+    &__title {
+        text-align: center;
+        margin: 1rem 0;
+    }
+
+    &__text {
+        text-align: center;
+    }
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 60vh;
+
+
+
+
+
+
 }

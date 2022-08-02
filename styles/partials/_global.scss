@@ -4,11 +4,12 @@
 @import "./variables";
 // @import "./reset";
 @import "./mixin";
-@import url(http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700italic,400,700);
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&family=Source+Sans+Pro&display=swap');
 
 body {
-    font-family: $body-font;
-    font-weight: normal;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 h1,
@@ -17,10 +18,16 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: $header-font;
+    font-family: 'Source Sans Pro';
     font-weight: normal;
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 2rem;
+}
+
+p {
+    font-family: 'Barlow Semi Condensed';
+    font-weight: 100;
+    line-height: 1.4;
 }

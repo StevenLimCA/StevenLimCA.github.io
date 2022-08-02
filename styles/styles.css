@@ -3,7 +3,7 @@
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  * Copyright 2022 Fonticons, Inc.
  */
-@import url(http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700italic,400,700);
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&family=Source+Sans+Pro&display=swap");
 .fa {
   font-family: var(--fa-style-family, "Font Awesome 6 Free");
   font-weight: var(--fa-style, 900);
@@ -10390,8 +10390,8 @@ readers do not read off random characters that represent icons */
 }
 
 body {
-  font-family: "Roboto Slab", serif;
-  font-weight: normal;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 h1,
@@ -10400,12 +10400,23 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Source Sans Pro";
   font-weight: normal;
 }
 
 h1 {
+  font-size: 2rem;
+}
+
+p {
+  font-family: "Barlow Semi Condensed";
+  font-weight: 100;
+  line-height: 1.4;
+}
+
+.main-logo {
   font-size: 3rem;
+  text-align: center;
 }
 
 .navbar__item {
@@ -10419,6 +10430,19 @@ h1 {
   list-style: none;
 }
 
-.main-content {
-  background-color: rgba(0, 153, 255, 0.647);
+.main-content__title {
+  text-align: center;
+  margin: 1rem 0;
+}
+.main-content__text {
+  text-align: center;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 60vh;
 }/*# sourceMappingURL=styles.css.map */
