@@ -10402,6 +10402,7 @@ h5,
 h6 {
   font-family: "Source Sans Pro";
   font-weight: normal;
+  margin: 0;
 }
 
 h1 {
@@ -10435,6 +10436,20 @@ p {
 .main-content__title {
   margin: 1rem 0;
 }
+.project__wrap {
+  display: flex;
+}
+.project__wrap--right {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+.project__image--rateyourlandlord {
+  width: 50vw;
+  height: 60vh;
+  border-radius: 5rem;
+}
+
 .hero {
   display: flex;
   flex-direction: column;
