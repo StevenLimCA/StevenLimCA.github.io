@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/StevenLimCA/static/css/main.c48f1187.css",
+    "main.js": "/StevenLimCA/static/js/main.ce9bac1b.js",
+    "static/js/787.fca5baa0.chunk.js": "/StevenLimCA/static/js/787.fca5baa0.chunk.js",
+    "index.html": "/StevenLimCA/index.html",
+    "main.c48f1187.css.map": "/StevenLimCA/static/css/main.c48f1187.css.map",
+    "main.ce9bac1b.js.map": "/StevenLimCA/static/js/main.ce9bac1b.js.map",
+    "787.fca5baa0.chunk.js.map": "/StevenLimCA/static/js/787.fca5baa0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c48f1187.css",
+    "static/js/main.ce9bac1b.js"
+  ]
+}
