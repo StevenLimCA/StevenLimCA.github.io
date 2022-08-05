@@ -1,4 +1,5 @@
 import React from "react";
+import "./MainContent.scss";
 
 export default function MainContent() {
   return (
@@ -15,6 +16,11 @@ export default function MainContent() {
         Together, we are able to reduce paper waste, captivate your audience,
         generate leads, provide goods and services conveniently and as
         efficiently as possible.
+      </p>
+      <p className="main-content__text">
+        {" "}
+        I am a web application developer, capable of programming for both
+        Front-End and Back-End using HTML, CSS, Javascript, and NodeJS.
       </p>
     </main>
   );

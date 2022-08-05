@@ -4,6 +4,7 @@ import "./App.scss";
 import MainContent from "./Components/MainContent/MainContent";
 import Footer from "./Components/Footer/Footer";
 import Hero from "./Components/Hero/Hero";
+import Project from "./Components/Pages/ProjectPage/ProjectPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Navbar />
       <Hero />
       <MainContent />
+      <Project />
       <Footer />
     </div>
   );
