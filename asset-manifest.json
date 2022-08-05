@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/StevenLimCA.github.io/static/css/main.88ac86c5.css",
-    "main.js": "/StevenLimCA.github.io/static/js/main.d672f416.js",
-    "static/js/787.fca5baa0.chunk.js": "/StevenLimCA.github.io/static/js/787.fca5baa0.chunk.js",
-    "index.html": "/StevenLimCA.github.io/index.html",
-    "main.88ac86c5.css.map": "/StevenLimCA.github.io/static/css/main.88ac86c5.css.map",
-    "main.d672f416.js.map": "/StevenLimCA.github.io/static/js/main.d672f416.js.map",
-    "787.fca5baa0.chunk.js.map": "/StevenLimCA.github.io/static/js/787.fca5baa0.chunk.js.map"
+    "main.css": "/static/css/main.88ac86c5.css",
+    "main.js": "/static/js/main.cb58b65a.js",
+    "static/js/787.fca5baa0.chunk.js": "/static/js/787.fca5baa0.chunk.js",
+    "index.html": "/index.html",
+    "main.88ac86c5.css.map": "/static/css/main.88ac86c5.css.map",
+    "main.cb58b65a.js.map": "/static/js/main.cb58b65a.js.map",
+    "787.fca5baa0.chunk.js.map": "/static/js/787.fca5baa0.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.88ac86c5.css",
-    "static/js/main.d672f416.js"
+    "static/js/main.cb58b65a.js"
   ]
 }
