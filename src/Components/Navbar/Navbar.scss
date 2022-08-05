@@ -1,4 +1,8 @@
 .navbar {
+    display: flex;
+    justify-content: center;
+    color: grey;
+
     &__item {
         margin: 1rem 1rem 1rem 0.5rem;
     }
