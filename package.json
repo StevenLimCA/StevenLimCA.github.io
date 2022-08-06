@@ -1,7 +1,7 @@
 {
   "name": "stevenlimca",
   "version": "0.1.0",
-  "homepage": "https://StevenLimCA.github.io/",
+  "homepage": "https://StevenLimCA.github.io/ ",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
