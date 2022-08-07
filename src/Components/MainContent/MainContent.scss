@@ -1,5 +1,15 @@
+@import "../../styles/partials/global";
+
 .main-content {
+    color: rgb(48, 48, 48);
+    position: relative;
+    top: 20vh;
     text-align: center;
+    margin: 0 4rem;
+    line-height: 2;
+    font-size: 1.2rem;
+
+    @include tablet {}
 
     &__title {
 
