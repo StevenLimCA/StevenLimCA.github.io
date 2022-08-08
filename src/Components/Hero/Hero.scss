@@ -1,27 +1,85 @@
+.cloud {
+    display: inline-block;
+    background: white;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    position: relative;
+    top: 10rem;
+    -webkit-filter: blur(6px);
+    z-index: 11;
+    left: -50px;
+    animation: 15000ms cloudAnimation linear infinite;
+    opacity: 0.76;
+}
+
+.cloud:before {
+    content: "";
+    display: inline-block;
+    background: white;
+    width: 100px;
+    height: 100px;
+    -webkit-filter: blur(3px);
+    position: relative;
+    border-radius: 50%;
+    top: -30px;
+    left: 60px;
+}
+
+.cloud:after {
+    content: "";
+    display: inline-block;
+    background: white;
+    width: 200px;
+    height: 100px;
+    -webkit-filter: blur(3px);
+    position: relative;
+    border-radius: 50%;
+    top: -80px;
+    left: 70px;
+}
+
+.cloud:first-child {
+    zoom: 1.5;
+}
+
+@keyframes cloudAnimation {
+    0% {
+        transform: translate(-61rem, 0);
+    }
+
+    100% {
+        transform: translate(90rem, 0);
+    }
+}
+
+.sun {
+    display: inline-block;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    background: orange;
+    box-shadow: 0 0 10px orange,
+        0 0 60px orange,
+        0 0 200px yellow,
+        inset 0 0 80px yellow;
+    z-index: 12;
+    align: center;
+    z-index: -99;
+}
+
 .hero {
     top: 3rem;
     width: 100%;
-    height: 30vh;
-    background: #0855b3a4;
+    height: 40vh;
+    background: linear-gradient(360deg, rgba(16, 136, 161, 1) 4%, rgba(11, 28, 54, 1) 92%);
     position: relative;
-    transform: skewY(5deg);
     z-index: 20;
     box-shadow: inset 0 0 2000px rgba(86, 96, 214, 0.5);
 
 
 
 
-    &__shadow {
-        top: -10rem;
-        position: relative;
-        background: #080000b1;
-        width: 100%;
-        height: 15vh;
-        transform: skewY(-5deg);
-        z-index: 0;
-        filter: hue-rotate(-50deg);
-        box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
-    }
 
     &__blur {
         display: flex;
@@ -29,7 +87,7 @@
         justify-content: center;
         width: 100%;
         height: 100%;
-        backdrop-filter: blur(2rem);
+        backdrop-filter: blur(0.5rem);
     }
 
     &__title {
