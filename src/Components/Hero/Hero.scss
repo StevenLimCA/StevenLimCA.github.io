@@ -1,3 +1,28 @@
+@import "../../styles/partials/global";
+
+.hero {
+    top: 5rem;
+    width: 100%;
+    height: 60vh;
+    background: linear-gradient(360deg, rgba(16, 136, 161, 1) 4%, rgba(11, 28, 54, 1) 92%);
+    position: relative;
+    z-index: 20;
+    box-shadow: inset 0 0 2000px rgba(86, 96, 214, 0.5);
+
+
+
+
+
+
+
+    &__title {
+        font-size: 3rem;
+        color: white;
+
+    }
+
+}
+
 .cloud {
     display: inline-block;
     background: white;
@@ -5,7 +30,7 @@
     height: 120px;
     border-radius: 50%;
     position: relative;
-    top: 10rem;
+    top: 15rem;
     -webkit-filter: blur(6px);
     z-index: 11;
     left: -50px;
@@ -45,19 +70,20 @@
 
 @keyframes cloudAnimation {
     0% {
-        transform: translate(-61rem, 0);
+        transform: translateX(-30rem);
     }
 
     100% {
-        transform: translate(90rem, 0);
+        transform: translateX(10rem);
     }
 }
 
 .sun {
+    position: relative;
+    top: 5rem;
+    left: 5rem;
     display: inline-block;
     border-radius: 50%;
-    height: 200px;
-    width: 200px;
     background: orange;
     box-shadow: 0 0 10px orange,
         0 0 60px orange,
@@ -66,34 +92,11 @@
     z-index: 12;
     align: center;
     z-index: -99;
-}
+    height: 6.125rem;
+    width: 6.125rem;
 
-.hero {
-    top: 3rem;
-    width: 100%;
-    height: 40vh;
-    background: linear-gradient(360deg, rgba(16, 136, 161, 1) 4%, rgba(11, 28, 54, 1) 92%);
-    position: relative;
-    z-index: 20;
-    box-shadow: inset 0 0 2000px rgba(86, 96, 214, 0.5);
-
-
-
-
-
-    &__blur {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        backdrop-filter: blur(0.5rem);
+    @include tablet {
+        height: 12.5rem;
+        width: 12.5rem;
     }
-
-    &__title {
-        font-size: 3rem;
-        color: white;
-        z-index: 188;
-    }
-
 }

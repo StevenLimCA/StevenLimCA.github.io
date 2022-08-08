@@ -6,8 +6,8 @@ export default function Hero() {
   return (
     <div className="hero">
       {" "}
-      <div className="cloud"></div>
       <div className="sun"></div>
+      <div className="cloud"></div>
       {/* <div className="hero__blur"></div> */}
       <h1 className="hero__title">
         <TypeAnimation
