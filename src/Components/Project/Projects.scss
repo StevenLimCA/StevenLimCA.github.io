@@ -2,13 +2,16 @@
 
 
 .projects {
+    margin: 1rem;
+
+
+
+    position: relative;
+    text-align: center;
+
     &__header {
         margin: 2rem 0;
     }
-
-    position: relative;
-    top: 35vh;
-    text-align: center;
 
     &__wrap {
         display: flex;
@@ -26,13 +29,16 @@
         }
     }
 
-
+    &__title {
+        margin: 1rem 0;
+    }
 
     &__image {
-        width: 30%;
-        height: 30%;
+        width: 80%;
+        height: 80%;
 
         @include tablet {
+            margin: 2rem;
             width: 30rem;
             height: 40rem;
         }

@@ -3,7 +3,7 @@
 .hero {
     top: 5rem;
     width: 100%;
-    height: 60vh;
+    height: 30rem;
     background: linear-gradient(360deg, rgba(16, 136, 161, 1) 4%, rgba(11, 28, 54, 1) 92%);
     position: relative;
     z-index: 20;
@@ -32,7 +32,7 @@
     border-radius: 50%;
     position: relative;
     top: 15rem;
-    -webkit-filter: blur(6px);
+    -webkit-filter: blur(0.5rem);
     z-index: 11;
     left: -50px;
     animation: 15000ms cloudAnimation linear infinite;
