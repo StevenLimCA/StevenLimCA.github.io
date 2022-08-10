@@ -1,16 +1,15 @@
 import React from "react";
-import "./ProjectPage.scss";
+import Project from "../../Project/Project";
 import projects from "../../../projects/projects.json";
+import "./ProjectPage.scss";
+import uuid from "react-uuid";
+
 export default function ProjectPage() {
   return (
-    <div className="projects">
-      <h1 className="projects__header">My Projects</h1>{" "}
-      <h2 className="projects__title">{projects[0].name}</h2>
-      <img
-        className="projects__image"
-        src={`data:image/png;base64,${projects[0].image}`}
-        alt={`${projects[0].name}`}
-      />
-    </div>
+    <>
+      {projects.map((project) => (
+        <Project key={uuid()} projectArr={project} />
+      ))}
+    </>
   );
 }

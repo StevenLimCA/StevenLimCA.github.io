@@ -1,5 +1,5 @@
 import React from "react";
 import "./Footer.scss";
 export default function Footer() {
-  return <div className="footer">Created by Steven Lim with 💗 </div>;
+  return <div className="footer">Created by Steven Lim </div>;
 }

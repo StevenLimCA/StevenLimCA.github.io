@@ -1,0 +1,40 @@
+@import "../../styles/partials/global";
+
+
+.projects {
+    &__header {
+        margin: 2rem 0;
+    }
+
+    position: relative;
+    top: 35vh;
+    text-align: center;
+
+    &__wrap {
+        display: flex;
+        margin: 0 3rem;
+        flex-direction: column;
+        align-items: center;
+
+        @include tablet {
+            flex-direction: row;
+
+        }
+
+        &--right {
+            margin: 0 5rem;
+        }
+    }
+
+
+
+    &__image {
+        width: 30%;
+        height: 30%;
+
+        @include tablet {
+            width: 30rem;
+            height: 40rem;
+        }
+    }
+}

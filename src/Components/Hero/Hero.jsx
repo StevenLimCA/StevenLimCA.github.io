@@ -12,7 +12,7 @@ export default function Hero() {
       <h1 className="hero__title">
         <TypeAnimation
           cursor={true}
-          sequence={["Hi! I am Steven", 4000, "I am a Web Developer!", 3000]}
+          sequence={["Hi! 🙋‍♂️ I am Steven.", 4000, "Welcome to my page!", 3000]}
         />
       </h1>
     </div>
