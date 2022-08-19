@@ -3,11 +3,24 @@
 
 .projects {
     margin: 1rem;
-
-
-
     position: relative;
-    text-align: center;
+    width: 60rem;
+
+
+    &__view-button {
+        background-color: royalblue;
+        border: 0;
+        box-shadow: 0;
+        color: white;
+        border-radius: 2rem;
+        font-size: 1rem;
+        width: 5rem;
+        height: 2rem;
+
+        &:hover {
+            background-color: rgb(72, 138, 251);
+        }
+    }
 
     &__header {
         margin: 2rem 0;
@@ -25,6 +38,9 @@
         }
 
         &--right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             margin: 0 5rem;
         }
     }
@@ -34,13 +50,13 @@
     }
 
     &__image {
-        width: 80%;
-        height: 80%;
+        width: 40%;
+        height: 40%;
 
         @include tablet {
             margin: 2rem;
-            width: 30rem;
-            height: 40rem;
+            width: 20rem;
+            height: 30rem;
         }
     }
 }

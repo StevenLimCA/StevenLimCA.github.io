@@ -19,10 +19,13 @@ export default function Project(props) {
             {props.projectArr.id}. {props.projectArr.name}
           </h2>
           <p className="projects__desc">{props.projectArr.desc}</p>
-          <p className="project__tech">{props.projectArr.frontTech}</p>
-          <p className="project__tech">{props.projectArr.backTech}</p>
-
-          <button type="button" onClick={clickhandler}>
+          <p className="projects__tech">{props.projectArr.frontTech}</p>
+          <p className="projects__tech">{props.projectArr.backTech}</p>
+          <button
+            className="projects__view-button"
+            type="button"
+            onClick={clickhandler}
+          >
             View
           </button>
         </div>
