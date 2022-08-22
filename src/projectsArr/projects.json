@@ -19,6 +19,15 @@
   },
   {
     "id": "3",
+    "name": "Instock ",
+    "image": "./images/project3.png",
+    "desc": "This website is a musician website for those would like to start a orchestra or band. ",
+    "frontTech": "Front End: Javascript Html, SaSS",
+    "backTech": "Public API",
+    "url": "https://musicadventure.netlify.app/"
+  },
+  {
+    "id": "4",
     "name": "Music Adventure",
     "image": "./images/project3.png",
     "desc": "This website is a musician website for those would like to start a orchestra or band. ",
