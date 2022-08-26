@@ -3,7 +3,7 @@
     "id": "1",
     "name": "Rate Your Landlord",
     "image": "./images/project1.png",
-    "desc": "This application is here to create transparency in the rental and landlord market.",
+    "desc": "This application is here to create transparency in the rental and landlord market. \n - Users are able to view, add, update, delete listings. \n Tenants are able to create a review, and add a rating and have the system automatically calculate an average rating.",
     "frontTech": "Front End: React Javascript Html, SaSS, React Star Rating and Google Maps Api",
     "backTech": "Back End: NodeJS, Express, and Multer",
     "url": "https://rateyourlandlord.netlify.app/"
@@ -28,11 +28,11 @@
   },
   {
     "id": "4",
-    "name": "Music Adventure",
+    "name": "",
     "image": "./images/project3.png",
     "desc": "This website is a musician website for those would like to start a orchestra or band. ",
-    "frontTech": "Front End: Javascript Html, SaSS",
-    "backTech": "Public API",
-    "url": "https://musicadventure.netlify.app/"
+    "frontTech": "Front End: React, HTML, SaSS",
+    "backTech": "",
+    "url": "https://ear-train.netlify.app/"
   }
 ]

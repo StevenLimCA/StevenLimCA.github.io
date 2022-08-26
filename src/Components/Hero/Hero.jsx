@@ -10,7 +10,7 @@ export default function Hero() {
       <div className="cloud"></div>
       {/* <div className="hero__blur"></div> */}
       <h1 className="hero__title">
-        <TypeAnimation cursor={true} sequence={["Hi! 🙋‍♂️ I am Steven."]} />
+        <TypeAnimation cursor={true} sequence={["Hi! 🙋🏻‍♂️ I am Steven."]} />
       </h1>
     </div>
   );
