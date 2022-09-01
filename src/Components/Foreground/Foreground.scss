@@ -1,0 +1,11 @@
+@import "../../styles/partials/mixins";
+
+.foreground {
+    position: absolute;
+    top: 1%;
+    left: 2%;
+    width: 95vw;
+    height: 75vh;
+    overflow: scroll;
+    background-color: rgba(255, 255, 255, 0.381);
+}

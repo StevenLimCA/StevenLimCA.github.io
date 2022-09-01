@@ -1,16 +1,14 @@
 import Header from "./Components/Header/Header";
 import "./App.scss";
 import MainContent from "./Components/MainContent/MainContent";
-import Hero from "./Components/Hero/Hero";
-import ProjectPage from "./Components/Pages/ProjectPage/ProjectPage";
+import Background from "./Components/Background/Background";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Hero />
+      <Background />
       <MainContent />
-      <ProjectPage />
     </div>
   );
 }

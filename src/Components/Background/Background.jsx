@@ -1,17 +1,17 @@
 import React from "react";
-import "./Hero.scss";
+import "./Background.scss";
+import Foreground from "../Foreground/Foreground";
 import TypeAnimation from "react-type-animation";
 
-export default function Hero() {
+export default function Background() {
   return (
-    <div className="hero">
-      {" "}
+    <div className="background">
       <div className="sun"></div>
-      <div className="cloud"></div>
+      <div className="cloud"></div> <Foreground />
       {/* <div className="hero__blur"></div> */}
-      <h1 className="hero__title">
+      {/* <h1 className="hero__title">
         <TypeAnimation cursor={true} sequence={["Hi! 🙋🏻‍♂️ I am Steven."]} />
-      </h1>
+      </h1> */}
     </div>
   );
 }

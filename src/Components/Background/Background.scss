@@ -1,18 +1,13 @@
 @import "../../styles/partials/global";
 
-.hero {
+.background {
     top: 5rem;
     width: 100%;
-    height: 30rem;
+    height: 80vh;
     background: linear-gradient(360deg, rgba(16, 136, 161, 1) 4%, rgba(11, 28, 54, 1) 92%);
     position: relative;
     z-index: 20;
     box-shadow: inset 0 0 2000px rgba(86, 96, 214, 0.5);
-
-
-
-
-
 
 
     &__title {
@@ -35,7 +30,7 @@
     -webkit-filter: blur(0.5rem);
     z-index: 11;
     left: -50px;
-    animation: 15000ms cloudAnimation linear infinite;
+    animation: 80000ms cloudAnimation linear infinite;
     opacity: 0.76;
 }
 
@@ -71,18 +66,18 @@
 
 @keyframes cloudAnimation {
     0% {
-        transform: translateX(-30rem);
+        transform: translateX(-30vw);
     }
 
     100% {
-        transform: translateX(10rem);
+        transform: translateX(90vw);
     }
 }
 
 .sun {
     position: relative;
     top: 5rem;
-    left: 5rem;
+    left: 50%;
     display: inline-block;
     border-radius: 50%;
     background: orange;

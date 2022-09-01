@@ -1,5 +1,5 @@
 import React from "react";
-import "./Projects.scss";
+import "./Project.scss";
 
 export default function Project(props) {
   const clickhandler = (e) => {
@@ -19,6 +19,7 @@ export default function Project(props) {
             {props.projectArr.id}. {props.projectArr.name}
           </h2>
           <p className="projects__desc">{props.projectArr.desc}</p>
+          <p className="projects__obj">{props.projectArr.obj1}</p>
           <p className="projects__tech">{props.projectArr.frontTech}</p>
           <p className="projects__tech">{props.projectArr.backTech}</p>
           <button
