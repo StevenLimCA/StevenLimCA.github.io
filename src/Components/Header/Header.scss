@@ -1,23 +1,29 @@
+@import '../../styles/partials/global';
+
 .header {
     position: fixed;
+    padding: 1rem;
     background-color: white;
     z-index: 100;
     width: 100%;
-    overflow-x: hidden;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+
 
     &__html-css-icon {
-        margin-left: 5rem;
+
         width: 5rem;
         height: 3rem;
+
+        @include tablet {
+            margin-left: 5rem;
+        }
     }
 
     &__title {
-        font-size: 3rem;
-        text-align: center;
+        font-size: 2rem;
+        padding-right: 2rem;
         font-family: 'Shadows Into Light', cursive;
     }
 

@@ -2,25 +2,10 @@
 
 
 .projects {
-    margin: 1rem;
-    position: relative;
-    width: 60rem;
+    min-height: 30rem;
+    height: 60vh;
+    overflow-y: scroll;
 
-
-    &__view-button {
-        background-color: royalblue;
-        border: 0;
-        box-shadow: 0;
-        color: white;
-        border-radius: 2rem;
-        font-size: 1rem;
-        width: 5rem;
-        height: 2rem;
-
-        &:hover {
-            background-color: rgb(72, 138, 251);
-        }
-    }
 
     &__header {
         margin: 2rem 0;
@@ -28,7 +13,7 @@
 
     &__wrap {
         display: flex;
-        margin: 0 3rem;
+
         flex-direction: column;
         align-items: center;
 
@@ -41,17 +26,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin: 0 5rem;
+            // margin: 0 5rem;
         }
     }
 
     &__title {
-        margin: 1rem 0;
+        // margin: 1rem 0;
     }
 
     &__image {
-        width: 40%;
-        height: 40%;
+        width: 100%;
 
         @include tablet {
             margin: 2rem;
