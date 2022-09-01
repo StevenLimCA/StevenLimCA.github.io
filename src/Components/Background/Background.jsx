@@ -1,7 +1,7 @@
 import React from "react";
 import "./Background.scss";
 import Foreground from "../Foreground/Foreground";
-import TypeAnimation from "react-type-animation";
+// import TypeAnimation from "react-type-animation";
 
 export default function Background() {
   return (

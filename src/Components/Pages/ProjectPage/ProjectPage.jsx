@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Project from "../../Project/Project";
 import projects from "../../../projectsArr/projects.json";
 import "./ProjectPage.scss";
-import uuid from "react-uuid";
+// import uuid from "react-uuid";
 
 export default function ProjectPage() {
   let [count, setCount] = useState(0);
