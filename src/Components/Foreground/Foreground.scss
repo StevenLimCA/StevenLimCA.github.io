@@ -1,11 +1,14 @@
 @import "../../styles/partials/mixins";
 
 .foreground {
+    z-index: 105;
+    color: white;
+    margin-top: 1rem;
     position: absolute;
-    top: 10%;
+    top: 12%;
     left: 5%;
     width: 90vw;
-    height: 75%;
+    height: 65%;
     border-radius: 1rem;
-    background-color: rgba(255, 255, 255, 0.381);
+    background-color: rgba(136, 142, 255, 0.52);
 }

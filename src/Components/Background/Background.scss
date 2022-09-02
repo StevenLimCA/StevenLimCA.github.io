@@ -1,9 +1,9 @@
 @import "../../styles/partials/global";
 
 .background {
-    top: 5rem;
+    top: 4rem;
     width: 100%;
-    height: 82vh;
+    height: 85vh;
     background: linear-gradient(360deg, rgba(16, 136, 161, 1) 4%, rgba(11, 28, 54, 1) 92%);
     position: relative;
     z-index: 20;
@@ -11,7 +11,7 @@
 
 
     &__page-title {
-        padding-top: 1rem;
+        padding: 2rem 0;
         text-align: center;
         font-size: 2rem;
         color: white;
@@ -23,7 +23,7 @@
 
 .cloud {
     display: inline-block;
-    background: white;
+    background: rgb(173, 173, 173);
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -34,12 +34,18 @@
     left: -50px;
     animation: 80000ms cloudAnimation linear infinite;
     opacity: 0.76;
+
+    @include tablet {
+        left: -180px;
+        width: 200px;
+        height: 180px;
+    }
 }
 
 .cloud:before {
     content: "";
     display: inline-block;
-    background: white;
+    background: rgba(193, 186, 186, 0.479);
     width: 100px;
     height: 100px;
     -webkit-filter: blur(3px);
@@ -47,12 +53,18 @@
     border-radius: 50%;
     top: -30px;
     left: 60px;
+
+    @include tablet {
+        width: 200px;
+        height: 200px;
+    }
+
 }
 
 .cloud:after {
     content: "";
     display: inline-block;
-    background: white;
+    background: rgba(174, 170, 170, 0.722);
     width: 200px;
     height: 100px;
     -webkit-filter: blur(3px);
@@ -60,6 +72,13 @@
     border-radius: 50%;
     top: -80px;
     left: 70px;
+
+    @include tablet {
+        top: -180px;
+        left: 100px;
+        width: 400px;
+        height: 200px;
+    }
 }
 
 .cloud:first-child {

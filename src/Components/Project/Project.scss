@@ -2,8 +2,8 @@
 
 
 .projects {
-    min-height: 30rem;
-    height: 60vh;
+
+    height: 55vh;
     overflow-y: scroll;
 
 
@@ -13,7 +13,6 @@
 
     &__wrap {
         display: flex;
-
         flex-direction: column;
         align-items: center;
 

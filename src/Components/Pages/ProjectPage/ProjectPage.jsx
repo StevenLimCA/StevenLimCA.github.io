@@ -29,20 +29,25 @@ export default function ProjectPage() {
   };
   return (
     <div className="project-section">
-      {<Project projectArr={projects[count]} />}
-      <div className="project-section__nav-wrap">
-        <button className="project-section__nav" onClick={prevProject}>
-          &#60;
-        </button>
-        <button
-          className="project-section__call-to-action"
-          onClick={clickhandler}
-        >
-          View Now!
-        </button>
-        <button className="project-section__nav" onClick={nextProject}>
-          &#62;{" "}
-        </button>
+      <div className="project-section__wrap--left">
+        {<Project projectArr={projects[count]} />}
+        <div className="project-section__nav-wrap">
+          <button className="project-section__nav" onClick={prevProject}>
+            &#60;
+          </button>
+          <button
+            className="project-section__call-to-action"
+            onClick={clickhandler}
+          >
+            View Now!
+          </button>
+          <button className="project-section__nav" onClick={nextProject}>
+            &#62;{" "}
+          </button>
+        </div>
+      </div>
+      <div className="project-section__side">
+        <h1>List of Projects:</h1>
       </div>
       {/* {projects.map((project) => (
         <Project key={uuid()} projectArr={project} />
