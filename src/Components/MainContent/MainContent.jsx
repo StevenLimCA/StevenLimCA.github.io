@@ -5,7 +5,7 @@ import "./MainContent.scss";
 export default function MainContent() {
   return (
     <main className="main-content">
-      <p className="main-content__text">Hi! I am a full-stack web developer.</p>{" "}
+      <p className="main-content__text"></p>{" "}
       {/* <p className="main-content__text">
         Whether you need a website to communicate value or a web application to
         create value for your clients, I am up for the task every step.
