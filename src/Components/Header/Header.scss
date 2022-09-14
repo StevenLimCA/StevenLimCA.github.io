@@ -25,9 +25,9 @@
     }
 
     &__title {
-        font-size: 2rem;
+        font-size: 3rem;
         padding-right: 2rem;
-        font-family: 'Shadows Into Light', cursive;
+        @include logo-font;
     }
 
     &__js-icon {

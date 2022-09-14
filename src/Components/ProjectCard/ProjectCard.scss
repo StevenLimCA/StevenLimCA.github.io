@@ -1,14 +1,27 @@
+@use '../../styles/partials/global'as *;
+
 .project-card {
     display: flex;
-    margin: 1rem 0;
-    gap: 2rem;
+    padding: 1rem 2rem;
+    margin: 1rem;
     align-items: center;
+    cursor: pointer;
+    background-color: rgba(229, 229, 229, 0.237);
 
-    overflow-y: scroll;
+    @include desktop {}
+
+
+    &:hover {
+        background-color: aliceblue;
+    }
+
+    &__name {
+        padding-left: 2rem;
+    }
 
     &__img {
-        width: 5rem;
-        height: 5rem;
+        width: 6rem;
+        height: 6rem;
 
     }
 }

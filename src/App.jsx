@@ -1,15 +1,17 @@
-import Header from "./Components/Header/Header";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
+import MainPage from "./Components/Pages/MainPage/MainPage";
 import "./App.scss";
-import MainContent from "./Components/MainContent/MainContent";
-import Background from "./Components/Background/Background";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Background />
-      <MainContent />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route path="/" exact component={MainPage} />
+          <Route path="/project/:id" component={MainPage} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 

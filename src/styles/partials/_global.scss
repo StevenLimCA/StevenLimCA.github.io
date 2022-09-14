@@ -1,12 +1,21 @@
 @import "./variables";
 // @import "./reset";
 @import "./mixins";
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&family=Shadows+Into+Light&family=Source+Sans+Pro&family=Tangerine&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed&family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Nunito+Sans:wght@300&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Square+Peg&display=swap');
 
 body {
-    font-family: 'Barlow Semi Condensed', sans-serif;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Fira Sans', sans-serif;
+    color: rgb(68, 68, 68);
+}
+
+.button {
+    background-color: royalblue;
+    box-shadow: none;
+    font-size: 1.5rem;
+    color: white;
+    border-radius: 1rem;
+    border: none;
+    padding: 0.5rem 1rem;
 }
 
 h1,
@@ -15,14 +24,20 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Source Sans Pro';
-    font-weight: normal;
+    color: rgb(24, 24, 24);
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 300;
     margin: 0;
+    line-height: 2;
 }
 
 h1 {
-    font-size: 1.5rem;
-    text-align: center;
+    font-size: 2rem;
+
+
+    @include tablet {
+        font-size: 3rem;
+    }
 
 }
 
@@ -32,7 +47,7 @@ h2 {
 }
 
 p {
-    font-family: 'Barlow Semi Condensed';
+    font-family: 'Fira Sans', sans-serif;
     font-weight: 100;
     line-height: 1.4;
 

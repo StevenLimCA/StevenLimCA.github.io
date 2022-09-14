@@ -20,10 +20,7 @@ export default function Project({ projectObj }) {
           <p className="projects__obj">{projectObj.obj1}</p>
           <p className="projects__tech">{projectObj.frontTech}</p>
           <p className="projects__tech">{projectObj.backTech}</p>{" "}
-          <button
-            className="project-section__call-to-action"
-            onClick={clickHandler}
-          >
+          <button className="button" onClick={clickHandler}>
             View Now!
           </button>
         </div>

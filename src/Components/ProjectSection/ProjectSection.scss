@@ -1,9 +1,19 @@
-@import "../../../styles/partials/global";
+@import "../../styles/partials/global";
 
 .project-section {
+    position: relative;
+    top: 5rem;
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+
+    &__wrap {
+        @include desktop {
+            display: flex;
+        }
+
+    }
 
     &__side {
         width: 100%;
