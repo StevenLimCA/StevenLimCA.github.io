@@ -1,0 +1,14 @@
+.project-card {
+    display: flex;
+    margin: 1rem 0;
+    gap: 2rem;
+    align-items: center;
+
+    overflow-y: scroll;
+
+    &__img {
+        width: 5rem;
+        height: 5rem;
+
+    }
+}
