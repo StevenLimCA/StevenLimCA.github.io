@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Background.scss";
-
 import TypeAnimation from "react-type-animation";
 
 export default function Background() {
