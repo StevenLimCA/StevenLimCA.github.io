@@ -31,7 +31,9 @@
         }
     }
 
-    &__title {}
+    &__title {
+        font-size: 2rem;
+    }
 
     &__image {
         width: 50%;

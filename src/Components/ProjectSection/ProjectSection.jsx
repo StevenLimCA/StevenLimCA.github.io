@@ -17,8 +17,6 @@ export default function ProjectSection() {
         </div>
 
         <div className="project-section__card-wrap">
-          <h1>Other Projects:</h1>
-
           {projects
             .filter((el) => el.id !== projects[selectedProject].id)
             .map((project) => (

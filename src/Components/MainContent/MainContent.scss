@@ -1,19 +1,23 @@
 @import "../../styles/partials/global";
 
 .main-content {
-    color: rgb(48, 48, 48);
-    position: relative;
-    top: 5rem;
-    margin: 0 2rem;
-    line-height: 2;
-    font-size: 1.2rem;
+    margin-top: 2rem;
+    text-align: center;
+    background-color: black;
+    color: rgb(217, 217, 217);
+
+
 
     @include tablet {}
 
     &__title {
-
+        color: rgb(217, 217, 217);
         margin: 1rem 0;
     }
 
-    &__text {}
+    &__text {
+        margin: auto;
+        width: 75%;
+
+    }
 }
