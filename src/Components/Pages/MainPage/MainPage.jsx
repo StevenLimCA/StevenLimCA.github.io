@@ -1,15 +1,15 @@
 import React from "react";
-import Background from "../../Background/Background";
-import Header from "../../Header/Header";
+import Hero from "../../Hero/Hero";
+
 // import MainContent from "../../MainContent/MainContent";
+
 import ProjectSection from "../../ProjectSection/ProjectSection";
 import "./MainPage.scss";
 
 export default function MainPage({ match }) {
   return (
     <div className="main-page">
-      <Header />
-      <Background />
+      <Hero />
       <ProjectSection match={match} />
       {/* <MainContent /> */}
     </div>

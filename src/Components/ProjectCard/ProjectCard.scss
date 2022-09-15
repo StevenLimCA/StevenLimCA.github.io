@@ -2,21 +2,39 @@
 
 .project-card {
     display: flex;
+    justify-content: flex-start;
     padding: 1rem 2rem;
     margin: 1rem;
     align-items: center;
     cursor: pointer;
     background-color: rgba(229, 229, 229, 0.237);
+    border-radius: 2rem;
+
+    &:hover {
+        background-color: aliceblue;
+    }
+
+    @include tablet {
+        justify-content: space-around;
+    }
 
     @include desktop {}
 
+    &__desc {
+        display: none;
+
+        @include tablet {
+            display: flex;
+            width: 50%;
+        }
+    }
 
     &:hover {
         background-color: aliceblue;
     }
 
     &__name {
-        padding-left: 2rem;
+        padding-left: 1rem;
     }
 
     &__img {

@@ -3,6 +3,12 @@
 
 .projects {
 
+    background-color: aliceblue;
+
+    @include desktop {
+        margin: 0 1rem;
+        border-radius: 2rem;
+    }
 
     &__header {
         margin: 2rem 0;

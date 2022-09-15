@@ -8,6 +8,11 @@
     flex-direction: column;
     text-align: center;
 
+
+    &__subtitle {
+        margin: 2rem 0;
+    }
+
     &__wrap {
         @include desktop {
             display: flex;

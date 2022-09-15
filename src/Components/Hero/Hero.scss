@@ -1,30 +1,39 @@
 @import "../../styles/partials/global";
 
-.background {
+.hero {
     top: 5rem;
     width: 100%;
-    height: 40vh;
+    height: 60vh;
+    min-height: 25rem;
     background: linear-gradient(360deg, rgba(16, 136, 161, 1) 4%, rgba(11, 28, 54, 1) 92%);
     position: relative;
     z-index: 20;
     box-shadow: inset 0 0 2000px rgba(86, 96, 214, 0.5);
+    overflow: hidden;
+
 
     @include tablet {
-        height: 70vh;
+        height: 44vh;
     }
 
     &__title {
         text-align: center;
         position: absolute;
         color: white;
-        bottom: 20%;
-        font-size: 2rem;
+        left: 15%;
 
 
         @include tablet {
-            right: 35%;
-            font-size: 3rem;
+            left: 30%;
+
         }
+
+
+    }
+
+    &__emoji {
+        bottom: 1%;
+        font-size: 5rem;
     }
 
     &__page-title {
@@ -113,17 +122,16 @@
 
 .sun {
     position: relative;
-    top: 5rem;
+    top: -5rem;
     left: 50%;
     display: inline-block;
     border-radius: 50%;
     background: orange;
-    box-shadow: 0 0 10px orange,
-        0 0 60px orange,
+    box-shadow: 0 0 100px orange,
+        0 0 80px orange,
         0 0 200px yellow,
         inset 0 0 80px yellow;
     z-index: 12;
-    align: center;
     z-index: -99;
     height: 6.125rem;
     width: 6.125rem;
