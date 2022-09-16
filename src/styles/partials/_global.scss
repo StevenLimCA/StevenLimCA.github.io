@@ -14,6 +14,15 @@ body {
 
 .grow:hover {
     transform: scale(1.2);
+
+}
+
+.rotate360 {
+    transition: all .3s ease-in-out;
+}
+
+.rotate360:hover {
+    transform: rotate(360deg)
 }
 
 .button {
@@ -69,15 +78,15 @@ h2 {
 }
 
 h3 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 400;
 
     @include tablet {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     @include desktop {
-        font-size: 2rem;
+        line-height: 1.3;
     }
 }
 

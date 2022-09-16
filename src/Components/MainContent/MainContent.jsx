@@ -6,6 +6,7 @@ export default function MainContent() {
   return (
     <main className="main-content">
       <h1 className="main-content__title">About Me</h1>
+
       <p className="main-content__text">
         I first learnt to code for the web when I was learning to sell virtual
         items on a virtual pet website, Neopets. HTML and CSS was a large part
@@ -24,10 +25,9 @@ export default function MainContent() {
         autoHotkey to automate more workflows. I then extended this to creating
         scripts for backing up crucial data on a file server and desktops, and
         creating login scripts for managing group policies on an Active
-        Directory Server. All of these experience got me extremely excited for
-        programming.
+        Directory Server.
       </p>
-      <p className="main-content__text"> </p>
+      <p className="main-content__text"> The pandemic happened and </p>
     </main>
   );
 }
