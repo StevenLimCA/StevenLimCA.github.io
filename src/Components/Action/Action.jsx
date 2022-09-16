@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../Footer/Footer";
 import "./Action.scss";
 
 export default function Action() {
@@ -28,6 +29,7 @@ export default function Action() {
           Email
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
