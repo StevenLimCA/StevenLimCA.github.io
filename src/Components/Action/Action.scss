@@ -6,7 +6,12 @@
     bottom: 0;
     width: 100%;
     z-index: 100;
-    background: white;
+    background: rgba(175, 212, 255, 0.33);
+    border-radius: 2rem 2rem 0 0;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.5px);
+    -webkit-backdrop-filter: blur(7.5px);
+    border: 1px solid rgba(15, 121, 243, 0.19);
 
     &__wrap {
         display: flex;
@@ -41,6 +46,10 @@
         text-align: center;
 
         @include tablet {
+            font-size: 1.4rem;
+        }
+
+        @include desktop {
             font-size: 2rem;
         }
     }

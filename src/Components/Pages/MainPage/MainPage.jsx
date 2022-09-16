@@ -4,6 +4,7 @@ import Hero from "../../Hero/Hero";
 import ProjectSection from "../../ProjectSection/ProjectSection";
 import Skills from "../../Skills/Skills";
 import "./MainPage.scss";
+// import Footer from "../../Footer/Footer";
 
 export default function MainPage() {
   return (
@@ -12,6 +13,7 @@ export default function MainPage() {
       <ProjectSection />
       <Skills />
       {/* <MainContent /> */}
+      {/* <Footer /> */}
     </div>
   );
 }
