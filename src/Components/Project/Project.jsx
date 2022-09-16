@@ -10,9 +10,10 @@ export default function Project({ projectObj }) {
     <div className="projects">
       <div className="projects__wrap">
         <img
-          className="projects__image"
+          className="projects__image grow"
           src={`${projectObj.image}`}
           alt={`${projectObj.name}`}
+          onClick={clickHandler}
         />
         <div className="projects__wrap--right">
           <h2 className="projects__title">{projectObj.name}</h2>
@@ -20,7 +21,7 @@ export default function Project({ projectObj }) {
           <p className="projects__obj">{projectObj.obj1}</p>
           <p className="projects__tech">{projectObj.frontTech}</p>
           <p className="projects__tech">{projectObj.backTech}</p>{" "}
-          <button className="button" onClick={clickHandler}>
+          <button className="button grow" onClick={clickHandler}>
             View Now!
           </button>
         </div>

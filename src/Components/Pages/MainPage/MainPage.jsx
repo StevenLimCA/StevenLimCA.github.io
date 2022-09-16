@@ -4,13 +4,14 @@ import Hero from "../../Hero/Hero";
 // import MainContent from "../../MainContent/MainContent";
 
 import ProjectSection from "../../ProjectSection/ProjectSection";
+import Skills from "../../Skills/Skills";
 import "./MainPage.scss";
 
 export default function MainPage({ match }) {
   return (
     <div className="main-page">
       <Hero />
-      <ProjectSection match={match} />
+      <ProjectSection match={match} /> <Skills />
       {/* <MainContent /> */}
     </div>
   );

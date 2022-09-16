@@ -14,15 +14,7 @@
         justify-content: center;
     }
 
-    &__html-css-icon {
 
-        width: 5rem;
-        height: 3rem;
-
-        @include tablet {
-            margin-left: 16rem;
-        }
-    }
 
     &__title {
         font-size: 3rem;
@@ -30,8 +22,5 @@
         @include logo-font;
     }
 
-    &__js-icon {
-        width: 3rem;
-        height: 3rem;
-    }
+
 }
