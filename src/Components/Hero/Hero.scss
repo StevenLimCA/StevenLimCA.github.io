@@ -13,7 +13,7 @@
 
 
     @include tablet {
-        height: 44vh;
+        height: 60vh;
     }
 
     &__title {
@@ -21,8 +21,8 @@
         position: absolute;
         color: white;
         left: 15%;
-
-        bottom: 0;
+        z-index: 200;
+        bottom: 35%;
 
         @include tablet {
             left: 30%;
@@ -33,8 +33,18 @@
     }
 
     &__emoji {
-        bottom: 1%;
+        position: relative;
+        left: 40%;
+        bottom: -25%;
         font-size: 5rem;
+
+        @include tablet {
+            bottom: 15%;
+        }
+
+        @include tablet {
+            bottom: 5%;
+        }
     }
 
     &__page-title {

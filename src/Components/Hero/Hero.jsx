@@ -17,8 +17,8 @@ export default function Hero() {
             "I am a Full Stack Web Developer",
           ]}
         />
-        <div className="hero__emoji">🙋🏻‍♂️</div>
-      </h1>
+      </h1>{" "}
+      <div className="hero__emoji">🙋🏻‍♂️</div>
     </div>
   );
 }

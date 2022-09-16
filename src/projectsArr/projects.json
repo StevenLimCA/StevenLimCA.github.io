@@ -23,7 +23,7 @@
   {
     "id": "3",
     "name": "BrainFlix",
-    "image": "./images/project2.png",
+    "image": "./projects/BrainFlix/BrainFlix.svg",
     "icon": "",
     "desc": "This is a Prototype Video Sharing Web Application.",
     "frontTech": "Front End: React Javascript Html, SaSS",
@@ -33,7 +33,7 @@
   {
     "id": "4",
     "name": "MusicAdventures",
-    "image": "./images/project3.png",
+    "image": "./projects/bandsite/bandsite.svg",
     "icon": "",
     "desc": "This website is a musician website for those would like to start a orchestra or band. ",
     "frontTech": "Front End: Javascript Html, SaSS",

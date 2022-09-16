@@ -21,12 +21,17 @@ export default function Skills() {
             <h1 className="skills__title">My Tech Stacks</h1>
             <div className="skills__icons-wrapper">
               <img
-                className="skills__html-css-icon grow"
-                alt="HTML and CSS"
-                src="./logos/CSS3HTML5.svg"
+                className="skills__icon grow"
+                alt="HTML"
+                src="./logos/HTML5.svg"
+              />
+              <img
+                className="skills__icon grow"
+                alt="CSS3"
+                src="./logos/CSS3.svg"
               />{" "}
               <img
-                className="skills__JS-icon grow"
+                className="skills__icon grow"
                 alt="Javascript"
                 src="./logos/JavaScript.svg"
               />{" "}
@@ -58,7 +63,6 @@ export default function Skills() {
                 expressJS
               </div>
             </div>
-            <h2 className="skills__title">Other Stacks</h2>
             <div className="skills__icons-wrapper">
               <div className="skills__icons-text-wrap grow">
                 <img
