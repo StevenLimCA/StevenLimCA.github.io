@@ -1,21 +1,18 @@
 @import '../../styles/partials/global';
 
-
-
-
 .skills {
     position: relative;
-    top: 5rem;
+    top: 2rem;
     overflow: hidden;
 
     &__background {
         position: relative;
 
         &--area {
-            background: #00b7ff;
-            background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+            background: #00c3ff;
+            background: -webkit-linear-gradient(to left, #a6aaee, #262ec5);
             width: 100%;
-            height: 85vh;
+            height: 80vh;
             z-index: 1;
 
 
@@ -28,7 +25,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            z-index: 1;
+            z-index: 2;
 
         }
 
@@ -36,14 +33,14 @@
             position: absolute;
             display: block;
             list-style: none;
-            width: 600px;
-            height: 600px;
+            width: 800px;
+            height: 800px;
             border-radius: 4rem;
-            background: rgba(255, 255, 255, 0.2);
-            animation: animate 25s linear infinite;
+            background: rgba(2, 101, 137, 0.8);
+            animation: animate 40s linear infinite;
             bottom: -150px;
-            border-radius: 50%;
-            z-index: 1;
+            border-radius: 70%;
+            z-index: 3;
         }
 
         &--circles li:nth-child(1) {
@@ -51,8 +48,8 @@
             width: 700px;
             height: 700px;
             animation-delay: 0s;
-            border-radius: 50%;
-            z-index: 1;
+
+            z-index: 4;
         }
 
 
@@ -63,14 +60,16 @@
             animation-delay: 2s;
             animation-duration: 12s;
             border-radius: 50%;
+            z-index: 5;
         }
 
         &--circles li:nth-child(3) {
             left: 70%;
-            width: 230px;
-            height: 230px;
+            width: 280px;
+            height: 280px;
             animation-delay: 4s;
             border-radius: 50%;
+            z-index: 6;
         }
 
         &--circles li:nth-child(4) {
@@ -80,6 +79,7 @@
             animation-delay: 0s;
             animation-duration: 18s;
             border-radius: 50%;
+            z-index: 7;
         }
 
         &--circles li:nth-child(5) {
@@ -88,6 +88,7 @@
             height: 70px;
             animation-delay: 0s;
             border-radius: 50%;
+            z-index: 8;
         }
 
         &--circles li:nth-child(6) {
@@ -96,6 +97,7 @@
             height: 110px;
             animation-delay: 3s;
             border-radius: 50%;
+            z-index: 9;
         }
 
         &--circles li:nth-child(7) {
@@ -104,15 +106,17 @@
             height: 120px;
             animation-delay: 7s;
             border-radius: 50%;
+            z-index: 10;
         }
 
         &--circles li:nth-child(8) {
             left: 50%;
-            width: 25px;
-            height: 25px;
+            width: 50px;
+            height: 50px;
             animation-delay: 15s;
             animation-duration: 45s;
             border-radius: 50%;
+            z-index: 12;
         }
 
         &--circles li:nth-child(9) {
@@ -122,6 +126,7 @@
             animation-delay: 2s;
             animation-duration: 35s;
             border-radius: 50%;
+            z-index: 13;
         }
 
         &--circles li:nth-child(10) {
@@ -131,6 +136,7 @@
             animation-delay: 0s;
             animation-duration: 11s;
             border-radius: 50%;
+            z-index: 14;
         }
 
 
@@ -161,7 +167,7 @@
         border-radius: 2rem;
         margin: 4rem;
         box-sizing: border-box;
-        z-index: 200;
+
     }
 
 
@@ -180,29 +186,22 @@
     &__icons-text-wrap {
         display: flex;
         flex-direction: column;
+        color: white;
 
+        @include desktop {
+            padding: 0 2rem;
+        }
     }
 
-    &__JS-icon {
-        padding-left: 0.5rem;
-
-        height: 10vh;
-        min-width: 5rem;
-        min-height: 3rem;
-    }
-
-    &__html-css-icon {
-        width: 10%;
-        height: 10vh;
-        min-width: 10rem;
-        min-height: 3rem;
-    }
 
     &__icon {
-
-        margin: 0 0.5rem;
+        padding: 1rem;
         height: 10vh;
+        z-index: 30;
 
+        @include desktop {
+            padding: 2vh 5vw;
+        }
 
 
     }

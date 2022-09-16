@@ -51,16 +51,15 @@ h6 {
 
 h1 {
     font-size: 2rem;
-    font-weight: 300;
+    font-weight: 500;
 
 
     @include tablet {
         font-size: 3rem;
+        font-weight: 800
     }
 
-    @include desktop {
-        font-size: 4rem;
-    }
+
 }
 
 h2 {
