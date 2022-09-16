@@ -7,14 +7,18 @@ export default function ProjectCard({ project, setActive, projectsArr }) {
   };
 
   return (
-    <div className="project-card grow" onClick={clickHandler}>
+    <div className="project-card shrink" onClick={clickHandler}>
       <img
-        src={`${project.image}`}
+        src={`${project.icon}`}
         alt={project.name}
         className="project-card__img"
       />
-      <h3 className="project-card__name">{project.name}</h3>
-      <p className="project-card__desc">{project.desc.substring(0, 150)}</p>
+      <div className="project-card__text-wrap">
+        <h3 className="project-card__name">{project.name}</h3>
+        <p className="project-card__desc">
+          {project.desc.substring(0, 100)}...
+        </p>
+      </div>
     </div>
   );
 }

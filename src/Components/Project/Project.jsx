@@ -11,7 +11,7 @@ export default function Project({ projectObj }) {
       <div className="projects__wrap">
         <img
           className="projects__image grow"
-          src={`${projectObj.image}`}
+          src={`${projectObj.icon}`}
           alt={`${projectObj.name}`}
           onClick={clickHandler}
         />

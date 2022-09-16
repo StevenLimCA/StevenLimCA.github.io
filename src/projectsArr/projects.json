@@ -2,7 +2,7 @@
   {
     "id": "1",
     "name": "Rate Your Landlord",
-    "icon": "",
+    "icon": "./projects/rateyourlandlord/rateyourlandlord-logo.svg",
     "image": "./projects/rateyourlandlord/rateyourlandlord-logo.svg",
     "desc": "This application is here to create transparency in the rental and landlord market. \n - Users are able to view, add, update, delete listings. \n Tenants are able to create a review, and add a rating and have the system automatically calculate an average rating.",
     "frontTech": "Front End: React Javascript Html, SaSS, React Star Rating and Google Maps Api",
@@ -12,19 +12,19 @@
 
   {
     "id": "2",
-    "name": "Web-Piano",
-    "icon": "",
+    "name": "Web Piano App",
+    "icon": "./projects/webpiano/piano-logo.svg",
     "image": "./projects/webpiano/piano-logo.svg",
     "desc": "This is a web piano for those who want to practice piano every day with out a real piano. ",
     "frontTech": "Front End: React, HTML, SaSS",
     "backTech": "",
-    "url": "https://web-piano.netlify.app/"
+    "url": "https://piano.stevenlim.ca/"
   },
   {
     "id": "3",
     "name": "BrainFlix",
     "image": "./projects/BrainFlix/BrainFlix.svg",
-    "icon": "",
+    "icon": "./projects/BrainFlix/BrainFlix.svg",
     "desc": "This is a Prototype Video Sharing Web Application.",
     "frontTech": "Front End: React Javascript Html, SaSS",
     "backTech": "Back End: NodeJS and Express",
@@ -34,7 +34,7 @@
     "id": "4",
     "name": "MusicAdventures",
     "image": "./projects/bandsite/bandsite.svg",
-    "icon": "",
+    "icon": "./projects/bandsite/bandsite.svg",
     "desc": "This website is a musician website for those would like to start a orchestra or band. ",
     "frontTech": "Front End: Javascript Html, SaSS",
     "backTech": "Public API",

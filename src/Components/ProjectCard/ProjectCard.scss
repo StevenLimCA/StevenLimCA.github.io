@@ -2,7 +2,7 @@
 
 .project-card {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     padding: 1rem 2rem;
     margin: 1rem;
     align-items: center;
@@ -15,7 +15,7 @@
     }
 
     @include tablet {
-        justify-content: space-around;
+        justify-content: flex-start;
     }
 
     @include desktop {}
@@ -23,10 +23,13 @@
     &__desc {
         display: none;
 
+
         @include tablet {
             display: flex;
-            width: 50%;
+            margin: 0 2rem;
+            width: 100%;
         }
+
     }
 
     &:hover {
@@ -34,7 +37,7 @@
     }
 
     &__name {
-        padding: 0 2rem;
+        padding-left: 1rem;
     }
 
     &__img {

@@ -9,7 +9,8 @@ export default function MainPage() {
   return (
     <div className="main-page">
       <Hero />
-      <ProjectSection /> <Skills />
+      <ProjectSection />
+      <Skills />
       {/* <MainContent /> */}
     </div>
   );

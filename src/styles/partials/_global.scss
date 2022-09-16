@@ -17,6 +17,14 @@ body {
 
 }
 
+.shrink {
+    transition: all .1s ease-in-out;
+}
+
+.shrink:hover {
+    transform: scale(0.9);
+}
+
 .rotate360 {
     transition: all .3s ease-in-out;
 }
