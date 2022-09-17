@@ -2,7 +2,7 @@
 
 .header {
     position: fixed;
-    padding: 0.5rem 0;
+    padding: 0.2rem 0;
     z-index: 100;
     width: 100%;
     display: flex;
@@ -20,7 +20,7 @@
 
 
     &__title {
-        color: rgb(63, 196, 253);
+        color: rgba(3, 139, 198, 0.993);
         font-size: 3rem;
         padding-right: 2rem;
         @include logo-font;

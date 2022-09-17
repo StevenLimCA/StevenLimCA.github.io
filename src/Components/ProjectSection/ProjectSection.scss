@@ -1,9 +1,8 @@
 @import "../../styles/partials/global";
 
 .project-section {
-    position: relative;
-    top: 5rem;
     width: 100%;
+    padding: 1rem 0;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -24,7 +23,6 @@
 
     &__side {
         width: 100%;
-
         overflow-y: scroll;
     }
 
