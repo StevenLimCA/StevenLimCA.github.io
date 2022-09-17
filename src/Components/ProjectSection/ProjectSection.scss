@@ -9,14 +9,18 @@
     overflow: hidden;
 
     &__subtitle {
-        margin: 2rem 0;
+        background-color: rgba(198, 198, 198, 0.237);
+        border-radius: 1rem 1rem 0 0;
+        padding: 0.5rem 0;
+        font-weight: 500;
+        margin: 1rem;
     }
 
     &__wrap {
         @include desktop {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
         }
 
     }
