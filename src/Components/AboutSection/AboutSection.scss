@@ -1,0 +1,24 @@
+@import "../../styles/partials/global";
+
+.about-section {
+    text-align: center;
+    margin: 0 0.5rem;
+
+
+
+    @include desktop {
+        margin: 0 10vw;
+    }
+
+    &__text {
+        &::first-letter {
+            -webkit-initial-letter: 2;
+            initial-letter: 2;
+            font-weight: 400;
+        }
+    }
+
+    ;
+
+    &__title {}
+}

@@ -1,15 +1,17 @@
 import React from "react";
+import AboutSection from "../../AboutSection/AboutSection";
 import Hero from "../../Hero/Hero";
 import ProjectSection from "../../ProjectSection/ProjectSection";
-import Skills from "../../Skills/Skills";
+import SkillSection from "../../SkillSection/SkillSection";
 import "./MainPage.scss";
 
 export default function MainPage() {
   return (
     <div className="main-page">
       <Hero />
+      <AboutSection />
       <ProjectSection />
-      <Skills />
+      <SkillSection />
     </div>
   );
 }

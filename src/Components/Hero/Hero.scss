@@ -32,17 +32,18 @@
 
     &__emoji {
         position: relative;
-        left: 40%;
-        bottom: -5rem;
-        font-size: 5rem;
+        left: 30%;
+        bottom: -4rem;
+        font-size: 7rem;
         z-index: 200;
 
         @include tablet {
-            bottom: 15%;
+            bottom: -1.2rem;
         }
 
-        @include tablet {
-            bottom: 5%;
+        @include desktop {
+
+            font-size: 8rem;
         }
     }
 
@@ -66,14 +67,14 @@
     top: 15rem;
     -webkit-filter: blur(0.5rem);
     z-index: 11;
-    left: -50px;
+    left: -60px;
     animation: 80000ms cloudAnimation linear infinite;
     opacity: 0.76;
 
     @include tablet {
-        left: -180px;
+        left: -30rem;
         width: 200px;
-        height: 180px;
+        height: 200px;
     }
 }
 
@@ -111,8 +112,8 @@
     @include tablet {
         top: -180px;
         left: 100px;
-        width: 400px;
-        height: 200px;
+        width: 18.75rem;
+        height: 12.5rem;
     }
 }
 

@@ -1,7 +1,5 @@
 import React from "react";
-
 import "./MainContent.scss";
-
 export default function MainContent() {
   return (
     <main className="main-content">
@@ -27,7 +25,6 @@ export default function MainContent() {
         creating login scripts for managing group policies on an Active
         Directory Server.
       </p>
-      <p className="main-content__text"> The pandemic happened and </p>
     </main>
   );
 }

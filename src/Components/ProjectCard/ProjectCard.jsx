@@ -15,9 +15,7 @@ export default function ProjectCard({ project, setActive, projectsArr }) {
       />
       <div className="project-card__text-wrap">
         <h3 className="project-card__name">{project.name}</h3>
-        <p className="project-card__desc">
-          {project.desc.substring(0, 100)}...
-        </p>
+        <p className="project-card__desc">{project.desc.substring(0, 80)}...</p>
       </div>
     </div>
   );
