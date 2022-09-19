@@ -73,13 +73,57 @@ export default function SkillsSection() {
                   alt="mysql"
                   src="./logos/mysql.svg"
                 />
+                MySQL
               </div>
+              <div className="skills__icons-wrapper">
+                <div className="skills__icons-text-wrap">
+                  <img
+                    className="skills__icon grow"
+                    alt="Sass"
+                    src="./logos/sass.svg"
+                  />
+                  Sass
+                </div>
+              </div>{" "}
+              <div className="skills__icons-wrapper">
+                <div className="skills__icons-text-wrap">
+                  <img
+                    className="skills__icon grow"
+                    alt="Git"
+                    src="./logos/git.svg"
+                  />{" "}
+                  Git
+                </div>
+              </div>
+            </div>
+          </div>{" "}
+          <div className="skills__icons-wrapper">
+            <div className="skills__icons-text-wrap">
+              <img
+                className="skills__icon grow"
+                alt="bash"
+                src="./logos/Bash.svg"
+              />
+              Bash
+            </div>{" "}
+            <div className="skills__icons-wrapper">
               <div className="skills__icons-text-wrap">
                 <img
                   className="skills__icon grow"
-                  alt="Node JS"
-                  src="./logos/sass.svg"
+                  alt="powershell"
+                  src="./logos/PowerShell.svg"
                 />
+                PowerShell
+              </div>
+            </div>
+            <div className="skills__icons-wrapper">
+              <div className="skills__icons-text-wrap">
+                <img
+                  className="skills__icon grow"
+                  alt="powershell"
+                  src="./logos/jira.svg"
+                />
+                Jira
               </div>
             </div>
           </div>

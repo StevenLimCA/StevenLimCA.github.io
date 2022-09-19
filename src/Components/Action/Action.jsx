@@ -17,15 +17,19 @@ export default function Action() {
       <h2 className="action__title">Connect with me today!</h2>
       <div className="action__wrap">
         <div className="action__button grow" onClick={linkedInClick}>
-          <img className="action__icon" src="./linkedin.svg" alt="LinkedIn" />
+          <img
+            className="action__icon"
+            src="./logos/linkedin.svg"
+            alt="LinkedIn"
+          />
           LinkedIn
         </div>
         <div className="action__button grow" onClick={gitHubClick}>
-          <img className="action__icon" src="./github.svg" alt="Github" />
+          <img className="action__icon" src="./logos/github.svg" alt="Github" />
           GitHub
         </div>
         <div className="action__button grow" onClick={emailClick}>
-          <img className="action__icon" src="./email.svg" alt="email" />
+          <img className="action__icon" src="./logos/email.svg" alt="email" />
           Email
         </div>
       </div>

@@ -11,7 +11,7 @@ export default function ProjectSection() {
   return (
     <div className="project-section">
       <Link name="projects-section" to=""></Link>
-      <h1>My Projects</h1>
+      <h1 className="project-section__title">My Projects</h1>
       <div className="project-section__wrap">
         <div className="project-section__wrap--left">
           {<Project projectObj={projects[selectedProject]} />}

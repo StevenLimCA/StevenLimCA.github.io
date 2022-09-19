@@ -1,8 +1,8 @@
 @import "../../styles/partials/global";
 
 .about-section {
-    text-align: center;
     margin: 0 0.5rem;
+    padding: 3vw 5vw;
 
 
 
@@ -10,7 +10,33 @@
         margin: 0 10vw;
     }
 
+    &__icon-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    &__icon {
+        width: 4rem;
+        height: 4rem;
+
+    }
+
+    &__icon-text {
+        font-size: 0.6rem;
+    }
+
+    &__wrap {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center;
+    }
+
     &__text {
+
+
         &::first-letter {
             -webkit-initial-letter: 2;
             initial-letter: 2;
@@ -21,4 +47,9 @@
     ;
 
     &__title {}
+
+    &__subtitle {
+        text-align: center;
+        padding: 0.5rem 0;
+    }
 }
