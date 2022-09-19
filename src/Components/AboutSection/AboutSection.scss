@@ -6,9 +6,7 @@
 
 
 
-    @include desktop {
-        margin: 0 10vw;
-    }
+    @include desktop {}
 
     &__icon-wrap {
         display: flex;
