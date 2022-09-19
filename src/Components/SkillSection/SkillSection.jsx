@@ -95,35 +95,35 @@ export default function SkillsSection() {
                   Git
                 </div>
               </div>
-            </div>
-          </div>{" "}
-          <div className="skills__icons-wrapper">
-            <div className="skills__icons-text-wrap">
-              <img
-                className="skills__icon grow"
-                alt="bash"
-                src="./logos/Bash.svg"
-              />
-              Bash
             </div>{" "}
             <div className="skills__icons-wrapper">
               <div className="skills__icons-text-wrap">
                 <img
                   className="skills__icon grow"
-                  alt="powershell"
-                  src="./logos/PowerShell.svg"
+                  alt="bash"
+                  src="./logos/Bash.svg"
                 />
-                PowerShell
+                Bash
+              </div>{" "}
+              <div className="skills__icons-wrapper">
+                <div className="skills__icons-text-wrap">
+                  <img
+                    className="skills__icon grow"
+                    alt="powershell"
+                    src="./logos/PowerShell.svg"
+                  />
+                  PowerShell
+                </div>
               </div>
-            </div>
-            <div className="skills__icons-wrapper">
-              <div className="skills__icons-text-wrap">
-                <img
-                  className="skills__icon grow"
-                  alt="powershell"
-                  src="./logos/jira.svg"
-                />
-                Jira
+              <div className="skills__icons-wrapper">
+                <div className="skills__icons-text-wrap">
+                  <img
+                    className="skills__icon grow"
+                    alt="powershell"
+                    src="./logos/jira.svg"
+                  />
+                  Jira
+                </div>{" "}
               </div>
             </div>
           </div>
