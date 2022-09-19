@@ -14,11 +14,11 @@ export default function Hero() {
           sequence={[
             "Hi! I am Steven.",
             1000,
-            "I am a Full Stack Web Developer",
+            "I am a Full Stack Web Developer!",
           ]}
         />
       </h1>{" "}
-      <div className="hero__emoji">🙋🏻‍♂️</div>
+      <div className="hero__emoji slide-up">🙋🏻‍♂️</div>
     </div>
   );
 }

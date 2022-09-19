@@ -19,6 +19,11 @@
         color: rgba(2, 38, 88, 0.993);
         font-size: 3rem;
         padding-right: 2rem;
+
+        &:hover {
+            color: rgb(37, 146, 242);
+        }
+
         @include logo-font;
     }
 

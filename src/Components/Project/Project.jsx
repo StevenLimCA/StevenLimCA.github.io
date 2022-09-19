@@ -19,8 +19,14 @@ export default function Project({ projectObj }) {
           <h2 className="projects__title">{projectObj.name}</h2>
           <p className="projects__desc">{projectObj.desc}</p>
           <p className="projects__obj">{projectObj.obj1}</p>
-          <p className="projects__tech">{projectObj.frontTech}</p>
-          <p className="projects__tech">{projectObj.backTech}</p>{" "}
+          <h4 className="projects__subtitle">Front-End Tech</h4>
+          <p className="projects__tech">
+            {projectObj.frontTech.map((el) => el + " ")}
+          </p>
+          <h4 className="projects__subtitle">Back-End Tech</h4>
+          <p className="projects__tech">
+            {projectObj.backTech.map((el) => el + " ")}
+          </p>{" "}
           <button className="button grow" onClick={clickHandler}>
             View Now!
           </button>

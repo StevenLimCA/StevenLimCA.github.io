@@ -11,9 +11,9 @@ export default function AboutSection() {
           simplified workflows, build apps, games and much more! Furthermore, it
           challenges me everyday and keeps my mind fresh.
         </p>
-        <h3 className="about-section__subtitle">Other Passions</h3>
+        <h3 className="about-section__subtitle">My Other Passions</h3>
         <div className="about-section__wrap">
-          <div className="about-section__icon-wrap">
+          <div className="about-section__icon-wrap mute">
             <img
               className="about-section__icon"
               src="./Icons/music.svg"
@@ -21,7 +21,7 @@ export default function AboutSection() {
             />
             <p className="about-section__icon-text">Music</p>
           </div>
-          <div className="about-section__icon-wrap">
+          <div className="about-section__icon-wrap mute">
             <img
               className="about-section__icon"
               src="./Icons/hiking.svg"
@@ -29,7 +29,7 @@ export default function AboutSection() {
             />
             <p className="about-section__icon-text">Hiking</p>
           </div>{" "}
-          <div className="about-section__icon-wrap">
+          <div className="about-section__icon-wrap mute">
             <img
               className="about-section__icon"
               src="./Icons/photography.svg"
@@ -37,7 +37,7 @@ export default function AboutSection() {
             />
             <p className="about-section__icon-text">Photography</p>
           </div>
-          <div className="about-section__icon-wrap">
+          <div className="about-section__icon-wrap mute">
             <img
               className="about-section__icon"
               src="./Icons/travel.svg"

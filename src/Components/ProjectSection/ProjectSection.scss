@@ -8,11 +8,16 @@
     overflow: hidden;
     background-color: rgb(255, 179, 1);
 
+    @include desktop {
+        padding: 5rem 0;
+    }
+
     &__title {
         padding: 0 5vw;
     }
 
     &__subtitle {
+        margin: 0 1rem;
         text-align: center;
         background: rgba(255, 255, 255, 0.15);
         border-radius: 16px;
@@ -23,7 +28,6 @@
         border-radius: 1rem 1rem 0 0;
         padding: 0.5rem 0;
 
-        margin: 1rem;
     }
 
     &__wrap {

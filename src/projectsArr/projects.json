@@ -5,8 +5,15 @@
     "icon": "./projects/rateyourlandlord/rateyourlandlord-logo.svg",
     "image": "./projects/rateyourlandlord/rateyourlandlord-logo.svg",
     "desc": "When tenants search for landlords to rent from, this web application provides information on previous tenants’ experiences.   Users can view, add, update, and delete listings, and can create a review and add a rating.",
-    "frontTech": "Front End: React Javascript Html, SaSS, React Star Rating and Google Maps Api",
-    "backTech": "Back End: NodeJS, Express, and Multer",
+    "frontTech": [
+      "React",
+      "Javascript",
+      "HTML",
+      "SaSS",
+      "Google Maps Api",
+      "BootStrap"
+    ],
+    "backTech": ["NodeJS", "ExpressJS", "Multer"],
     "url": "https://rateyourlandlord.netlify.app/"
   },
 
@@ -15,9 +22,9 @@
     "name": "Web Piano App",
     "icon": "./projects/webpiano/piano-logo.svg",
     "image": "./projects/webpiano/piano-logo.svg",
-    "desc": "This is a web piano for those who want to practice piano every day with out a real piano. ",
-    "frontTech": "Front End: React, HTML, SaSS, ToneJS",
-    "backTech": "",
+    "desc": "This is a web piano for those who want to practice piano every day with out a real piano and to apply my knowledge on ReactJS, HTML, SaSS and ToneJS for experimental purposes. ",
+    "frontTech": ["React", "Javascript", "HTML", "SaSS", "ToneJS"],
+    "backTech": ["TBA"],
     "url": "https://piano.stevenlim.ca/"
   },
   {
@@ -25,9 +32,9 @@
     "name": "BrainFlix",
     "image": "./projects/BrainFlix/BrainFlix.svg",
     "icon": "./projects/BrainFlix/BrainFlix.svg",
-    "desc": "This is a Prototype Video Sharing Web Application.",
-    "frontTech": "Front End: React Javascript Html, SaSS",
-    "backTech": "Back End: NodeJS and Express",
+    "desc": "This is a Prototype Video Sharing Web Application used to demonstrate building a full stack web application with ReactJS during my BrainStation BootCamp.",
+    "frontTech": ["React", "Javascript", "HTML", "SaSS"],
+    "backTech": ["NodeJS", "Express"],
     "url": "https://onflix.netlify.app/"
   },
   {
@@ -35,9 +42,9 @@
     "name": "MusicAdventures",
     "image": "./projects/bandsite/bandsite.svg",
     "icon": "./projects/bandsite/bandsite.svg",
-    "desc": "This website is a musician website for those would like to start a orchestra or band. ",
-    "frontTech": "Front End: Javascript Html, SaSS",
-    "backTech": "Public API",
+    "desc": "This website is a musician website for those would like to start a orchestra or band used to demonstrate HTML, CSS, JavaScript proficiency at BrainStation.",
+    "frontTech": ["HTML", "Javascript", "SaSS"],
+    "backTech": ["API Provided by BrainStation"],
     "url": "https://musicadventure.netlify.app/"
   }
 ]
