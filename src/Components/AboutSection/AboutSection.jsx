@@ -8,8 +8,8 @@ export default function AboutSection() {
         <p className="about-section__text">
           I love web development because it enables me to communicate with my
           computer at a deeper level, so I can automate mundane tasks, create
-          simplified workflows, build games and more! Furthermore, it challenges
-          me everyday and keeps my mind fresh.
+          simplified workflows, communicate, build games and more! Furthermore,
+          it challenges me everyday and keeps my mind fresh.
         </p>
         {/* <h3 className="about-section__subtitle">Other Passions</h3> */}
       </div>

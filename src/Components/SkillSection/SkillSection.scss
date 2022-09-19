@@ -96,7 +96,7 @@
             left: 75%;
             width: 7rem;
             height: 7rem;
-            animation-delay: 5s;
+            animation-delay: 2s;
             z-index: 9;
         }
 
@@ -135,6 +135,15 @@
             z-index: 14;
         }
 
+        &--circles li:nth-child(10) {
+            left: 85%;
+            width: 3rem;
+            height: 3rem;
+            right: 20%;
+            animation-delay: 5s;
+            animation-duration: 8s;
+            z-index: 14;
+        }
 
 
         @keyframes animate {
