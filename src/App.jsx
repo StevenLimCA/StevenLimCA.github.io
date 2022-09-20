@@ -11,7 +11,6 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact component={MainPage} />
-          <Route path="/project/:id" component={MainPage} />
         </Switch>
       </div>
       <Action />

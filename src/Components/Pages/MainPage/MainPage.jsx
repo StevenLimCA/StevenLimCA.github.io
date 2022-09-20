@@ -30,7 +30,6 @@ export default function MainPage() {
     <div className="main-page">
       <Hero />
       <AboutSection />
-
       <ProjectSection />
       <SkillSection />
     </div>

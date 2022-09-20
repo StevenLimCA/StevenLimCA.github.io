@@ -19,10 +19,10 @@
 
   {
     "id": "2",
-    "name": "Web Piano App",
+    "name": "Virtual Piano App",
     "icon": "./projects/webpiano/piano-logo.svg",
     "image": "./projects/webpiano/piano-logo.svg",
-    "desc": "This is a web piano for those who want to practice piano every day with out a real piano and to apply my knowledge on ReactJS, HTML, SaSS and ToneJS for experimental purposes. ",
+    "desc": "This is a web piano for those who want to practice piano everyday without a piano and to apply my knowledge on ReactJS, HTML, SaSS and ToneJS for experimental purposes. ",
     "frontTech": ["React", "Javascript", "HTML", "SaSS", "ToneJS"],
     "backTech": ["TBA"],
     "url": "https://piano.stevenlim.ca/"

@@ -4,7 +4,7 @@ import TypeAnimation from "react-type-animation";
 
 export default function Hero() {
   return (
-    <div className="hero">
+    <div className="hero" id="">
       <div className="sun"></div>
       <div className="cloud"></div>
       <h1 className="hero__title">

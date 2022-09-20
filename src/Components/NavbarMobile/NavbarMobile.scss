@@ -1,0 +1,23 @@
+@import "../../styles/partials/global";
+
+.navbar-mobile {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+
+
+    &__list {
+        width: 500px;
+        background-color: #fff;
+
+    }
+
+    &__link {
+        text-decoration: none;
+    }
+}

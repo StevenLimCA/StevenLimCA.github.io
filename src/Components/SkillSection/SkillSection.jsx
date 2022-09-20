@@ -1,10 +1,9 @@
 import React from "react";
 import "./SkillSection.scss";
-import { Link } from "react-router-dom";
+
 export default function SkillsSection() {
   return (
-    <div className="skills">
-      <Link name="#skill-section" to=""></Link>
+    <div className="skills" id="skills">
       <div className="skills__background">
         <div className="skills__background--area">
           <ul className="skills__background--circles">

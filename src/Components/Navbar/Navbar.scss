@@ -1,13 +1,11 @@
+@import "../../styles/partials/global";
+
 .navbar {
-    overflow-x: hidden;
-    color: grey;
-    position: fixed;
-    background-color: white;
-    border-bottom-right-radius: 2rem;
-    border-bottom-left-radius: 2rem;
-    display: flex;
-    justify-content: center;
-    width: 100%;
+    display: none;
+
+    @include tablet {
+        display: flex;
+    }
 
     &__item {
         margin: 1rem 1rem 1rem 0.5rem;
