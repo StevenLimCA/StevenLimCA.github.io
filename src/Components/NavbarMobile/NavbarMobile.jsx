@@ -13,7 +13,7 @@ export default function NavbarMobile({ setMenu }) {
   };
   return (
     <nav className="navbar-mobile">
-      <div className="navbar-mobile__wrap">
+      <div className="navbar-mobile__wrap slide-up">
         <div className="navbar-mobile__close" onClick={handleClose}></div>
         <h3 className="navbar-mobile__title">Menu</h3>
         <ul className="navbar-mobile__list">

@@ -13,7 +13,7 @@ export default function Action() {
     window.open(`mailto:s.lim@live.ca`, "_blank");
   };
   return (
-    <div className="action">
+    <div className="action slide-up">
       <h2 className="action__title">Connect with me today!</h2>
       <div className="action__wrap">
         <div className="action__button grow" onClick={linkedInClick}>
