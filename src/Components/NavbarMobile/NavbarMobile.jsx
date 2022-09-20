@@ -27,7 +27,7 @@ export default function NavbarMobile({ setMenu }) {
           </li>
           <li className="navbar-mobile__item project " onClick={handleClick}>
             <div className="navbar-mobile__icon--projects "></div>
-            Project
+            Projects
           </li>
           <li className="navbar-mobile__item skills" onClick={handleClick}>
             <div className="navbar-mobile__icon--skills"></div>
