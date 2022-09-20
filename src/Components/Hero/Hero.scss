@@ -61,7 +61,7 @@
 .cloud {
     display: inline-block;
     background: rgb(173, 173, 173);
-    width: 120px;
+    width: 150px;
     height: 120px;
     border-radius: 50%;
     position: relative;
@@ -73,7 +73,7 @@
     opacity: 0.76;
 
     @include tablet {
-        left: -30rem;
+        left: -2rem;
         width: 200px;
         height: 200px;
     }
@@ -83,7 +83,7 @@
     content: "";
     display: inline-block;
     background: rgba(193, 186, 186, 0.479);
-    width: 100px;
+    width: 150px;
     height: 100px;
     -webkit-filter: blur(3px);
     position: relative;
@@ -93,7 +93,7 @@
 
     @include tablet {
         width: 200px;
-        height: 200px;
+        height: 170px;
     }
 
 }
@@ -113,8 +113,8 @@
     @include tablet {
         top: -180px;
         left: 100px;
-        width: 18.75rem;
-        height: 12.5rem;
+        width: 15.75rem;
+        height: 13.5rem;
     }
 }
 
@@ -124,7 +124,7 @@
 
 @keyframes cloudAnimation {
     0% {
-        transform: translateX(-30vw);
+        transform: translateX(-40vw);
     }
 
     100% {

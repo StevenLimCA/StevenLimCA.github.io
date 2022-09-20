@@ -21,7 +21,7 @@ export default function Project({ projectObj }) {
           <p className="projects__obj">{projectObj.obj1}</p>
           <h4 className="projects__subtitle">Front-End Tech</h4>
           <p className="projects__tech">
-            {projectObj.frontTech.map((el) => el + " ")}
+            {projectObj.frontTech.map((el) => " " + el + " ")}
           </p>
           <h4 className="projects__subtitle">Back-End Tech</h4>
           <p className="projects__tech">
