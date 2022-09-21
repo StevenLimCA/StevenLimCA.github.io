@@ -19,6 +19,7 @@ a {
 }
 
 .mute {
+    transition: all ease-in-out 0.2s;
     filter: grayscale(100%);
 
     &:hover {
@@ -27,7 +28,7 @@ a {
 }
 
 .slide-up {
-    animation: slideUp 1s;
+    animation: slideUp 0.5s;
     animation-delay: 0s;
     transition-timing-function: ease-in;
 
