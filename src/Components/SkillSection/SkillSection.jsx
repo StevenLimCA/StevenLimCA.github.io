@@ -3,7 +3,7 @@ import "./SkillSection.scss";
 
 export default function SkillsSection() {
   return (
-    <div className="skills" id="skills">
+    <div className="skills" id="Skills">
       <div className="skills__background">
         <div className="skills__background--area">
           <ul className="skills__background--circles">

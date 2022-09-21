@@ -9,7 +9,7 @@ export default function ProjectSection() {
   let [selectedProject, setSelectedProject] = useState(0);
 
   return (
-    <div className="project-section" id="projects">
+    <div className="project-section" id="Projects">
       <h1 className="project-section__title">My Projects </h1>
       <div className="project-section__wrap">
         <div className="project-section__wrap--left">

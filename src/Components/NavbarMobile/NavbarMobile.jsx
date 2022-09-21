@@ -17,22 +17,22 @@ export default function NavbarMobile({ setMenu }) {
         <div className="navbar-mobile__close mute" onClick={handleClose}></div>
         <h3 className="navbar-mobile__title">Steven Lim</h3>
         <ul className="navbar-mobile__list">
-          <li className="navbar-mobile__item home grow" onClick={handleClick}>
+          <li className="navbar-mobile__item Home grow" onClick={handleClick}>
             <div className="navbar-mobile__icon--home"></div>
             Home
           </li>
-          <li className="navbar-mobile__item about grow" onClick={handleClick}>
+          <li className="navbar-mobile__item About grow" onClick={handleClick}>
             <div className="navbar-mobile__icon--about"></div>
             About Me
           </li>
           <li
-            className="navbar-mobile__item projects grow"
+            className="navbar-mobile__item Projects grow"
             onClick={handleClick}
           >
             <div className="navbar-mobile__icon--projects "></div>
             Projects
           </li>
-          <li className="navbar-mobile__item skills grow" onClick={handleClick}>
+          <li className="navbar-mobile__item Skills grow" onClick={handleClick}>
             <div className="navbar-mobile__icon--skills"></div>
             Skills
           </li>

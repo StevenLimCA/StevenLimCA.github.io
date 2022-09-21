@@ -6,7 +6,7 @@ export default function Header() {
   const [menu, setMenu] = useState(false);
   const [bgColor, setBGColor] = useState(false);
   const changeColor = () => {
-    if (window.scrollY < 240) {
+    if (window.scrollY <= 240) {
       setBGColor(true);
     } else {
       setBGColor(false);

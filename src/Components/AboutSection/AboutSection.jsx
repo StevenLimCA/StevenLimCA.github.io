@@ -2,7 +2,7 @@ import React from "react";
 import "./AboutSection.scss";
 export default function AboutSection() {
   return (
-    <div className="about-section" id="about">
+    <div className="about-section" id="About">
       <h1 className="about-section__title">About Me</h1>
       <div className="about-section__content">
         <p className="about-section__text">
