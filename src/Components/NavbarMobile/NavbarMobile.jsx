@@ -26,7 +26,7 @@ export default function NavbarMobile({ setMenu }) {
             About Me
           </li>
           <li
-            className="navbar-mobile__item project grow"
+            className="navbar-mobile__item projects grow"
             onClick={handleClick}
           >
             <div className="navbar-mobile__icon--projects "></div>
