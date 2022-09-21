@@ -14,12 +14,15 @@
     }
 
     &__link {
-        transition: all ease-in-out 0.2s;
+        transition: all ease-in-out 0.3s;
         font-size: 1.1rem;
+        color: rgb(0, 150, 251);
+
+
 
         &:hover {
-            color: rgba(0, 38, 207, 0.827);
-
+            color: rgba(18, 128, 238, 0.924);
+            font-weight: 800;
         }
     }
 
