@@ -19,15 +19,18 @@
     &__subtitle {
         margin: 0 1rem;
         text-align: center;
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
         border-radius: 1rem 1rem 0 0;
         padding: 0.5rem 0;
+        width: calc(100% - 2rem);
+        @include glass;
 
+    }
+
+    &__end:empty {
+        width: calc(100% - 2rem);
+        padding: 1rem 0;
+        border-radius: 0 0 1rem 1rem;
+        @include glass;
     }
 
     &__wrap {
@@ -37,6 +40,13 @@
             align-items: flex-start;
         }
 
+    }
+
+    &__card-wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     &__side {

@@ -2,7 +2,7 @@
 
 .project-card {
     display: flex;
-    margin: 1rem;
+    margin: 0.5rem 0;
     align-items: center;
     cursor: pointer;
     background: rgba(255, 255, 255, 0.15);
@@ -21,9 +21,6 @@
 
     }
 
-    &div:nth-last-child(1) {
-        border-radius: 0 1rem 1rem 0;
-    }
 
 
     &__desc {
@@ -32,6 +29,7 @@
 
         @include desktop {
             display: flex;
+            font-size: 1rem;
             margin: 0.5rem 1rem;
             justify-content: space-between;
 

@@ -28,6 +28,7 @@ export default function ProjectSection() {
                 key={uuid()}
               />
             ))}
+          <div className="project-section__end"></div>
         </div>
       </div>
     </div>
