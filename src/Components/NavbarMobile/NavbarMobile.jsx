@@ -14,22 +14,25 @@ export default function NavbarMobile({ setMenu }) {
   return (
     <nav className="navbar-mobile">
       <div className="navbar-mobile__wrap slide-up">
-        <div className="navbar-mobile__close" onClick={handleClose}></div>
+        <div className="navbar-mobile__close mute" onClick={handleClose}></div>
         <h3 className="navbar-mobile__title">Menu</h3>
         <ul className="navbar-mobile__list">
-          <li className="navbar-mobile__item home" onClick={handleClick}>
+          <li className="navbar-mobile__item home grow" onClick={handleClick}>
             <div className="navbar-mobile__icon--home"></div>
             Home
           </li>
-          <li className="navbar-mobile__item about" onClick={handleClick}>
+          <li className="navbar-mobile__item about grow" onClick={handleClick}>
             <div className="navbar-mobile__icon--about"></div>
             About Me
           </li>
-          <li className="navbar-mobile__item project " onClick={handleClick}>
+          <li
+            className="navbar-mobile__item project grow"
+            onClick={handleClick}
+          >
             <div className="navbar-mobile__icon--projects "></div>
             Projects
           </li>
-          <li className="navbar-mobile__item skills" onClick={handleClick}>
+          <li className="navbar-mobile__item skills grow" onClick={handleClick}>
             <div className="navbar-mobile__icon--skills"></div>
             Skills
           </li>

@@ -11,7 +11,7 @@ export default function Header() {
     <>
       <header className="header">
         <div className="header__title rotate360">Steven Lim</div>
-        <div className="header--mobile" onClick={handleOnClick}></div>
+        <div className="header--mobile grow" onClick={handleOnClick}></div>
         {menu && <NavbarMobile setMenu={setMenu} />}
         <Navbar />
       </header>
