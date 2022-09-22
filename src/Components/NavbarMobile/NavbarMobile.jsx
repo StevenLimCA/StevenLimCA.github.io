@@ -17,7 +17,7 @@ export default function NavbarMobile({ setMenu }) {
         <div className="navbar-mobile__close mute" onClick={handleClose}></div>
         <h3 className="navbar-mobile__title">Steven Lim</h3>
         <ul className="navbar-mobile__list">
-          <li className="navbar-mobile__item Home grow" onClick={handleClick}>
+          <li className="navbar-mobile__item home grow" onClick={handleClick}>
             <div className="navbar-mobile__icon--home"></div>
             Home
           </li>
