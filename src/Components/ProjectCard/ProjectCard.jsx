@@ -3,7 +3,7 @@ import "./ProjectCard.scss";
 export default function ProjectCard({ project, setActive, projectsArr }) {
   const clickHandler = (e) => {
     setActive(projectsArr.findIndex((el) => el.id === project.id));
-    window.location.href = "#projects";
+    window.location.href = "#Projects";
   };
 
   return (

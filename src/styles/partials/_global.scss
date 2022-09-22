@@ -13,6 +13,15 @@ body {
 
 }
 
+.styles_type__2Teeh {
+    transition: all 0.1s ease-in-out;
+
+    @include tablet {
+        font-size: 1.5rem;
+
+    }
+}
+
 a {
     font-size: 1rem;
     text-decoration: none;
