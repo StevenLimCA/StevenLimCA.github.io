@@ -12,19 +12,19 @@ export default function Navbar() {
         </li>
         <li className="navbar__item">
           <div className="navbar__icon--about"></div>
-          <a href="#about" className="navbar__link">
+          <a href="#About" className="navbar__link">
             About Me
           </a>
         </li>
         <li className="navbar__item">
           <div className="navbar__icon--projects"></div>
-          <a href="#projects" className="navbar__link">
+          <a href="#Projects" className="navbar__link">
             Projects
           </a>
         </li>
         <li className="navbar__item">
           <div className="navbar__icon--skills"></div>
-          <a href="#skills" className="navbar__link">
+          <a href="#Skills" className="navbar__link">
             Skills
           </a>
         </li>
