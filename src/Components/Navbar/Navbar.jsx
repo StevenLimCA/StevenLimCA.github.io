@@ -28,6 +28,12 @@ export default function Navbar() {
             Skills
           </a>
         </li>
+        <li className="navbar__item">
+          <div className="navbar__icon--contact"></div>
+          <a href="#Contact" className="navbar__link">
+            Contact Me
+          </a>
+        </li>
       </ul>
     </nav>
   );

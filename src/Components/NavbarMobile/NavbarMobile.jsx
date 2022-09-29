@@ -36,6 +36,13 @@ export default function NavbarMobile({ setMenu }) {
             <div className="navbar-mobile__icon--skills"></div>
             Skills
           </li>
+          <li
+            className="navbar-mobile__item Contact grow"
+            onClick={handleClick}
+          >
+            <div className="navbar-mobile__icon--contact"></div>
+            Contact Me
+          </li>
         </ul>
       </div>
     </nav>
