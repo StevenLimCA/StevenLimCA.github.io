@@ -25,6 +25,11 @@
         box-shadow: 0;
         border: 1px solid grey;
 
+        &::placeholder {
+            padding: 0.5rem;
+
+        }
+
         @include tablet {
             width: calc(50% - 1rem);
         }
@@ -37,6 +42,10 @@
         height: 5rem;
         resize: none;
 
+        &::placeholder {
+            padding: 0.5rem;
+
+        }
 
 
     }

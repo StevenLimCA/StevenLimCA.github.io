@@ -10,7 +10,7 @@ export default function Action() {
     window.open(`https://github.com/StevenLimCA`, "_blank");
   };
   const emailClick = (e) => {
-    window.open(`mailto:s.lim@live.ca`, "_blank");
+    window.location.href = "#Contact";
   };
   return (
     <div className="action slide-up">
