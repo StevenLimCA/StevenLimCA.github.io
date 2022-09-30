@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import "./ContactUs.scss";
 import { addInvalidClass } from "../../utlities/addInvalidClass";
-import { send as sendForm } from "emailjs-com";
+import { sendForm } from "emailjs-com";
 
 export default function ContactUs() {
   const form = useRef();
@@ -21,20 +21,16 @@ export default function ContactUs() {
     }
   };
   const { REACT_APP_EMAILJS_KEY } = process.env;
+
   const onSubmit = (e) => {
     e.preventDefault();
     if (!validSubmit(e)) {
       return;
     } else {
-      const formData = new FormData();
-
-      formData.append("from_name", e.target.from_name.value);
-      formData.append("reply_to", e.target.reply_to.value);
-      formData.append("message", e.target.message.value);
       sendForm(
         "service_8ngunva",
         "template_vk7cnyb",
-        formData,
+        form.current,
         REACT_APP_EMAILJS_KEY
       )
         .then((response) => {
