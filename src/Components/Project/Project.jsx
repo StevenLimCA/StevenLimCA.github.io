@@ -27,7 +27,7 @@ export default function Project({ projectObj }) {
           <p className="projects__tech">
             {projectObj.backTech.map((el) => el + " ")}
           </p>{" "}
-          <button className="button grow" onClick={clickHandler}>
+          <button className="button shrink" onClick={clickHandler}>
             View Now!
           </button>
         </div>
