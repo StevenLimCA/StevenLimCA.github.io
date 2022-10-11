@@ -16,7 +16,11 @@
         background-color: rgba(255, 250, 233, 0.583);
     }
 
+    &__tech {
+        display: flex;
+        color: rgb(6, 147, 234);
 
+    }
 
     &__header {
         margin: 2rem 0;
