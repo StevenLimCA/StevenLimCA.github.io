@@ -3,7 +3,7 @@ import Project from "../Project/Project";
 import projects from "../../projectsArr/projects.json";
 import "./ProjectSection.scss";
 import ProjectCard from "../ProjectCard/ProjectCard";
-import uuid from "react-uuid";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ProjectSection() {
   let [selectedProject, setSelectedProject] = useState(0);
@@ -25,7 +25,7 @@ export default function ProjectSection() {
                 projectsArr={projects}
                 project={project}
                 setActive={setSelectedProject}
-                key={uuid()}
+                key={uuidv4()}
               />
             ))}
           <div className="project-section__end"></div>
