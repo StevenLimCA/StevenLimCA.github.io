@@ -3,6 +3,14 @@
 .contact-us {
     padding: 3vw 5vw;
 
+    @include desktop {
+        padding: 3vw 15vw;
+    }
+
+    @include desktop2k {
+        padding: 3vw 20vw;
+    }
+
     &__title {
         text-align: center;
     }

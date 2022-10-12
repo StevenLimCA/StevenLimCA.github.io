@@ -18,8 +18,12 @@
 
     &__tech {
         display: flex;
+        flex-direction: column;
         color: rgb(6, 147, 234);
 
+        @include tablet {
+            flex-direction: row;
+        }
     }
 
     &__header {
