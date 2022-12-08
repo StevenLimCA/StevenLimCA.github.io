@@ -4,7 +4,7 @@
     "name": "GDG DevFest 2022",
     "image": "./projects/gdgVancouver/google-developers.svg",
     "icon": "./projects/gdgVancouver/google-developers.svg",
-    "desc": "This a web application that interacts with Sessionize API, making it easier for volunteers to manage and display their event schedule. I created web app to market their Google Devfest event which happened on Nov 19, 2022. ",
+    "desc": "This a web application that interacts with Sessionize API, making it easier for volunteers to manage and display their event schedule through the sessionized web app. I created this web app to market their Google Devfest event which happened on Nov 19, 2022. ",
     "frontTech": ["React", "Javascript", "HTML", "Tailwind CSS"],
     "backTech": ["SessionizeAPI"],
     "url": "https://gdgvancouver.com/"
