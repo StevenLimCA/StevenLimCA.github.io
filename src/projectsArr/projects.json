@@ -1,6 +1,16 @@
 [
   {
     "id": "1",
+    "name": "GDG DevFest 2022",
+    "image": "./projects/gdgVancouver/google-developers.svg",
+    "icon": "./projects/gdgVancouver/google-developers.svg",
+    "desc": "This a web application that interacts with Sessionize API, making it easier for volunteers to manage and display their event schedule. I created web app to market their Google Devfest event which happened on Nov 19, 2022. ",
+    "frontTech": ["React", "Javascript", "HTML", "Tailwind CSS"],
+    "backTech": ["SessionizeAPI"],
+    "url": "https://gdgvancouver.com/"
+  },
+  {
+    "id": "2",
     "name": "Rate Your Landlord",
     "icon": "./projects/rateyourlandlord/rateyourlandlord-logo.svg",
     "image": "./projects/rateyourlandlord/rateyourlandlord-logo.svg",
@@ -18,7 +28,7 @@
   },
 
   {
-    "id": "2",
+    "id": "3",
     "name": "Virtual Piano App",
     "icon": "./projects/webpiano/piano-logo.svg",
     "image": "./projects/webpiano/piano-logo.svg",
@@ -27,16 +37,7 @@
     "backTech": ["TBA"],
     "url": "https://piano.stevenlim.ca/"
   },
-  {
-    "id": "3",
-    "name": "BrainFlix",
-    "image": "./projects/BrainFlix/BrainFlix.svg",
-    "icon": "./projects/BrainFlix/BrainFlix.svg",
-    "desc": "This is a Prototype Video Sharing Web Application used to demonstrate building a full stack web application with ReactJS during my BrainStation BootCamp.",
-    "frontTech": ["React", "Javascript", "HTML", "SaSS"],
-    "backTech": ["NodeJS", "Express"],
-    "url": "https://onflix.netlify.app/"
-  },
+
   {
     "id": "4",
     "name": "MusicAdventures",
