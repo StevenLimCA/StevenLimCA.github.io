@@ -7,7 +7,8 @@
     "desc": "This a web application that interacts with Sessionize API, making it easier for volunteers to manage and display their event schedule through the sessionized web app. I created this web app to market their Google Devfest event which happened on Nov 19, 2022. ",
     "frontTech": ["React", "Javascript", "HTML", "Tailwind CSS"],
     "backTech": ["SessionizeAPI"],
-    "url": "https://gdgvancouver.com/"
+    "url": "https://gdgvancouver.com/",
+    "gitHubUrl": "https://github.com/StevenLimCA/Google-Devfest"
   },
   {
     "id": "2",
@@ -24,7 +25,8 @@
       "BootStrap"
     ],
     "backTech": ["NodeJS", "ExpressJS", "Multer"],
-    "url": "https://rateyourlandlord.netlify.app/"
+    "url": "https://rateyourlandlord.netlify.app/",
+    "gitHubUrl": "https://github.com/StevenLimCA/rateyourlandlord-server"
   },
 
   {
@@ -35,7 +37,8 @@
     "desc": "This is a web piano for those who want to practice piano everyday without a piano and to apply my knowledge on ReactJS, HTML, SaSS and ToneJS for experimental purposes. ",
     "frontTech": ["React", "Javascript", "HTML", "SaSS", "ToneJS"],
     "backTech": ["TBA"],
-    "url": "https://piano.stevenlim.ca/"
+    "url": "https://piano.stevenlim.ca/",
+    "gitHubUrl": "https://github.com/StevenLimCA/Ear-trainer"
   },
 
   {

@@ -36,9 +36,19 @@ export default function Project({ projectObj }) {
               <TechBadge key={uuidv4()} tech={el} />
             ))}
           </div>
-          <button className="button shrink" onClick={clickHandler}>
-            View Now!
-          </button>
+          <div className="projects__button-wrap">
+            <button className="button shrink half">
+              <a href={`${projectObj.url}`}>View</a>
+            </button>
+
+            {projectObj.gitHubUrl ? (
+              <button className="button shrink half">
+                <a href={`${projectObj.gitHubUrl}`}>Github</a>{" "}
+              </button>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </div>
     </div>

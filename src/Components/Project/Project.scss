@@ -16,6 +16,13 @@
         background-color: rgba(255, 250, 233, 0.583);
     }
 
+    &__button-wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+    }
+
     &__tech {
         display: flex;
         flex-direction: column;
