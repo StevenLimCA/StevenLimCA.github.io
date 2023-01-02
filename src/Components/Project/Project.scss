@@ -11,6 +11,14 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
 
 
+    &__link {
+        color: white;
+
+        &:hover {
+            color: whitesmoke;
+            font-weight: bold;
+        }
+    }
 
     &:hover {
         background-color: rgba(255, 250, 233, 0.583);

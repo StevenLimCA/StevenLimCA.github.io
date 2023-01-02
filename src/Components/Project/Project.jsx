@@ -37,13 +37,17 @@ export default function Project({ projectObj }) {
             ))}
           </div>
           <div className="projects__button-wrap">
-            <button className="button shrink half">
-              <a href={`${projectObj.url}`}>View</a>
+            <button className="button grow half">
+              <a class="projects__link" href={`${projectObj.url}`}>
+                View
+              </a>
             </button>
 
             {projectObj.gitHubUrl ? (
-              <button className="button shrink half">
-                <a href={`${projectObj.gitHubUrl}`}>Github</a>{" "}
+              <button className="button grow half">
+                <a class="projects__link" href={`${projectObj.gitHubUrl}`}>
+                  Github
+                </a>{" "}
               </button>
             ) : (
               ""
