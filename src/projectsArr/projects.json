@@ -1,21 +1,11 @@
 [
+
   {
     "id": "1",
-    "name": "GDG DevFest 2022",
-    "image": "./projects/gdgVancouver/google-developers.svg",
-    "icon": "./projects/gdgVancouver/google-developers.svg",
-    "desc": "This a web application that interacts with Sessionize API, making it easier for volunteers to manage and display their event schedule through the sessionized web app. I created this web app to market their Google Devfest event which happened on Nov 19, 2022. ",
-    "frontTech": ["React", "Javascript", "HTML", "Tailwind CSS"],
-    "backTech": ["SessionizeAPI"],
-    "url": "https://gdgvancouver.com/",
-    "gitHubUrl": "https://github.com/StevenLimCA/Google-Devfest"
-  },
-  {
-    "id": "2",
     "name": "Rate Your Landlord",
     "icon": "./projects/rateyourlandlord/rateyourlandlord-logo.svg",
     "image": "./projects/rateyourlandlord/rateyourlandlord-logo.svg",
-    "desc": "When tenants search for landlords to rent from, this web application provides information on previous tenants’ experiences.   Users can view, add, update, and delete listings, and can create a review and add a rating.",
+    "desc": "This web app is a full stack application with the front end hosted on Netlify and the back end hosted on Oracle Cloud on a Ubuntu. When tenants search for landlords to rent from, this web application provides information on previous tenants’ experiences.   Users can view, add, update, and delete listings, and can create a review and add a rating.",
     "frontTech": [
       "React",
       "Javascript",
@@ -24,13 +14,13 @@
       "Google Maps",
       "BootStrap"
     ],
-    "backTech": ["NodeJS", "ExpressJS", "Multer"],
+    "backTech": ["NodeJS", "ExpressJS", "Multer", "Nginx","Ubuntu 22.04 "],
     "url": "https://rateyourlandlord.netlify.app/",
     "gitHubUrl": "https://github.com/StevenLimCA/rateyourlandlord-server"
   },
 
   {
-    "id": "3",
+    "id": "2",
     "name": "Virtual Piano App",
     "icon": "./projects/webpiano/piano-logo.svg",
     "image": "./projects/webpiano/piano-logo.svg",
@@ -42,7 +32,7 @@
   },
 
   {
-    "id": "4",
+    "id": "3",
     "name": "MusicAdventures",
     "image": "./projects/bandsite/bandsite.svg",
     "icon": "./projects/bandsite/bandsite.svg",
@@ -50,5 +40,15 @@
     "frontTech": ["HTML", "Javascript", "SaSS"],
     "backTech": ["API Provided by BrainStation"],
     "url": "https://musicadventure.netlify.app/"
+  },  {
+    "id": "4",
+    "name": "GDG DevFest 2022",
+    "image": "./projects/gdgVancouver/google-developers.svg",
+    "icon": "./projects/gdgVancouver/google-developers.svg",
+    "desc": "This a web application that interacts with Sessionize API, making it easier for volunteers to manage and display their event schedule through the sessionized web app. I created this web app to market their Google Devfest event which happened on Nov 19, 2022. ",
+    "frontTech": ["React", "Javascript", "HTML", "Tailwind CSS"],
+    "backTech": ["SessionizeAPI"],
+    "url": "https://gdgvancouver.com/",
+    "gitHubUrl": "https://github.com/StevenLimCA/Google-Devfest"
   }
 ]
