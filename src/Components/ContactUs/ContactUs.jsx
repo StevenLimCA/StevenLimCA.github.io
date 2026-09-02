@@ -1,48 +1,58 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./ContactUs.scss";
 import { addInvalidClass } from "../../utlities/addInvalidClass";
-import { sendForm } from "emailjs-com";
+
+const encodeForm = (formElement) =>
+  new URLSearchParams(new FormData(formElement)).toString();
 
 export default function ContactUs() {
   const form = useRef();
-  const validSubmit = (e) => {
-    addInvalidClass(e.target.from_name);
-    addInvalidClass(e.target.reply_to);
-    addInvalidClass(e.target.message);
+  const [status, setStatus] = useState("idle");
 
-    if (
-      !e.target.from_name.value ||
-      !e.target.reply_to.value ||
-      !e.target.message.value
-    ) {
+  const validSubmit = (formElement) => {
+    const { from_name, reply_to, message, "bot-field": botField } =
+      formElement.elements;
+
+    addInvalidClass(from_name);
+    addInvalidClass(reply_to);
+    addInvalidClass(message);
+
+    if (botField.value) {
+      return false;
+    }
+
+    if (!from_name.value || !reply_to.value || !message.value) {
       return false;
     } else {
       return true;
     }
   };
-  const { REACT_APP_EMAILJS_KEY } = process.env;
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (!validSubmit(e)) {
+    if (!validSubmit(e.currentTarget)) {
+      setStatus("invalid");
       return;
     } else {
-      sendForm(
-        "service_8ngunva",
-        "template_vk7cnyb",
-        form.current,
-        REACT_APP_EMAILJS_KEY
-      )
+      setStatus("sending");
+
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encodeForm(form.current),
+      })
         .then((response) => {
-          alert(
-            "Thank you! Your message was delivered!",
-            response.status,
-            response.text
-          );
+          if (!response.ok) {
+            throw new Error("Form submission failed");
+          }
+
+          setStatus("success");
+          form.current.reset();
           window.location.href = "#home";
         })
         .catch((err) => {
-          alert("FAILED... Please try again later.", err);
+          console.error(err);
+          setStatus("error");
         });
     }
   };
@@ -51,32 +61,65 @@ export default function ContactUs() {
     <div className="contact-us" id="Contact">
       <h1 className="contact-us__title">Contact Me</h1>
       <p className="contact-us__text">
-        Thank you visiting my website! I am so excited to know more about you,
-        your business and your upcoming projects! Kindly contact me by filling
-        out the form below:
+        Thanks for visiting my site. Tell me a little about your project, team,
+        or idea, and I will get back to you as soon as I can.
       </p>
 
-      <form ref={form} className="contact-us__form" onSubmit={onSubmit}>
+      <form
+        ref={form}
+        className="contact-us__form"
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        noValidate
+        onSubmit={onSubmit}
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p className="contact-us__bot-field">
+          <label>
+            Do not fill this out if you are human:
+            <input name="bot-field" tabIndex="-1" autoComplete="off" />
+          </label>
+        </p>
         <div className="contact-us__divide">
+          <label className="contact-us__label" htmlFor="from_name">
+            Name
+          </label>
           <input
+            id="from_name"
             className="contact-us__input contact-us__field"
             type="text"
             name="from_name"
-            placeholder="Please Enter Your Name"
+            required
+            aria-required="true"
+            placeholder="Your name"
           />
+          <label className="contact-us__label" htmlFor="reply_to">
+            Email
+          </label>
           <input
+            id="reply_to"
             className="contact-us__input contact-us__field"
             type="email"
             name="reply_to"
+            required
+            aria-required="true"
             placeholder="Your email"
           />
         </div>
 
+        <label className="contact-us__label" htmlFor="message">
+          Message
+        </label>
         <textarea
+          id="message"
           className="contact-us__message"
           type="textarea"
           name="message"
-          placeholder="Your message "
+          required
+          aria-required="true"
+          placeholder="What would you like to build?"
         />
 
         <button
@@ -86,6 +129,26 @@ export default function ContactUs() {
         >
           Submit
         </button>
+        {status === "invalid" && (
+          <p className="contact-us__status" role="status">
+            Please fill in your name, email, and message.
+          </p>
+        )}
+        {status === "sending" && (
+          <p className="contact-us__status" role="status">
+            Sending your message...
+          </p>
+        )}
+        {status === "success" && (
+          <p className="contact-us__status" role="status">
+            Thanks, your message has been sent.
+          </p>
+        )}
+        {status === "error" && (
+          <p className="contact-us__status contact-us__status--error" role="status">
+            Something went wrong. Please try again in a moment.
+          </p>
+        )}
       </form>
     </div>
   );

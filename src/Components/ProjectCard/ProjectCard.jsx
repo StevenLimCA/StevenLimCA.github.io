@@ -1,13 +1,13 @@
 import React from "react";
 import "./ProjectCard.scss";
-export default function ProjectCard({ project, setActive, projectsArr }) {
+export default function ProjectCard({ project, setActive }) {
   const clickHandler = (e) => {
-    setActive(projectsArr.findIndex((el) => el.id === project.id));
-    window.location.href = "#Projects";
+    setActive(project.id);
+    document.getElementById("Projects")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <div className="project-card shrink" onClick={clickHandler}>
+    <button className="project-card shrink" type="button" onClick={clickHandler}>
       <img
         src={`${project.icon}`}
         alt={project.name}
@@ -15,8 +15,9 @@ export default function ProjectCard({ project, setActive, projectsArr }) {
       />
       <div className="project-card__text-wrap">
         <h3 className="project-card__name">{project.name}</h3>
-        <p className="project-card__desc">{project.desc.substring(0, 80)}...</p>
+        <p className="project-card__role">{project.role}</p>
+        <p className="project-card__desc">{project.problem}</p>
       </div>
-    </div>
+    </button>
   );
 }

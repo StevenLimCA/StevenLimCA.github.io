@@ -3,52 +3,84 @@ import "./Project.scss";
 import "../TechBadge/TechBadge";
 import TechBadge from "../TechBadge/TechBadge";
 
-import { v4 as uuidv4 } from "uuid";
-
 export default function Project({ projectObj }) {
-  const clickHandler = (e) => {
-    e.preventDefault();
-    window.open(`${projectObj.url}`, "_blank");
-  };
+  const storyItems = [
+    ["Problem", projectObj.problem],
+    ["What I Built", projectObj.built],
+    ["Result", projectObj.result],
+  ];
 
   return (
     <div className="projects">
       <div className="projects__wrap">
-        <img
-          className="projects__image grow"
-          src={`${projectObj.icon}`}
-          alt={`${projectObj.name}`}
-          onClick={clickHandler}
-        />
+        <a
+          className="projects__image-link grow"
+          href={projectObj.url}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`View ${projectObj.name}`}
+        >
+          <img
+            className="projects__image"
+            src={`${projectObj.icon}`}
+            alt={`${projectObj.name}`}
+          />
+        </a>
         <div className="projects__wrap--right">
+          <p className="projects__eyebrow">{projectObj.role}</p>
           <h2 className="projects__title">{projectObj.name}</h2>
           <p className="projects__desc">{projectObj.desc}</p>
-          <p className="projects__obj">{projectObj.obj1}</p>
-          <h4 className="projects__subtitle">Front-End Tech Stacks</h4>
-          <div className="projects__tech">
-            {projectObj.frontTech.map((el) => (
-              <TechBadge key={uuidv4()} tech={el} />
+          <div className="projects__story">
+            {storyItems.map(([label, text]) => (
+              <section className="projects__story-item" key={label}>
+                <h3 className="projects__story-title">{label}</h3>
+                <p className="projects__story-text">{text}</p>
+              </section>
             ))}
           </div>
-          <h4 className="projects__subtitle">Back-End Tech Stacks</h4>
-          <div className="projects__tech">
-            {projectObj.backTech.map((el) => (
-              <TechBadge key={uuidv4()} tech={el} />
-            ))}
+          <div className="projects__meta">
+            <p className="projects__meta-item">
+              <strong>Focus</strong>
+              {projectObj.impact}
+            </p>
+          </div>
+          <div className="projects__stack-wrap">
+            <div>
+              <h4 className="projects__subtitle">Front-End</h4>
+              <div className="projects__tech">
+                {projectObj.frontTech.map((el) => (
+                  <TechBadge key={el} tech={el} />
+                ))}
+              </div>
+            </div>
+            <div>
+              <h4 className="projects__subtitle">Back-End</h4>
+              <div className="projects__tech">
+                {projectObj.backTech.map((el) => (
+                  <TechBadge key={el} tech={el} />
+                ))}
+              </div>
+            </div>
           </div>
           <div className="projects__button-wrap">
-            <button className="button grow half">
-              <a class="projects__link" href={`${projectObj.url}`}>
-                View
-              </a>
-            </button>
+            <a
+              className="button grow half projects__link"
+              href={`${projectObj.url}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              View
+            </a>
 
             {projectObj.gitHubUrl ? (
-              <button className="button grow half">
-                <a class="projects__link" href={`${projectObj.gitHubUrl}`}>
-                  Github
-                </a>{" "}
-              </button>
+              <a
+                className="button grow half projects__link"
+                href={`${projectObj.gitHubUrl}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
             ) : (
               ""
             )}

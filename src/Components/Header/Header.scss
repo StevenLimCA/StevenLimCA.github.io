@@ -1,4 +1,4 @@
-@import '../../styles/partials/global';
+@use "../../styles/partials/global" as *;
 
 .header {
     position: fixed;
@@ -23,7 +23,7 @@
 
     &--mobile {
 
-        background: url('../../../public/Icons/menu.svg');
+        background: url('/Icons/menu.svg');
         height: 2rem;
         width: 2rem;
         margin-right: 1rem;

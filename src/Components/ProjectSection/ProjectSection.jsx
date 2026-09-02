@@ -3,14 +3,21 @@ import Project from "../Project/Project";
 import projects from "../../projectsArr/projects.json";
 import "./ProjectSection.scss";
 import ProjectCard from "../ProjectCard/ProjectCard";
-import { v4 as uuidv4 } from "uuid";
 
 export default function ProjectSection() {
   let [selectedProject, setSelectedProject] = useState(0);
+  const selectProject = (projectId) => {
+    const nextProject = projects.findIndex((project) => project.id === projectId);
+    setSelectedProject(nextProject);
+  };
 
   return (
     <div className="project-section" id="Projects">
       <h1 className="project-section__title">My Projects </h1>
+      <p className="project-section__intro">
+        Selected work across full-stack apps, interactive tools, and event
+        experiences.
+      </p>
       <div className="project-section__wrap">
         <div className="project-section__wrap--left">
           {<Project projectObj={projects[selectedProject]} />}
@@ -22,10 +29,9 @@ export default function ProjectSection() {
             .filter((el) => el.id !== projects[selectedProject].id)
             .map((project) => (
               <ProjectCard
-                projectsArr={projects}
                 project={project}
-                setActive={setSelectedProject}
-                key={uuidv4()}
+                setActive={selectProject}
+                key={project.id}
               />
             ))}
           <div className="project-section__end"></div>

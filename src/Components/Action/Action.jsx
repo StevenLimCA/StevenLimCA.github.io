@@ -3,35 +3,36 @@ import React from "react";
 import "./Action.scss";
 
 export default function Action() {
-  const linkedInClick = (e) => {
-    window.open(`https://www.linkedin.com/in/steven-lim-ca/`, "_blank");
-  };
-  const gitHubClick = (e) => {
-    window.open(`https://github.com/StevenLimCA`, "_blank");
-  };
-  const emailClick = (e) => {
-    window.location.href = "#Contact";
-  };
   return (
     <div className="action slide-up">
-      <h2 className="action__title">Connect with me today!</h2>
+      <h2 className="action__title">Connect with me</h2>
       <div className="action__wrap">
-        <div className="action__button grow" onClick={linkedInClick}>
+        <a
+          className="action__button grow"
+          href="https://www.linkedin.com/in/steven-lim-ca/"
+          target="_blank"
+          rel="noreferrer"
+        >
           <img
             className="action__icon"
             src="./logos/linkedin.svg"
             alt="LinkedIn"
           />
           LinkedIn
-        </div>
-        <div className="action__button grow" onClick={gitHubClick}>
+        </a>
+        <a
+          className="action__button grow"
+          href="https://github.com/StevenLimCA"
+          target="_blank"
+          rel="noreferrer"
+        >
           <img className="action__icon" src="./logos/github.svg" alt="Github" />
           GitHub
-        </div>
-        <div className="action__button grow" onClick={emailClick}>
+        </a>
+        <a className="action__button grow" href="#Contact">
           <img className="action__icon" src="./logos/email.svg" alt="email" />
           Email
-        </div>
+        </a>
       </div>
     </div>
   );

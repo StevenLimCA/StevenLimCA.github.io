@@ -1,4 +1,4 @@
-@import "../../styles/partials/global";
+@use "../../styles/partials/global" as *;
 
 .navbar-mobile {
     position: fixed;
@@ -30,7 +30,7 @@
         margin: 1rem;
         padding: 0.5rem;
         cursor: pointer;
-        background-image: url("../../../public/Icons/close.svg");
+        background-image: url("/Icons/close.svg");
         background-repeat: no-repeat;
         background-size: cover;
 

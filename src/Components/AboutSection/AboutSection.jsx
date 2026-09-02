@@ -6,10 +6,11 @@ export default function AboutSection() {
       <h1 className="about-section__title">About Me</h1>
       <div className="about-section__content">
         <p className="about-section__text">
-          I love web development because it enables me to communicate with my
-          computer at a deeper level. I can automate mundane tasks, create
-          simplified workflows, build apps, games and much more! Furthermore, it
-          challenges me everyday and keeps my mind fresh.
+          I enjoy building web applications that make everyday work easier. My
+          background spans React, Node, Express, SQL, deployment workflows, and
+          the little details that make an interface feel calm and useful. I like
+          turning messy problems into clear screens, helpful automation, and
+          tools people can actually use.
         </p>
         <h3 className="about-section__subtitle">My Other Passions</h3>
         <div className="about-section__wrap">

@@ -1,4 +1,4 @@
-@import "../../styles/partials/global";
+@use "../../styles/partials/global" as *;
 
 
 .project-section {
@@ -18,6 +18,19 @@
 
     &__title {
         text-align: center;
+    }
+
+    &__intro {
+        color: rgba(0, 49, 128, 0.82);
+        font-size: 1rem;
+        margin: 0 auto 1.5rem;
+        max-width: 42rem;
+        padding: 0 1rem;
+        text-align: center;
+
+        @include tablet {
+            font-size: 1.2rem;
+        }
     }
 
     &__subtitle {

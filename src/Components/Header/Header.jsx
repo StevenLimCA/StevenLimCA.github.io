@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import NavbarMobile from "../NavbarMobile/NavbarMobile";
 import "./Header.scss";
@@ -12,7 +12,14 @@ export default function Header() {
       setBGColor(false);
     }
   };
-  window.addEventListener("scroll", changeColor);
+  useEffect(() => {
+    changeColor();
+    window.addEventListener("scroll", changeColor);
+
+    return () => {
+      window.removeEventListener("scroll", changeColor);
+    };
+  }, []);
   const handleOnClick = (e) => {
     setMenu((prevState) => !prevState);
   };

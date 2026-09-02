@@ -14,10 +14,14 @@ export default function Hero() {
           sequence={[
             "Hi! I am Steven.",
             1000,
-            "I am a Full Stack Web Developer!",
+            "I build friendly full-stack web apps.",
           ]}
         />
       </h1>{" "}
+      <p className="hero__subtitle">
+        Full-stack developer focused on practical products, clean interfaces,
+        and reliable workflows.
+      </p>
       <div className="hero__emoji slide-up">🙋🏻‍♂️</div>
     </div>
   );
