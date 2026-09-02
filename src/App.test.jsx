@@ -20,7 +20,9 @@ test("renders the portfolio homepage", () => {
   expect(screen.getByText(/steven lim/i)).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /about me/i })).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /my projects/i })).toBeInTheDocument();
-  expect(screen.getByRole("heading", { name: /my tech stacks/i })).toBeInTheDocument();
+  expect(
+    screen.getByRole("heading", { name: /tools i use to connect the work/i })
+  ).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /contact me/i })).toBeInTheDocument();
 });
 
@@ -46,7 +48,7 @@ test("marks empty contact fields invalid", () => {
   expect(screen.getByPlaceholderText(/your email/i)).toHaveClass(
     "form__input--invalid"
   );
-  expect(screen.getByPlaceholderText(/what would you like to build/i)).toHaveClass(
+  expect(screen.getByPlaceholderText(/workflow or website problem/i)).toHaveClass(
     "form__input--invalid"
   );
   expect(fetch).not.toHaveBeenCalled();
@@ -61,7 +63,7 @@ test("submits valid contact form data to Netlify Forms", async () => {
   fireEvent.change(screen.getByPlaceholderText(/your email/i), {
     target: { value: "test@example.com" },
   });
-  fireEvent.change(screen.getByPlaceholderText(/what would you like to build/i), {
+  fireEvent.change(screen.getByPlaceholderText(/workflow or website problem/i), {
     target: { value: "Testing the portfolio form." },
   });
   fireEvent.click(screen.getByRole("button", { name: /submit/i }));

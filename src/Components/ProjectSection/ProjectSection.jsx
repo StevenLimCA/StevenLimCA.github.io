@@ -15,8 +15,8 @@ export default function ProjectSection() {
     <div className="project-section" id="Projects">
       <h1 className="project-section__title">My Projects </h1>
       <p className="project-section__intro">
-        Selected work across full-stack apps, interactive tools, and event
-        experiences.
+        Selected work where websites, integrations, and practical interfaces
+        helped real teams or communities get something done.
       </p>
       <div className="project-section__wrap">
         <div className="project-section__wrap--left">

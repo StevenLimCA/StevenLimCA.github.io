@@ -61,8 +61,9 @@ export default function ContactUs() {
     <div className="contact-us" id="Contact">
       <h1 className="contact-us__title">Contact Me</h1>
       <p className="contact-us__text">
-        Thanks for visiting my site. Tell me a little about your project, team,
-        or idea, and I will get back to you as soon as I can.
+        Have a website, booking flow, form, or back-office workflow that could
+        work better? Tell me what feels clunky, and I will get back to you as
+        soon as I can.
       </p>
 
       <form
@@ -119,7 +120,7 @@ export default function ContactUs() {
           name="message"
           required
           aria-required="true"
-          placeholder="What would you like to build?"
+          placeholder="What is the workflow or website problem you want to solve?"
         />
 
         <button

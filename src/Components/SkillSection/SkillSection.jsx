@@ -20,7 +20,7 @@ export default function SkillsSection() {
             <li></li>
           </ul>
           <div className="skills__content">
-            <h1 className="skills__title">My Tech Stacks</h1>
+            <h1 className="skills__title">Tools I Use To Connect The Work</h1>
             <div className="skills__icons-wrapper">
               <img
                 className="skills__icon mute"
