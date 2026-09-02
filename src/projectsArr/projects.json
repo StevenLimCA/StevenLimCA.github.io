@@ -1,6 +1,21 @@
 [
 
   {
+    "id": "6",
+    "name": "Legal Invoice Classification & Posting Assistant",
+    "icon": "./projects/legal-invoice-assistant/legal-invoice-assistant.svg",
+    "image": "./projects/legal-invoice-assistant/legal-invoice-assistant.svg",
+    "desc": "A private automation tool for legal accounting workflows. It reads invoice files from a legal production system, classifies expense line items with configurable keyword rules, suggests GL numbers for review, and posts approved entries into Actionstep legal accounting.",
+    "role": "Workflow automation developer",
+    "impact": "Built a human-reviewed bridge between invoice production and legal accounting posting, with expense classification, GL suggestions, and Actionstep workflow support.",
+    "problem": "Legal invoices can contain many expense line items that need consistent GL coding before they are posted into accounting.",
+    "built": "I built a review layer that extracts expense items from invoice files, applies keyword-based classification rules, suggests GL numbers, and lets users confirm or adjust each item before posting.",
+    "result": "The workflow reduced repetitive manual coding, improved consistency, and created a clearer handoff from invoice production into Actionstep legal accounting while keeping the user in control of final accounting decisions.",
+    "frontTech": ["React", "JavaScript", "HTML", "Sass"],
+    "backTech": ["File Parsing", "Keyword Rules", "Actionstep API", "Accounting Workflow"]
+  },
+
+  {
     "id": "5",
     "name": "False Creek Pure Dental",
     "icon": "./projects/falsecreekpuredental/falsecreekpuredental.png",

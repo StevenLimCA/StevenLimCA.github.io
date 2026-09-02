@@ -13,19 +13,29 @@ export default function Project({ projectObj }) {
   return (
     <div className="projects">
       <div className="projects__wrap">
-        <a
-          className="projects__image-link grow"
-          href={projectObj.url}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={`View ${projectObj.name}`}
-        >
-          <img
-            className="projects__image"
-            src={`${projectObj.icon}`}
-            alt={`${projectObj.name}`}
-          />
-        </a>
+        {projectObj.url ? (
+          <a
+            className="projects__image-link grow"
+            href={projectObj.url}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`View ${projectObj.name}`}
+          >
+            <img
+              className="projects__image"
+              src={`${projectObj.icon}`}
+              alt={`${projectObj.name}`}
+            />
+          </a>
+        ) : (
+          <div className="projects__image-link">
+            <img
+              className="projects__image"
+              src={`${projectObj.icon}`}
+              alt={`${projectObj.name}`}
+            />
+          </div>
+        )}
         <div className="projects__wrap--right">
           <p className="projects__eyebrow">{projectObj.role}</p>
           <h2 className="projects__title">{projectObj.name}</h2>
@@ -62,29 +72,31 @@ export default function Project({ projectObj }) {
               </div>
             </div>
           </div>
-          <div className="projects__button-wrap">
-            <a
-              className="button grow half projects__link"
-              href={`${projectObj.url}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              View
-            </a>
+          {(projectObj.url || projectObj.gitHubUrl) && (
+            <div className="projects__button-wrap">
+              {projectObj.url && (
+                <a
+                  className="button grow half projects__link"
+                  href={`${projectObj.url}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View
+                </a>
+              )}
 
-            {projectObj.gitHubUrl ? (
-              <a
-                className="button grow half projects__link"
-                href={`${projectObj.gitHubUrl}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </a>
-            ) : (
-              ""
-            )}
-          </div>
+              {projectObj.gitHubUrl && (
+                <a
+                  className="button grow half projects__link"
+                  href={`${projectObj.gitHubUrl}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GitHub
+                </a>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
