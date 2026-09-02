@@ -238,20 +238,27 @@
         }
     }
 
-    &__card-icons {
-        display: flex;
-        gap: 0.6rem;
-        margin-bottom: 1rem;
-    }
-
-    &__card-icon {
-        background: rgba(255, 255, 255, 0.86);
+    &__card-icon-wrap {
+        align-items: center;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.55);
         border-radius: 0.5rem;
         box-sizing: border-box;
-        height: 2.7rem;
-        object-fit: contain;
-        padding: 0.45rem;
-        width: 2.7rem;
+        color: #0079a4;
+        display: flex;
+        height: 3.4rem;
+        justify-content: center;
+        margin-bottom: 1rem;
+        width: 3.4rem;
+    }
+
+    &__icon-svg {
+        height: 2.2rem;
+        stroke: currentColor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2.4;
+        width: 2.2rem;
     }
 
     &__card-title {
