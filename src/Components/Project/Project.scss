@@ -163,6 +163,7 @@
     &__image-link {
         width: 50%;
         display: flex;
+        align-items: center;
         justify-content: center;
 
         @include tablet {
@@ -173,6 +174,9 @@
     }
 
     &__image {
+        align-self: center;
+        height: auto;
+        max-height: 100%;
         width: 100%;
         object-fit: contain;
     }
