@@ -2,17 +2,17 @@
 
   {
     "id": "6",
-    "name": "Legal Invoice Classification & Posting Assistant",
+    "name": "Legal Accounting Automation & Systems Integration",
     "icon": "./projects/legal-invoice-assistant/legal-invoice-assistant.svg",
     "image": "./projects/legal-invoice-assistant/legal-invoice-assistant.svg",
-    "desc": "A private automation tool for legal accounting workflows. It reads invoice files from a legal production system, classifies expense line items with configurable keyword rules, suggests GL numbers for review, and posts approved entries into Actionstep legal accounting.",
-    "role": "Workflow automation developer",
-    "impact": "Built a human-reviewed bridge between invoice production and legal accounting posting, with expense classification, GL suggestions, and Actionstep workflow support.",
-    "problem": "Legal invoices can contain many expense line items that need consistent GL coding before they are posted into accounting.",
-    "built": "I built a review layer that extracts expense items from invoice files, applies keyword-based classification rules, suggests GL numbers, and lets users confirm or adjust each item before posting.",
-    "result": "The workflow reduced repetitive manual coding, improved consistency, and created a clearer handoff from invoice production into Actionstep legal accounting while keeping the user in control of final accounting decisions.",
+    "desc": "A private workflow tool that connects legal invoice production with accounting review and posting. The app adds a human-reviewed automation layer for expense classification, approval, and cleaner handoff into legal accounting systems.",
+    "role": "Systems integration and automation developer",
+    "impact": "Built a human-reviewed automation layer between legal operations and accounting workflows, with structured review queues, approval steps, and Actionstep posting support.",
+    "problem": "Legal accounting work often depends on information moving cleanly between production systems, review steps, and accounting workflows.",
+    "built": "I built a private integration layer that organizes incoming financial activity, supports staff review, applies configurable automation, and prepares approved items for posting into Actionstep legal accounting.",
+    "result": "The workflow reduced repetitive administrative work, improved consistency, and created a clearer handoff between legal operations and accounting while keeping users in control of final decisions.",
     "frontTech": ["React", "JavaScript", "HTML", "Sass"],
-    "backTech": ["File Parsing", "Keyword Rules", "Actionstep API", "Accounting Workflow"]
+    "backTech": ["Systems Integration", "Workflow Automation", "Actionstep API", "Accounting Operations"]
   },
 
   {

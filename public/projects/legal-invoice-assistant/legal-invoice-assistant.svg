@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 560" role="img" aria-labelledby="title desc">
-  <title id="title">Legal invoice workflow diagram</title>
-  <desc id="desc">A sanitized workflow diagram showing invoice files moving through expense extraction, keyword rules, GL review, and Actionstep posting.</desc>
+  <title id="title">Legal accounting systems integration dashboard</title>
+  <desc id="desc">A sanitized dashboard-style visual showing connected business systems, automation status, review queues, and approved handoffs.</desc>
   <defs>
     <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
       <stop offset="0" stop-color="#17233f"/>
@@ -17,45 +17,45 @@
   <rect width="920" height="560" rx="24" fill="url(#bg)"/>
   <circle cx="812" cy="86" r="108" fill="#f4c430" opacity="0.2"/>
   <circle cx="126" cy="474" r="150" fill="#67e8f9" opacity="0.12"/>
-  <text x="58" y="74" fill="#ffffff" font-family="Arial, sans-serif" font-size="31" font-weight="700">Legal Invoice Classification</text>
-  <text x="58" y="111" fill="#c9f7f2" font-family="Arial, sans-serif" font-size="18">Private accounting workflow assistant with human review</text>
+  <text x="58" y="74" fill="#ffffff" font-family="Arial, sans-serif" font-size="31" font-weight="700">Automation &amp; Systems Integration</text>
+  <text x="58" y="111" fill="#c9f7f2" font-family="Arial, sans-serif" font-size="18">Private workflow layer for review, approval, and clean handoffs</text>
 
   <g filter="url(#shadow)">
     <rect x="58" y="164" width="206" height="116" rx="14" fill="url(#card)"/>
     <rect x="88" y="188" width="48" height="64" rx="6" fill="#dbeafe"/>
     <path d="M126 188v18h18" fill="none" stroke="#2563eb" stroke-width="4"/>
-    <text x="152" y="205" fill="#102033" font-family="Arial, sans-serif" font-size="16" font-weight="700">Invoice Files</text>
-    <text x="152" y="231" fill="#415165" font-family="Arial, sans-serif" font-size="13">Expense lines</text>
-    <text x="152" y="250" fill="#415165" font-family="Arial, sans-serif" font-size="13">from legal output</text>
+    <text x="152" y="205" fill="#102033" font-family="Arial, sans-serif" font-size="16" font-weight="700">Source Systems</text>
+    <text x="152" y="231" fill="#415165" font-family="Arial, sans-serif" font-size="13">Operational inputs</text>
+    <text x="152" y="250" fill="#415165" font-family="Arial, sans-serif" font-size="13">ready for review</text>
 
     <rect x="356" y="164" width="206" height="116" rx="14" fill="url(#card)"/>
     <rect x="385" y="194" width="58" height="14" rx="7" fill="#14b8a6"/>
     <rect x="385" y="219" width="86" height="14" rx="7" fill="#99f6e4"/>
     <rect x="385" y="244" width="44" height="14" rx="7" fill="#2dd4bf"/>
-    <text x="462" y="205" fill="#102033" font-family="Arial, sans-serif" font-size="16" font-weight="700">Keyword Rules</text>
-    <text x="462" y="231" fill="#415165" font-family="Arial, sans-serif" font-size="13">Configurable matching</text>
-    <text x="462" y="250" fill="#415165" font-family="Arial, sans-serif" font-size="13">for GL suggestions</text>
+    <text x="462" y="205" fill="#102033" font-family="Arial, sans-serif" font-size="16" font-weight="700">Automation Layer</text>
+    <text x="462" y="231" fill="#415165" font-family="Arial, sans-serif" font-size="13">Structured routing</text>
+    <text x="462" y="250" fill="#415165" font-family="Arial, sans-serif" font-size="13">and status checks</text>
 
     <rect x="656" y="164" width="206" height="116" rx="14" fill="url(#card)"/>
     <circle cx="704" cy="220" r="30" fill="#dcfce7"/>
     <path d="m690 219 10 10 20-22" fill="none" stroke="#16a34a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="748" y="205" fill="#102033" font-family="Arial, sans-serif" font-size="16" font-weight="700">Staff Review</text>
-    <text x="748" y="231" fill="#415165" font-family="Arial, sans-serif" font-size="13">Approve or adjust</text>
-    <text x="748" y="250" fill="#415165" font-family="Arial, sans-serif" font-size="13">before posting</text>
+    <text x="748" y="205" fill="#102033" font-family="Arial, sans-serif" font-size="16" font-weight="700">Review Queue</text>
+    <text x="748" y="231" fill="#415165" font-family="Arial, sans-serif" font-size="13">Human approval</text>
+    <text x="748" y="250" fill="#415165" font-family="Arial, sans-serif" font-size="13">for exceptions</text>
 
     <rect x="208" y="356" width="206" height="116" rx="14" fill="url(#card)"/>
     <rect x="242" y="386" width="72" height="54" rx="8" fill="#fef3c7"/>
-    <text x="256" y="419" fill="#92400e" font-family="Arial, sans-serif" font-size="17" font-weight="700">GL</text>
-    <text x="332" y="397" fill="#102033" font-family="Arial, sans-serif" font-size="16" font-weight="700">Coded Entries</text>
-    <text x="332" y="423" fill="#415165" font-family="Arial, sans-serif" font-size="13">Expense items</text>
-    <text x="332" y="442" fill="#415165" font-family="Arial, sans-serif" font-size="13">ready for accounting</text>
+    <text x="252" y="419" fill="#92400e" font-family="Arial, sans-serif" font-size="17" font-weight="700">OK</text>
+    <text x="332" y="397" fill="#102033" font-family="Arial, sans-serif" font-size="16" font-weight="700">Approved Handoff</text>
+    <text x="332" y="423" fill="#415165" font-family="Arial, sans-serif" font-size="13">Reviewed items</text>
+    <text x="332" y="442" fill="#415165" font-family="Arial, sans-serif" font-size="13">ready for next step</text>
 
     <rect x="508" y="356" width="206" height="116" rx="14" fill="url(#card)"/>
     <rect x="538" y="385" width="58" height="58" rx="12" fill="#e0f2fe"/>
     <path d="M555 412h24M567 400v24" stroke="#0284c7" stroke-width="6" stroke-linecap="round"/>
-    <text x="616" y="397" fill="#102033" font-family="Arial, sans-serif" font-size="16" font-weight="700">Actionstep</text>
-    <text x="616" y="423" fill="#415165" font-family="Arial, sans-serif" font-size="13">Approved posting</text>
-    <text x="616" y="442" fill="#415165" font-family="Arial, sans-serif" font-size="13">into legal accounting</text>
+    <text x="616" y="397" fill="#102033" font-family="Arial, sans-serif" font-size="16" font-weight="700">Accounting System</text>
+    <text x="616" y="423" fill="#415165" font-family="Arial, sans-serif" font-size="13">Controlled posting</text>
+    <text x="616" y="442" fill="#415165" font-family="Arial, sans-serif" font-size="13">with audit context</text>
   </g>
 
   <path d="M264 222h92" stroke="#c9f7f2" stroke-width="6" stroke-linecap="round"/>
