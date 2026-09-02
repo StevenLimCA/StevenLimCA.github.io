@@ -34,7 +34,7 @@ export default function NavbarMobile({ setMenu }) {
           </li>
           <li className="navbar-mobile__item Skills grow" onClick={handleClick}>
             <div className="navbar-mobile__icon--skills"></div>
-            Skills
+            Capabilities
           </li>
           <li
             className="navbar-mobile__item Contact grow"

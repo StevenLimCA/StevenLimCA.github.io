@@ -20,8 +20,9 @@ test("renders the portfolio homepage", () => {
   expect(screen.getByText(/steven lim/i)).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /about me/i })).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /my projects/i })).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: /ways i help/i })).toBeInTheDocument();
   expect(
-    screen.getByRole("heading", { name: /tools i use to connect the work/i })
+    screen.getByRole("heading", { name: /^systems integration$/i })
   ).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /contact me/i })).toBeInTheDocument();
 });

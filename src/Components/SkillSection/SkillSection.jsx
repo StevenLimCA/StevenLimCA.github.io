@@ -1,6 +1,63 @@
 import React from "react";
 import "./SkillSection.scss";
 
+const capabilities = [
+  {
+    title: "Systems Integration",
+    text: "Connect web apps, APIs, and business tools so work moves cleanly between systems.",
+    icons: [
+      { src: "./logos/React.svg", alt: "React" },
+      { src: "./logos/node-js.svg", alt: "Node.js" },
+      { src: "./logos/mysql.svg", alt: "MySQL" },
+    ],
+  },
+  {
+    title: "Workflow Automation",
+    text: "Reduce repetitive admin work with reviewable, human-approved automation.",
+    icons: [
+      { src: "./logos/JavaScript.svg", alt: "JavaScript" },
+      { src: "./logos/PowerShell.svg", alt: "PowerShell" },
+      { src: "./logos/git.svg", alt: "Git" },
+    ],
+  },
+  {
+    title: "Operational Dashboards",
+    text: "Build focused interfaces for queues, approvals, exceptions, and status visibility.",
+    icons: [
+      { src: "./logos/HTML5.svg", alt: "HTML" },
+      { src: "./logos/CSS3.svg", alt: "CSS" },
+      { src: "./logos/sass.svg", alt: "Sass" },
+    ],
+  },
+  {
+    title: "Forms & Notifications",
+    text: "Turn website forms and internal requests into reliable email or workflow handoffs.",
+    icons: [
+      { src: "./logos/email.svg", alt: "Email" },
+      { src: "./logos/JavaScript.svg", alt: "JavaScript" },
+      { src: "./logos/github.svg", alt: "GitHub" },
+    ],
+  },
+  {
+    title: "Business Websites",
+    text: "Maintain and improve websites, hosting, and digital touchpoints for local service teams.",
+    icons: [
+      { src: "./logos/HTML5.svg", alt: "HTML" },
+      { src: "./logos/CSS3.svg", alt: "CSS" },
+      { src: "./logos/git.svg", alt: "Git" },
+    ],
+  },
+  {
+    title: "AI-Assisted Prototyping",
+    text: "Use local and cloud AI carefully for workflow exploration, test data, documentation, and classification support.",
+    icons: [
+      { src: "./logos/Bash.svg", alt: "Bash" },
+      { src: "./logos/PowerShell.svg", alt: "PowerShell" },
+      { src: "./logos/jira.svg", alt: "Jira" },
+    ],
+  },
+];
+
 export default function SkillsSection() {
   return (
     <div className="skills" id="Skills">
@@ -20,110 +77,29 @@ export default function SkillsSection() {
             <li></li>
           </ul>
           <div className="skills__content">
-            <h1 className="skills__title">Tools I Use To Connect The Work</h1>
-            <div className="skills__icons-wrapper">
-              <img
-                className="skills__icon mute"
-                alt="HTML"
-                src="./logos/HTML5.svg"
-              />
-              <img
-                className="skills__icon mute"
-                alt="CSS3"
-                src="./logos/CSS3.svg"
-              />{" "}
-              <img
-                className="skills__icon mute"
-                alt="Javascript"
-                src="./logos/JavaScript.svg"
-              />{" "}
-            </div>
-            <div className="skills__icons-wrapper">
-              <div className="skills__icons-text-wrap mute">
-                <img
-                  className="skills__icon"
-                  alt="React"
-                  src="./logos/React.svg"
-                />
-                ReactJS
-              </div>
-              <div className="skills__icons-text-wrap mute">
-                <img
-                  className="skills__icon"
-                  alt="Node JS"
-                  src="./logos/node-js.svg"
-                />
-                NodeJS
-              </div>
-
-              <div className="skills__icons-text-wrap mute">
-                <img
-                  className="skills__icon"
-                  alt="ExpressJS"
-                  src="./logos/expressjs.svg"
-                />
-                expressJS
-              </div>
-            </div>
-            <div className="skills__icons-wrapper">
-              <div className="skills__icons-text-wrap mute">
-                <img
-                  className="skills__icon"
-                  alt="mysql"
-                  src="./logos/mysql.svg"
-                />
-                MySQL
-              </div>
-              <div className="skills__icons-wrapper">
-                <div className="skills__icons-text-wrap">
-                  <img
-                    className="skills__icon mute"
-                    alt="Sass"
-                    src="./logos/sass.svg"
-                  />
-                  Sass
-                </div>
-              </div>{" "}
-              <div className="skills__icons-wrapper">
-                <div className="skills__icons-text-wrap">
-                  <img
-                    className="skills__icon mute"
-                    alt="Git"
-                    src="./logos/git.svg"
-                  />{" "}
-                  Git
-                </div>
-              </div>
-            </div>{" "}
-            <div className="skills__icons-wrapper">
-              <div className="skills__icons-text-wrap">
-                <img
-                  className="skills__icon mute"
-                  alt="bash"
-                  src="./logos/Bash.svg"
-                />
-                Bash
-              </div>{" "}
-              <div className="skills__icons-wrapper">
-                <div className="skills__icons-text-wrap">
-                  <img
-                    className="skills__icon mute"
-                    alt="powershell"
-                    src="./logos/PowerShell.svg"
-                  />
-                  PowerShell
-                </div>
-              </div>
-              <div className="skills__icons-wrapper">
-                <div className="skills__icons-text-wrap">
-                  <img
-                    className="skills__icon mute"
-                    alt="powershell"
-                    src="./logos/jira.svg"
-                  />
-                  Jira
-                </div>{" "}
-              </div>
+            <p className="skills__eyebrow">Capabilities</p>
+            <h1 className="skills__title">Ways I Help</h1>
+            <p className="skills__intro">
+              Practical web systems work, supported by the tools that fit the
+              workflow.
+            </p>
+            <div className="skills__grid">
+              {capabilities.map((capability) => (
+                <article className="skills__card" key={capability.title}>
+                  <div className="skills__card-icons" aria-hidden="true">
+                    {capability.icons.map((icon) => (
+                      <img
+                        className="skills__card-icon"
+                        src={icon.src}
+                        alt=""
+                        key={`${capability.title}-${icon.alt}`}
+                      />
+                    ))}
+                  </div>
+                  <h2 className="skills__card-title">{capability.title}</h2>
+                  <p className="skills__card-text">{capability.text}</p>
+                </article>
+              ))}
             </div>
           </div>
         </div>

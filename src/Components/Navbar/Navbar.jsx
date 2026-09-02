@@ -25,7 +25,7 @@ export default function Navbar() {
         <li className="navbar__item">
           <div className="navbar__icon--skills"></div>
           <a href="#Skills" className="navbar__link">
-            Skills
+            Capabilities
           </a>
         </li>
         <li className="navbar__item">
