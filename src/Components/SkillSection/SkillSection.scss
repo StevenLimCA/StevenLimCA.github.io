@@ -292,10 +292,17 @@ body[data-scene-mode="night"] .skills__background--circles li {
 body[data-scene-mode="night"] .skills__card {
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(166, 201, 255, 0.24);
+    color: rgba(244, 248, 255, 0.96);
 }
 
 body[data-scene-mode="night"] .skills__card-icon-wrap {
     background: rgba(232, 241, 255, 0.9);
     color: #17476f;
+}
+
+body[data-scene-mode="night"] .skills__card-title,
+body[data-scene-mode="night"] .skills__intro,
+body[data-scene-mode="night"] .skills__card-text {
+    color: rgba(244, 248, 255, 0.94);
 }
 

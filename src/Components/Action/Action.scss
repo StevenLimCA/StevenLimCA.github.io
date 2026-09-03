@@ -59,13 +59,14 @@
 }
 
 body[data-scene-mode="night"] .action {
-    background: rgba(10, 22, 48, 0.66);
+    background: rgba(8, 19, 43, 0.78);
     border-color: rgba(166, 201, 255, 0.28);
     color: rgba(232, 241, 255, 0.92);
 }
 
 body[data-scene-mode="night"] .action__title,
 body[data-scene-mode="night"] .action__button {
-    color: rgba(232, 241, 255, 0.92);
+    color: rgba(244, 248, 255, 0.96);
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.28);
 }
 

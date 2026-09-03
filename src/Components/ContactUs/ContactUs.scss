@@ -122,5 +122,11 @@ body[data-scene-mode="night"] .contact-us__field,
 body[data-scene-mode="night"] .contact-us__message {
     background: rgba(255, 255, 255, 0.88);
     border-color: rgba(166, 201, 255, 0.45);
+    color: rgb(6, 18, 38);
+}
+
+body[data-scene-mode="night"] .contact-us__field::placeholder,
+body[data-scene-mode="night"] .contact-us__message::placeholder {
+    color: rgba(6, 18, 38, 0.68);
 }
 

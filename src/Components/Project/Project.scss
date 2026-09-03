@@ -211,6 +211,12 @@ body[data-scene-mode="night"] .projects__story-item {
     border-color: rgba(166, 201, 255, 0.2);
 }
 
+body[data-scene-mode="night"] .projects__desc,
+body[data-scene-mode="night"] .projects__story-text,
+body[data-scene-mode="night"] .projects__meta-item {
+    color: rgba(232, 241, 255, 0.94);
+}
+
 @keyframes projectViewerReveal {
     0% {
         opacity: 0;
