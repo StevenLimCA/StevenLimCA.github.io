@@ -62,10 +62,61 @@
     &__item {
         color: rgb(23, 23, 119);
         font-size: 1.5rem;
+        margin: 0 auto;
+        position: relative;
         width: 100%;
         padding: 1rem 0;
         list-style: none;
         cursor: pointer;
+        transition: color 0.25s ease, font-weight 0.25s ease;
+
+        &::before,
+        &::after {
+            content: "";
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        &::before {
+            border: 2px solid rgba(0, 49, 128, 0.28);
+            border-radius: 50%;
+            box-shadow: 0 0 0 0.35rem rgba(255, 255, 255, 0.24);
+            height: 3.2rem;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            width: 3.2rem;
+            z-index: -1;
+        }
+
+        &::after {
+            background: rgba(0, 49, 128, 0.35);
+            border-radius: 999px;
+            height: 0.18rem;
+            left: calc(50% + 1.15rem);
+            top: calc(50% + 1.15rem);
+            transform: rotate(45deg) scaleX(0.45);
+            transform-origin: left center;
+            width: 1.05rem;
+            z-index: -1;
+        }
+    }
+
+    &__item--active {
+        color: rgb(0, 49, 128);
+        font-weight: 800;
+
+        &::before {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        &::after {
+            opacity: 1;
+            transform: rotate(45deg) scaleX(1);
+        }
     }
 
     &__link {

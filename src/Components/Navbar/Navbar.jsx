@@ -1,39 +1,31 @@
 import "./Navbar.scss";
 import React from "react";
-export default function Navbar() {
+
+const navItems = [
+  { id: "home", label: "Home", iconClass: "navbar__icon--home" },
+  { id: "About", label: "About Me", iconClass: "navbar__icon--about" },
+  { id: "Projects", label: "Projects", iconClass: "navbar__icon--projects" },
+  { id: "Skills", label: "Capabilities", iconClass: "navbar__icon--skills" },
+  { id: "Contact", label: "Contact Me", iconClass: "navbar__icon--contact" },
+];
+
+export default function Navbar({ activeSection }) {
   return (
     <nav className="navbar">
       <ul className="navbar__list">
-        <li className="navbar__item">
-          <div className="navbar__icon--home"></div>
-          <a href="/" className="navbar__link">
-            Home
-          </a>
-        </li>
-        <li className="navbar__item">
-          <div className="navbar__icon--about"></div>
-          <a href="#About" className="navbar__link">
-            About Me
-          </a>
-        </li>
-        <li className="navbar__item">
-          <div className="navbar__icon--projects"></div>
-          <a href="#Projects" className="navbar__link">
-            Projects
-          </a>
-        </li>
-        <li className="navbar__item">
-          <div className="navbar__icon--skills"></div>
-          <a href="#Skills" className="navbar__link">
-            Capabilities
-          </a>
-        </li>
-        <li className="navbar__item">
-          <div className="navbar__icon--contact"></div>
-          <a href="#Contact" className="navbar__link">
-            Contact Me
-          </a>
-        </li>
+        {navItems.map((item) => (
+          <li
+            className={`navbar__item${
+              activeSection === item.id ? " navbar__item--active" : ""
+            }`}
+            key={item.id}
+          >
+            <div className={item.iconClass}></div>
+            <a href={`#${item.id}`} className="navbar__link">
+              {item.label}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
   );

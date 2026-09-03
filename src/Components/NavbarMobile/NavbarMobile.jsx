@@ -1,48 +1,56 @@
 import React from "react";
 import "./NavbarMobile.scss";
-export default function NavbarMobile({ setMenu }) {
+
+const navItems = [
+  { id: "home", label: "Home", iconClass: "navbar-mobile__icon--home" },
+  { id: "About", label: "About Me", iconClass: "navbar-mobile__icon--about" },
+  {
+    id: "Projects",
+    label: "Projects",
+    iconClass: "navbar-mobile__icon--projects",
+  },
+  {
+    id: "Skills",
+    label: "Capabilities",
+    iconClass: "navbar-mobile__icon--skills",
+  },
+  {
+    id: "Contact",
+    label: "Contact Me",
+    iconClass: "navbar-mobile__icon--contact",
+  },
+];
+
+export default function NavbarMobile({ activeSection, setMenu }) {
   const closeMenu = () => {
     setMenu((prevState) => !prevState);
   };
   const handleClose = (e) => {
     closeMenu();
   };
-  const handleClick = (e) => {
-    window.location.href = "#" + e.target.classList[1];
+  const handleClick = (sectionId) => {
+    window.location.href = `#${sectionId}`;
     closeMenu();
   };
+
   return (
     <nav className="navbar-mobile">
       <div className="navbar-mobile__wrap slide-up">
         <div className="navbar-mobile__close mute" onClick={handleClose}></div>
         <h3 className="navbar-mobile__title">Steven Lim</h3>
         <ul className="navbar-mobile__list">
-          <li className="navbar-mobile__item home grow" onClick={handleClick}>
-            <div className="navbar-mobile__icon--home"></div>
-            Home
-          </li>
-          <li className="navbar-mobile__item About grow" onClick={handleClick}>
-            <div className="navbar-mobile__icon--about"></div>
-            About Me
-          </li>
-          <li
-            className="navbar-mobile__item Projects grow"
-            onClick={handleClick}
-          >
-            <div className="navbar-mobile__icon--projects "></div>
-            Projects
-          </li>
-          <li className="navbar-mobile__item Skills grow" onClick={handleClick}>
-            <div className="navbar-mobile__icon--skills"></div>
-            Capabilities
-          </li>
-          <li
-            className="navbar-mobile__item Contact grow"
-            onClick={handleClick}
-          >
-            <div className="navbar-mobile__icon--contact"></div>
-            Contact Me
-          </li>
+          {navItems.map((item) => (
+            <li
+              className={`navbar-mobile__item${
+                activeSection === item.id ? " navbar-mobile__item--active" : ""
+              }`}
+              key={item.id}
+              onClick={() => handleClick(item.id)}
+            >
+              <div className={item.iconClass}></div>
+              {item.label}
+            </li>
+          ))}
         </ul>
       </div>
     </nav>
