@@ -38,6 +38,19 @@ test("switches the featured project story", () => {
   expect(screen.getByText(/interactive browser piano/i)).toBeInTheDocument();
 });
 
+test("opens and closes the hidden meteor game from the hero", () => {
+  render(<App />);
+
+  fireEvent.click(screen.getByRole("button", { name: /hidden meteor dodging game/i }));
+
+  expect(screen.getByRole("dialog", { name: /dodge the meteors/i })).toBeInTheDocument();
+  expect(screen.getByText(/move left and right/i)).toBeInTheDocument();
+
+  fireEvent.click(screen.getByRole("button", { name: /exit/i }));
+
+  expect(screen.queryByRole("dialog", { name: /dodge the meteors/i })).not.toBeInTheDocument();
+});
+
 test("marks empty contact fields invalid", () => {
   render(<App />);
 
