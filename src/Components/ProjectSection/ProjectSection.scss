@@ -32,6 +32,7 @@
             linear-gradient(90deg, transparent 0 58%, rgba(0, 49, 128, 0.12) 58% 60%, transparent 60% 100%),
             linear-gradient(0deg, transparent 0 28%, rgba(255, 255, 255, 0.22) 28% 30%, transparent 30% 100%),
             linear-gradient(0deg, transparent 0 66%, rgba(0, 49, 128, 0.12) 66% 68%, transparent 68% 100%);
+        animation: routePanelDrift 18s ease-in-out infinite;
         height: 16rem;
         right: -5rem;
         top: 5rem;
@@ -51,6 +52,7 @@
             linear-gradient(90deg, rgba(0, 49, 128, 0.18) 0 0.18rem, transparent 0.18rem 100%),
             linear-gradient(0deg, rgba(255, 255, 255, 0.24) 0 0.18rem, transparent 0.18rem 100%),
             linear-gradient(90deg, transparent 0 30%, rgba(0, 49, 128, 0.12) 30% 32%, transparent 32% 100%);
+        animation: blueprintGridSlide 22s linear infinite;
         background-size: 4rem 4rem, 4rem 4rem, 100% 100%;
         border: 1px solid rgba(255, 255, 255, 0.24);
         bottom: 4rem;
@@ -64,6 +66,14 @@
             height: 17rem;
             left: -5rem;
             width: 24rem;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+        &::before,
+        &::after {
+            animation: none;
         }
     }
 
@@ -261,5 +271,34 @@
 
     100% {
         background-position: 0% 50%;
+    }
+}
+
+@keyframes routePanelDrift {
+    0% {
+        opacity: 0.62;
+        transform: translate3d(0, 0, 0) rotate(-9deg);
+    }
+
+    50% {
+        opacity: 0.82;
+        transform: translate3d(-1.3rem, 1rem, 0) rotate(-7deg);
+    }
+
+    100% {
+        opacity: 0.62;
+        transform: translate3d(0, 0, 0) rotate(-9deg);
+    }
+}
+
+@keyframes blueprintGridSlide {
+    0% {
+        background-position: 0 0, 0 0, 0 0;
+        transform: translate3d(0, 0, 0) rotate(7deg);
+    }
+
+    100% {
+        background-position: 4rem 0, 0 4rem, 0 0;
+        transform: translate3d(1.5rem, -0.75rem, 0) rotate(7deg);
     }
 }
