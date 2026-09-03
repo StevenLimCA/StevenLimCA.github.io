@@ -2,10 +2,11 @@ import React from "react";
 import "./Hero.scss";
 import TypeAnimation from "react-type-animation";
 
-export default function Hero() {
+export default function Hero({ sceneMode }) {
   return (
-    <div className="hero" id="home">
-      <div className="sun"></div>
+    <div className={`hero hero--${sceneMode}`} id="home">
+      <div className="hero__stars" aria-hidden="true"></div>
+      <div className="sun" aria-hidden="true"></div>
       <div className="cloud"></div>
       <h1 className="hero__title">
         {" "}

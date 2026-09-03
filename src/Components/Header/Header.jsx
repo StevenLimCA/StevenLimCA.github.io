@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import NavbarMobile from "../NavbarMobile/NavbarMobile";
 import "./Header.scss";
-export default function Header() {
+export default function Header({ sceneMode, toggleSceneMode }) {
   const [menu, setMenu] = useState(false);
   const [bgColor, setBGColor] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -50,6 +50,14 @@ export default function Header() {
     <>
       <header className={bgColor ? "header header-bg" : "header"}>
         <div className="header__title rotate360">Steven Lim</div>
+        <button
+          className={`header__mode-toggle header__mode-toggle--${sceneMode}`}
+          type="button"
+          onClick={toggleSceneMode}
+          aria-label={`Switch to ${sceneMode === "day" ? "night" : "day"} mode`}
+        >
+          <span className="header__mode-icon"></span>
+        </button>
         <div className="header--mobile grow" onClick={handleOnClick}></div>
         {menu && (
           <NavbarMobile activeSection={activeSection} setMenu={setMenu} />

@@ -6,10 +6,10 @@ import ProjectSection from "../../ProjectSection/ProjectSection";
 import SkillSection from "../../SkillSection/SkillSection";
 import "./MainPage.scss";
 
-export default function MainPage() {
+export default function MainPage({ sceneMode }) {
   return (
     <div className="main-page">
-      <Hero />
+      <Hero sceneMode={sceneMode} />
       <AboutSection />
       <ProjectSection /> <SkillSection />
       <ContactUs />
