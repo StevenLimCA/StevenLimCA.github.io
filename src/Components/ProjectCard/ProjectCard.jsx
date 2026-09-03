@@ -11,10 +11,11 @@ export default function ProjectCard({ isActive, project, setActive }) {
       type="button"
       onClick={clickHandler}
       aria-pressed={isActive}
+      aria-label={project.name}
     >
       <img
         src={`${project.icon}`}
-        alt={project.name}
+        alt=""
         className="project-card__img"
       />
       <div className="project-card__text-wrap">
