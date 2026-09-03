@@ -6,7 +6,9 @@
     padding: 1rem 0;
     display: flex;
     flex-direction: column;
-    overflow: visible;
+    isolation: isolate;
+    overflow: hidden;
+    position: relative;
     animation: gradient 1s ease infinite;
     background-size: 400% 400%;
     background: linear-gradient(to top, #fcd600, #ffaa14, #ffaf21, #ffb32b, #ffb734, #ffb533, #ffb433, #ffb232, #ffaa28, #ffa21d, #ff9910, #ff9000);
@@ -16,8 +18,59 @@
         padding: 5rem 0;
     }
 
+    &::before,
+    &::after {
+        content: "";
+        pointer-events: none;
+        position: absolute;
+        z-index: 0;
+    }
+
+    &::before {
+        background:
+            linear-gradient(90deg, transparent 0 24%, rgba(0, 49, 128, 0.16) 24% 26%, transparent 26% 100%),
+            linear-gradient(90deg, transparent 0 58%, rgba(0, 49, 128, 0.12) 58% 60%, transparent 60% 100%),
+            linear-gradient(0deg, transparent 0 28%, rgba(255, 255, 255, 0.22) 28% 30%, transparent 30% 100%),
+            linear-gradient(0deg, transparent 0 66%, rgba(0, 49, 128, 0.12) 66% 68%, transparent 68% 100%);
+        height: 16rem;
+        right: -5rem;
+        top: 5rem;
+        transform: rotate(-9deg);
+        width: 20rem;
+
+        @include tablet {
+            height: 22rem;
+            right: -3rem;
+            top: 7rem;
+            width: 28rem;
+        }
+    }
+
+    &::after {
+        background:
+            linear-gradient(90deg, rgba(0, 49, 128, 0.18) 0 0.18rem, transparent 0.18rem 100%),
+            linear-gradient(0deg, rgba(255, 255, 255, 0.24) 0 0.18rem, transparent 0.18rem 100%),
+            linear-gradient(90deg, transparent 0 30%, rgba(0, 49, 128, 0.12) 30% 32%, transparent 32% 100%);
+        background-size: 4rem 4rem, 4rem 4rem, 100% 100%;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        bottom: 4rem;
+        height: 13rem;
+        left: -7rem;
+        transform: rotate(7deg);
+        width: 18rem;
+
+        @include tablet {
+            bottom: 6rem;
+            height: 17rem;
+            left: -5rem;
+            width: 24rem;
+        }
+    }
+
     &__title {
+        position: relative;
         text-align: center;
+        z-index: 1;
     }
 
     &__intro {
@@ -26,7 +79,9 @@
         margin: 0 auto 1.5rem;
         max-width: 42rem;
         padding: 0 1rem;
+        position: relative;
         text-align: center;
+        z-index: 1;
 
         @include tablet {
             font-size: 1.2rem;
@@ -70,6 +125,8 @@
     &__wrap {
         display: flex;
         flex-direction: column;
+        position: relative;
+        z-index: 1;
 
         @include desktop {
             flex-direction: row;
