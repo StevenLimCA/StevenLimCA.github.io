@@ -94,3 +94,14 @@
 
     background: rgba(249, 212, 119, 0.599);
 }
+
+body[data-scene-mode="night"] .header,
+body[data-scene-mode="night"] .header-bg {
+    background: rgba(10, 24, 55, 0.62);
+    border-color: rgba(166, 201, 255, 0.22);
+}
+
+body[data-scene-mode="night"] .header__title {
+    color: rgba(232, 241, 255, 0.94);
+}
+

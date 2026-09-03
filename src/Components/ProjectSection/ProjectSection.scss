@@ -12,6 +12,7 @@
     animation: gradient 1s ease infinite;
     background-size: 400% 400%;
     background: linear-gradient(to top, #fcd600, #ffaa14, #ffaf21, #ffb32b, #ffb734, #ffb533, #ffb433, #ffb232, #ffaa28, #ffa21d, #ff9910, #ff9000);
+    transition: background 0.7s ease;
 
 
     @include desktop {
@@ -274,6 +275,41 @@
     }
 }
 
+body[data-scene-mode="night"] .project-section {
+    background: linear-gradient(180deg, #0c1b38 0%, #10284d 48%, #182846 100%);
+
+    &::before {
+        opacity: 0.55;
+    }
+
+    &::after {
+        opacity: 0.45;
+    }
+}
+
+body[data-scene-mode="night"] .project-section__title,
+body[data-scene-mode="night"] .project-section__subtitle {
+    color: rgba(236, 244, 255, 0.96);
+}
+
+body[data-scene-mode="night"] .project-section__intro {
+    color: rgba(218, 231, 255, 0.82);
+}
+
+body[data-scene-mode="night"] .project-section__selector-button {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(166, 201, 255, 0.22);
+    color: rgba(232, 241, 255, 0.92);
+}
+
+body[data-scene-mode="night"] .project-section__selector-button:hover {
+    background: rgba(149, 194, 255, 0.22);
+}
+
+body[data-scene-mode="night"] .project-section__selector-button:disabled:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
 @keyframes routePanelDrift {
     0% {
         opacity: 0.62;
@@ -302,3 +338,4 @@
         transform: translate3d(1.5rem, -0.75rem, 0) rotate(7deg);
     }
 }
+

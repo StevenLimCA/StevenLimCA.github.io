@@ -12,6 +12,7 @@
     backdrop-filter: blur(7.5px);
     -webkit-backdrop-filter: blur(7.5px);
     border: 1px solid rgba(15, 121, 243, 0.19);
+    transition: background 0.7s ease, border-color 0.7s ease, color 0.7s ease;
 
     &__wrap {
         display: flex;
@@ -56,3 +57,15 @@
         }
     }
 }
+
+body[data-scene-mode="night"] .action {
+    background: rgba(10, 22, 48, 0.66);
+    border-color: rgba(166, 201, 255, 0.28);
+    color: rgba(232, 241, 255, 0.92);
+}
+
+body[data-scene-mode="night"] .action__title,
+body[data-scene-mode="night"] .action__button {
+    color: rgba(232, 241, 255, 0.92);
+}
+

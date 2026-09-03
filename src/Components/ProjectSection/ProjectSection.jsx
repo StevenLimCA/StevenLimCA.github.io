@@ -69,7 +69,7 @@ export default function ProjectSection() {
       </p>
       <div className="project-section__wrap">
         <div className="project-section__wrap--left">
-          {<Project projectObj={projects[selectedProject]} />}
+          {<Project key={projects[selectedProject].id} projectObj={projects[selectedProject]} />}
         </div>
 
         <div className="project-section__card-wrap">

@@ -9,6 +9,8 @@
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: projectViewerReveal 0.38s ease both;
+    transition: background 0.7s ease, border-color 0.7s ease, color 0.7s ease;
 
 
     &__link {
@@ -181,3 +183,49 @@
         object-fit: contain;
     }
 }
+
+body[data-scene-mode="night"] .projects {
+    background: rgba(10, 24, 55, 0.6);
+    border-color: rgba(166, 201, 255, 0.24);
+    color: rgba(232, 241, 255, 0.92);
+}
+
+body[data-scene-mode="night"] .projects:hover {
+    background: rgba(18, 39, 79, 0.72);
+}
+
+body[data-scene-mode="night"] .projects__title,
+body[data-scene-mode="night"] .projects__story-title,
+body[data-scene-mode="night"] .projects__meta-item strong,
+body[data-scene-mode="night"] .projects__subtitle {
+    color: rgba(244, 248, 255, 0.96);
+}
+
+body[data-scene-mode="night"] .projects__eyebrow,
+body[data-scene-mode="night"] .projects__tech {
+    color: rgb(139, 201, 255);
+}
+
+body[data-scene-mode="night"] .projects__story-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(166, 201, 255, 0.2);
+}
+
+@keyframes projectViewerReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(0.8rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .projects {
+        animation: none;
+    }
+}
+

@@ -146,3 +146,20 @@
 
     }
 }
+
+body[data-scene-mode="night"] .project-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(166, 201, 255, 0.22);
+    color: rgba(232, 241, 255, 0.92);
+}
+
+body[data-scene-mode="night"] .project-card:hover,
+body[data-scene-mode="night"] .project-card--active {
+    background: rgba(149, 194, 255, 0.22);
+    border-color: rgba(191, 220, 255, 0.34);
+}
+
+body[data-scene-mode="night"] .project-card__role {
+    color: rgb(139, 201, 255);
+}
+

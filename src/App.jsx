@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainPage from "./Components/Pages/MainPage/MainPage";
 import Header from "./Components/Header/Header";
@@ -11,15 +11,19 @@ function App() {
     setSceneMode((currentMode) => (currentMode === "day" ? "night" : "day"));
   };
 
+  useEffect(() => {
+    document.body.dataset.sceneMode = sceneMode;
+  }, [sceneMode]);
+
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className={`App App--${sceneMode}`}>
         <Header sceneMode={sceneMode} toggleSceneMode={toggleSceneMode} />
         <Routes>
           <Route path="/" element={<MainPage sceneMode={sceneMode} />} />
         </Routes>
+        <Action />
       </div>
-      <Action />
     </BrowserRouter>
   );
 }

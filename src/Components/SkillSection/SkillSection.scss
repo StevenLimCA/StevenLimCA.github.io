@@ -12,6 +12,7 @@
             min-height: 55rem;
             height: auto;
             z-index: 1;
+            transition: background 0.7s ease;
 
             @include tablet {
                 min-height: 52rem;
@@ -279,3 +280,22 @@
 
     }
 }
+
+body[data-scene-mode="night"] .skills__background--area {
+    background: linear-gradient(180deg, #182846 0%, #11375b 52%, #081731 100%);
+}
+
+body[data-scene-mode="night"] .skills__background--circles li {
+    background: rgba(72, 137, 204, 0.28);
+}
+
+body[data-scene-mode="night"] .skills__card {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(166, 201, 255, 0.24);
+}
+
+body[data-scene-mode="night"] .skills__card-icon-wrap {
+    background: rgba(232, 241, 255, 0.9);
+    color: #17476f;
+}
+

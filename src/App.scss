@@ -1,0 +1,16 @@
+.App {
+    background: #ffffff;
+    min-height: 100vh;
+    transition: background 0.7s ease, color 0.7s ease;
+}
+
+body[data-scene-mode="night"] {
+    background: #061226;
+    color: rgba(232, 241, 255, 0.92);
+}
+
+body[data-scene-mode="night"] .App {
+    background: #061226;
+    color: rgba(232, 241, 255, 0.92);
+}
+
