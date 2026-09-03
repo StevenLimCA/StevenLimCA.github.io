@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Project from "../Project/Project";
 import projects from "../../projectsArr/projects.json";
 import "./ProjectSection.scss";
@@ -6,7 +6,21 @@ import ProjectCard from "../ProjectCard/ProjectCard";
 
 export default function ProjectSection() {
   let [selectedProject, setSelectedProject] = useState(0);
+  const [canScrollPrevious, setCanScrollPrevious] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
   const selectorListRef = useRef(null);
+
+  const updateScrollButtons = () => {
+    const selectorList = selectorListRef.current;
+    if (!selectorList) return;
+
+    const maxScroll = Math.max(
+      selectorList.scrollWidth - selectorList.clientWidth,
+      0
+    );
+    setCanScrollPrevious(selectorList.scrollLeft > 1);
+    setCanScrollNext(selectorList.scrollLeft < maxScroll - 1);
+  };
 
   const selectProject = (projectId) => {
     const nextProject = projects.findIndex((project) => project.id === projectId);
@@ -14,13 +28,38 @@ export default function ProjectSection() {
   };
 
   const scrollSelector = (direction) => {
-    if (!selectorListRef.current) return;
+    const selectorList = selectorListRef.current;
+    if (!selectorList) return;
 
-    selectorListRef.current.scrollBy({
-      left: direction * 180,
-      behavior: "smooth",
-    });
+    const maxScroll = Math.max(
+      selectorList.scrollWidth - selectorList.clientWidth,
+      0
+    );
+    const nextScroll = Math.min(
+      Math.max(selectorList.scrollLeft + direction * 170, 0),
+      maxScroll
+    );
+
+    if (typeof selectorList.scrollTo === "function") {
+      selectorList.scrollTo({
+        left: nextScroll,
+        behavior: "smooth",
+      });
+    } else {
+      selectorList.scrollLeft = nextScroll;
+    }
   };
+
+  useEffect(() => {
+    const selectorList = selectorListRef.current;
+    if (!selectorList) return undefined;
+
+    selectorList.scrollLeft = 0;
+    updateScrollButtons();
+
+    window.addEventListener("resize", updateScrollButtons);
+    return () => window.removeEventListener("resize", updateScrollButtons);
+  }, [selectedProject]);
 
   return (
     <div className="project-section" id="Projects">
@@ -42,6 +81,7 @@ export default function ProjectSection() {
               type="button"
               onClick={() => scrollSelector(-1)}
               aria-label="Previous projects"
+              disabled={!canScrollPrevious}
             >
               <svg
                 className="project-section__selector-icon"
@@ -52,7 +92,11 @@ export default function ProjectSection() {
                 <path d="m15 18-6-6 6-6" />
               </svg>
             </button>
-            <div className="project-section__selector-list" ref={selectorListRef}>
+            <div
+              className="project-section__selector-list"
+              ref={selectorListRef}
+              onScroll={updateScrollButtons}
+            >
               {projects
                 .filter((el) => el.id !== projects[selectedProject].id)
                 .map((project) => (
@@ -69,6 +113,7 @@ export default function ProjectSection() {
               type="button"
               onClick={() => scrollSelector(1)}
               aria-label="Next projects"
+              disabled={!canScrollNext}
             >
               <svg
                 className="project-section__selector-icon"
