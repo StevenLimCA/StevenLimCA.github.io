@@ -54,7 +54,6 @@ export default function ProjectSection() {
     const selectorList = selectorListRef.current;
     if (!selectorList) return undefined;
 
-    selectorList.scrollLeft = 0;
     updateScrollButtons();
 
     window.addEventListener("resize", updateScrollButtons);
@@ -97,15 +96,14 @@ export default function ProjectSection() {
               ref={selectorListRef}
               onScroll={updateScrollButtons}
             >
-              {projects
-                .filter((el) => el.id !== projects[selectedProject].id)
-                .map((project) => (
-                  <ProjectCard
-                    project={project}
-                    setActive={selectProject}
-                    key={project.id}
-                  />
-                ))}
+              {projects.map((project, index) => (
+                <ProjectCard
+                  isActive={index === selectedProject}
+                  project={project}
+                  setActive={selectProject}
+                  key={project.id}
+                />
+              ))}
               <div className="project-section__end"></div>
             </div>
             <button

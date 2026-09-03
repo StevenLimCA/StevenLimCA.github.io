@@ -19,6 +19,7 @@
     color: inherit;
     font: inherit;
     text-align: left;
+    transform: none;
 
     @include tablet {
         width: 11rem;
@@ -29,6 +30,22 @@
         min-height: unset;
         margin: 0.5rem 0;
         width: calc(100% - 2rem);
+    }
+
+    &--active {
+        background: rgba(255, 255, 255, 0.36);
+        border-color: rgba(0, 49, 128, 0.28);
+        box-shadow: 0 0 0 0.12rem rgba(0, 49, 128, 0.12), 0 4px 30px rgba(0, 0, 0, 0.1);
+        width: 10.25rem;
+
+        @include tablet {
+            width: 11.75rem;
+        }
+
+        @include desktop {
+            transform: translateX(-0.35rem);
+            width: calc(100% - 2rem);
+        }
     }
 
     &:hover {
@@ -56,6 +73,10 @@
 
     }
 
+    &:active {
+        transform: none;
+    }
+
     &__role {
         color: rgb(6, 147, 234);
         display: none;
@@ -79,10 +100,14 @@
 
 
     &__name {
+        display: -webkit-box;
         font-size: 0.82rem;
+        font-weight: 600;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
         line-height: 1.15;
         margin: 0;
-        overflow-wrap: anywhere;
+        overflow: hidden;
         padding: 0.35rem 0.5rem 0.35rem 0;
         width: 100%;
         box-sizing: border-box;
@@ -92,7 +117,9 @@
         }
 
         @include desktop {
+            display: block;
             font-size: 1.2rem;
+            overflow: visible;
             padding: 0.5rem 0;
         }
 
