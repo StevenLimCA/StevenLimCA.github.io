@@ -1,9 +1,8 @@
 import React from "react";
 import "./ProjectCard.scss";
 export default function ProjectCard({ project, setActive }) {
-  const clickHandler = (e) => {
+  const clickHandler = () => {
     setActive(project.id);
-    document.getElementById("Projects")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (

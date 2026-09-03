@@ -25,16 +25,18 @@ export default function ProjectSection() {
 
         <div className="project-section__card-wrap">
           <h3 className="project-section__subtitle">Choose A Project</h3>
-          {projects
-            .filter((el) => el.id !== projects[selectedProject].id)
-            .map((project) => (
-              <ProjectCard
-                project={project}
-                setActive={selectProject}
-                key={project.id}
-              />
-            ))}
-          <div className="project-section__end"></div>
+          <div className="project-section__selector-list">
+            {projects
+              .filter((el) => el.id !== projects[selectedProject].id)
+              .map((project) => (
+                <ProjectCard
+                  project={project}
+                  setActive={selectProject}
+                  key={project.id}
+                />
+              ))}
+            <div className="project-section__end"></div>
+          </div>
         </div>
       </div>
     </div>

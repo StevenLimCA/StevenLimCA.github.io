@@ -6,7 +6,7 @@
     padding: 1rem 0;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: visible;
     animation: gradient 1s ease infinite;
     background-size: 400% 400%;
     background: linear-gradient(to top, #fcd600, #ffaa14, #ffaf21, #ffb32b, #ffb734, #ffb533, #ffb433, #ffb232, #ffaa28, #ffa21d, #ff9910, #ff9000);
@@ -34,36 +34,98 @@
     }
 
     &__subtitle {
+        color: rgba(0, 49, 128, 0.78);
+        font-size: 0.85rem;
+        font-weight: 700;
+        line-height: 1.2;
         margin: 0;
-        text-align: center;
-        border-radius: 1rem 1rem 0 0;
-        padding: 0.5rem 0;
-        width: calc(100% - 2rem);
-        @include glass;
+        text-align: left;
+        padding: 0 0.15rem;
+        text-transform: uppercase;
+        width: auto;
 
+        @include desktop {
+            border-radius: 1rem 1rem 0 0;
+            font-size: 1.2rem;
+            padding: 0.5rem 0;
+            text-align: center;
+            text-transform: none;
+            width: calc(100% - 2rem);
+            @include glass;
+        }
     }
 
     &__end:empty {
-        width: calc(100% - 2rem);
-        padding: 1rem 0;
-        border-radius: 0 0 1rem 1rem;
-        @include glass;
+        display: none;
+
+        @include desktop {
+            display: block;
+            width: calc(100% - 2rem);
+            padding: 1rem 0;
+            border-radius: 0 0 1rem 1rem;
+            @include glass;
+        }
     }
 
     &__wrap {
+        display: flex;
+        flex-direction: column;
+
         @include desktop {
-            display: flex;
+            flex-direction: row;
             justify-content: center;
             align-items: flex-start;
         }
 
     }
 
+    &__wrap--left {
+        order: 2;
+
+        @include desktop {
+            order: 1;
+        }
+    }
+
     &__card-wrap {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        gap: 0.4rem;
+        margin: 0.2rem 0 0.75rem;
+        order: 1;
+        padding: 0 1rem;
+        z-index: 120;
+
+        @include desktop {
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0;
+            order: 2;
+            padding: 0;
+            position: static;
+        }
+    }
+
+    &__selector-list {
+        display: flex;
+        gap: 0.45rem;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        @include desktop {
+            align-items: center;
+            flex-direction: column;
+            gap: 0;
+            overflow-x: visible;
+            padding-bottom: 0;
+            width: 100%;
+        }
     }
 
     &__side {

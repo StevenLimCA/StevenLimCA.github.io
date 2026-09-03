@@ -4,19 +4,32 @@
 
     display: flex;
     align-items: center;
+    flex: 0 0 auto;
     cursor: pointer;
     background: rgba(255, 255, 255, 0.15);
-    border-radius: 0 0 0 0;
+    border-radius: 0.5rem;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    width: calc(100% - 2rem);
+    min-height: 3rem;
+    width: 9.5rem;
     transition: all ease-in-out 0.3s;
-    margin: 0.5rem 0;
+    margin: 0;
     color: inherit;
     font: inherit;
     text-align: left;
+
+    @include tablet {
+        width: 11rem;
+    }
+
+    @include desktop {
+        border-radius: 0;
+        min-height: unset;
+        margin: 0.5rem 0;
+        width: calc(100% - 2rem);
+    }
 
     &:hover {
 
@@ -58,7 +71,6 @@
 
     &__text-wrap {
         display: flex;
-        text-align: none;
         flex-direction: column;
         width: 100%;
         min-width: 0;
@@ -67,24 +79,37 @@
 
 
     &__name {
+        font-size: 0.82rem;
+        line-height: 1.15;
+        margin: 0;
+        overflow-wrap: anywhere;
+        padding: 0.35rem 0.5rem 0.35rem 0;
         width: 100%;
-        padding: 0.5rem 6vw;
         box-sizing: border-box;
 
         @include tablet {
-            padding: 0.5rem 3vw;
+            font-size: 0.9rem;
         }
 
         @include desktop {
+            font-size: 1.2rem;
             padding: 0.5rem 0;
         }
 
     }
 
     &__img {
-        width: 5rem;
-        height: 5rem;
-        margin: 1rem;
+        flex: 0 0 auto;
+        height: 1.9rem;
+        margin: 0.5rem;
+        object-fit: contain;
+        width: 1.9rem;
+
+        @include desktop {
+            width: 5rem;
+            height: 5rem;
+            margin: 1rem;
+        }
 
     }
 }
