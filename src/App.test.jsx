@@ -38,17 +38,23 @@ test("switches the featured project story", () => {
   expect(screen.getByText(/interactive browser piano/i)).toBeInTheDocument();
 });
 
-test("opens and closes the hidden asteroid game from the hero", () => {
+test("opens the hidden game selector and launches a mini-game from the hero emoji", () => {
   render(<App />);
 
-  fireEvent.click(screen.getByRole("button", { name: /hidden asteroids-style game/i }));
+  fireEvent.click(screen.getByRole("button", { name: /hidden game selector/i }));
 
-  expect(screen.getByRole("dialog", { name: /asteroids mini game/i })).toBeInTheDocument();
-  expect(screen.getByText(/rotate, thrust, and shoot/i)).toBeInTheDocument();
+  expect(screen.getByRole("dialog", { name: /choose a hidden game/i })).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: /asteroids/i })).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: /falling blocks/i })).toBeInTheDocument();
+
+  fireEvent.click(screen.getByRole("button", { name: /falling blocks/i }));
+
+  expect(screen.getByRole("dialog", { name: /falling blocks game/i })).toBeInTheDocument();
+  expect(screen.getByText(/move, rotate, and clear rows/i)).toBeInTheDocument();
 
   fireEvent.click(screen.getByRole("button", { name: /exit/i }));
 
-  expect(screen.queryByRole("dialog", { name: /asteroids mini game/i })).not.toBeInTheDocument();
+  expect(screen.queryByRole("dialog", { name: /falling blocks game/i })).not.toBeInTheDocument();
 });
 
 test("marks empty contact fields invalid", () => {

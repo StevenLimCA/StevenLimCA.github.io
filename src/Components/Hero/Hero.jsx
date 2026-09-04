@@ -34,18 +34,103 @@ const createAsteroid = (level, size = 5.8) => {
   };
 };
 
+const BOARD_WIDTH = 10;
+const BOARD_HEIGHT = 18;
+const EMPTY_BOARD = Array.from({ length: BOARD_HEIGHT }, () =>
+  Array(BOARD_WIDTH).fill(null)
+);
+const ASTEROIDS_HIGH_SCORE_KEY = "asteroidsHighScore";
+const BLOCKS_HIGH_SCORE_KEY = "blocksHighScore";
+
+const PIECES = [
+  { name: "i", cells: [[0, 1], [1, 1], [2, 1], [3, 1]] },
+  { name: "o", cells: [[1, 0], [2, 0], [1, 1], [2, 1]] },
+  { name: "t", cells: [[1, 0], [0, 1], [1, 1], [2, 1]] },
+  { name: "l", cells: [[2, 0], [0, 1], [1, 1], [2, 1]] },
+  { name: "s", cells: [[1, 0], [2, 0], [0, 1], [1, 1]] },
+];
+
+const getStoredScore = (key) => {
+  const storedScore = Number(window.localStorage.getItem(key));
+  return Number.isFinite(storedScore) ? Math.floor(storedScore) : 0;
+};
+
+const createPiece = () => ({
+  ...PIECES[Math.floor(Math.random() * PIECES.length)],
+  x: 3,
+  y: -1,
+});
+
+const rotateCells = (cells) => cells.map(([x, y]) => [3 - y, x]);
+
+const getPieceCells = (piece) =>
+  piece.cells.map(([cellX, cellY]) => ({
+    x: piece.x + cellX,
+    y: piece.y + cellY,
+    name: piece.name,
+  }));
+
+const isPieceValid = (board, piece) =>
+  getPieceCells(piece).every(
+    ({ x, y }) =>
+      x >= 0 &&
+      x < BOARD_WIDTH &&
+      y < BOARD_HEIGHT &&
+      (y < 0 || !board[y][x])
+  );
+
+const lockPiece = (board, piece) => {
+  const nextBoard = board.map((row) => [...row]);
+
+  getPieceCells(piece).forEach(({ x, y, name }) => {
+    if (y >= 0 && y < BOARD_HEIGHT) {
+      nextBoard[y][x] = name;
+    }
+  });
+
+  const openRows = nextBoard.filter((row) => row.some((cell) => !cell));
+  const clearedRows = BOARD_HEIGHT - openRows.length;
+  const emptyRows = Array.from({ length: clearedRows }, () =>
+    Array(BOARD_WIDTH).fill(null)
+  );
+
+  return {
+    board: [...emptyRows, ...openRows],
+    clearedRows,
+  };
+};
+
+const mergeBoardAndPiece = (board, piece) => {
+  const mergedBoard = board.map((row) => [...row]);
+
+  getPieceCells(piece).forEach(({ x, y, name }) => {
+    if (y >= 0 && y < BOARD_HEIGHT && x >= 0 && x < BOARD_WIDTH) {
+      mergedBoard[y][x] = name;
+    }
+  });
+
+  return mergedBoard;
+};
+
 export default function Hero({ sceneMode }) {
-  const [gameOpen, setGameOpen] = useState(false);
+  const [selectorOpen, setSelectorOpen] = useState(false);
+  const [selectedGame, setSelectedGame] = useState(null);
   const [gameStatus, setGameStatus] = useState("idle");
   const [ship, setShip] = useState({ x: 50, y: 72, angle: -90 });
   const [asteroids, setAsteroids] = useState([]);
   const [shots, setShots] = useState([]);
-  const [score, setScore] = useState(0);
-  const [level, setLevel] = useState(1);
-  const [highScore, setHighScore] = useState(() => {
-    const storedScore = Number(window.localStorage.getItem("asteroidsHighScore"));
-    return Number.isFinite(storedScore) ? Math.floor(storedScore) : 0;
-  });
+  const [asteroidsScore, setAsteroidsScore] = useState(0);
+  const [asteroidsLevel, setAsteroidsLevel] = useState(1);
+  const [asteroidsHighScore, setAsteroidsHighScore] = useState(() =>
+    getStoredScore(ASTEROIDS_HIGH_SCORE_KEY)
+  );
+  const [blocksBoard, setBlocksBoard] = useState(EMPTY_BOARD);
+  const [blocksPiece, setBlocksPiece] = useState(createPiece);
+  const [blocksScore, setBlocksScore] = useState(0);
+  const [blocksLevel, setBlocksLevel] = useState(1);
+  const [blocksHighScore, setBlocksHighScore] = useState(() =>
+    getStoredScore(BLOCKS_HIGH_SCORE_KEY)
+  );
   const animationFrameRef = useRef(null);
   const lastFrameRef = useRef(0);
   const spawnTimerRef = useRef(0);
@@ -55,72 +140,88 @@ export default function Hero({ sceneMode }) {
   const shipRef = useRef({ x: 50, y: 72, vx: 0, vy: 0, angle: -90 });
   const asteroidsRef = useRef([]);
   const shotsRef = useRef([]);
-  const scoreRef = useRef(0);
-  const levelRef = useRef(1);
+  const asteroidsScoreRef = useRef(0);
+  const asteroidsLevelRef = useRef(1);
+  const blocksBoardRef = useRef(EMPTY_BOARD);
+  const blocksPieceRef = useRef(createPiece());
+  const blocksScoreRef = useRef(0);
+  const blocksLevelRef = useRef(1);
   const gameStatusRef = useRef(gameStatus);
 
-  const startGame = useCallback(() => {
-    setGameOpen(true);
-    setGameStatus("playing");
-    gameStatusRef.current = "playing";
+  const saveHighScore = (key, score, setter) => {
+    const roundedScore = Math.floor(score);
+    setter((currentHighScore) => {
+      const nextHighScore = Math.max(currentHighScore, roundedScore);
+      window.localStorage.setItem(key, String(nextHighScore));
+      return nextHighScore;
+    });
+  };
+
+  const startAsteroids = useCallback(() => {
     const startingShip = { x: 50, y: 72, vx: 0, vy: 0, angle: -90 };
     const startingAsteroids = [createAsteroid(1), createAsteroid(1), createAsteroid(1, 4.6)];
+
+    setSelectorOpen(false);
+    setSelectedGame("asteroids");
+    setGameStatus("playing");
+    gameStatusRef.current = "playing";
     shipRef.current = startingShip;
     asteroidsRef.current = startingAsteroids;
     shotsRef.current = [];
+    asteroidsScoreRef.current = 0;
+    asteroidsLevelRef.current = 1;
     setShip({ x: startingShip.x, y: startingShip.y, angle: startingShip.angle });
     setAsteroids(startingAsteroids);
     setShots([]);
-    setScore(0);
-    setLevel(1);
-    scoreRef.current = 0;
-    levelRef.current = 1;
+    setAsteroidsScore(0);
+    setAsteroidsLevel(1);
     spawnTimerRef.current = 0;
     shotTimerRef.current = 0;
     lastFrameRef.current = 0;
   }, []);
 
-  const endGame = useCallback((finalScore) => {
-    const roundedFinalScore = Math.floor(finalScore);
+  const startBlocks = useCallback(() => {
+    const nextBoard = EMPTY_BOARD.map((row) => [...row]);
+    const nextPiece = createPiece();
+
+    setSelectorOpen(false);
+    setSelectedGame("blocks");
+    setGameStatus("playing");
+    gameStatusRef.current = "playing";
+    blocksBoardRef.current = nextBoard;
+    blocksPieceRef.current = nextPiece;
+    blocksScoreRef.current = 0;
+    blocksLevelRef.current = 1;
+    setBlocksBoard(nextBoard);
+    setBlocksPiece(nextPiece);
+    setBlocksScore(0);
+    setBlocksLevel(1);
+  }, []);
+
+  const endAsteroids = useCallback((finalScore) => {
     setGameStatus("gameover");
     gameStatusRef.current = "gameover";
-    setHighScore((currentHighScore) => {
-      const nextHighScore = Math.max(currentHighScore, roundedFinalScore);
-      window.localStorage.setItem("asteroidsHighScore", String(nextHighScore));
-      return nextHighScore;
-    });
+    saveHighScore(ASTEROIDS_HIGH_SCORE_KEY, finalScore, setAsteroidsHighScore);
+  }, []);
+
+  const endBlocks = useCallback((finalScore) => {
+    setGameStatus("gameover");
+    gameStatusRef.current = "gameover";
+    saveHighScore(BLOCKS_HIGH_SCORE_KEY, finalScore, setBlocksHighScore);
   }, []);
 
   const closeGame = useCallback(() => {
-    setGameOpen(false);
+    setSelectorOpen(false);
+    setSelectedGame(null);
     setGameStatus("idle");
     gameStatusRef.current = "idle";
     asteroidsRef.current = [];
     shotsRef.current = [];
     setAsteroids([]);
     setShots([]);
-    setScore(0);
-    setLevel(1);
-    scoreRef.current = 0;
-    levelRef.current = 1;
     keysRef.current = { left: false, right: false, thrust: false, fire: false };
     pointerRef.current.active = false;
   }, []);
-
-  const handleHeroClick = (event) => {
-    if (event.target.closest("a, button")) {
-      return;
-    }
-
-    startGame();
-  };
-
-  const handleHeroKeyDown = (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      startGame();
-    }
-  };
 
   const fireShot = useCallback(() => {
     const currentShip = shipRef.current;
@@ -141,33 +242,90 @@ export default function Hero({ sceneMode }) {
   }, []);
 
   const updatePointer = (event, shouldFire = false) => {
-    const nextPointer = {
+    pointerRef.current = {
       active: true,
       x: Math.max(3, Math.min(97, (event.clientX / window.innerWidth) * 100)),
       y: Math.max(8, Math.min(92, (event.clientY / window.innerHeight) * 100)),
     };
-
-    pointerRef.current = nextPointer;
 
     if (shouldFire) {
       fireShot();
     }
   };
 
+  const moveBlocksPiece = useCallback((xOffset, yOffset) => {
+    if (gameStatusRef.current !== "playing") {
+      return false;
+    }
+
+    const movedPiece = {
+      ...blocksPieceRef.current,
+      x: blocksPieceRef.current.x + xOffset,
+      y: blocksPieceRef.current.y + yOffset,
+    };
+
+    if (isPieceValid(blocksBoardRef.current, movedPiece)) {
+      blocksPieceRef.current = movedPiece;
+      setBlocksPiece(movedPiece);
+      return true;
+    }
+
+    return false;
+  }, []);
+
+  const rotateBlocksPiece = useCallback(() => {
+    const rotatedPiece = {
+      ...blocksPieceRef.current,
+      cells: rotateCells(blocksPieceRef.current.cells),
+    };
+
+    if (isPieceValid(blocksBoardRef.current, rotatedPiece)) {
+      blocksPieceRef.current = rotatedPiece;
+      setBlocksPiece(rotatedPiece);
+    }
+  }, []);
+
+  const dropBlocksPiece = useCallback(() => {
+    if (moveBlocksPiece(0, 1)) {
+      return;
+    }
+
+    const lockedState = lockPiece(blocksBoardRef.current, blocksPieceRef.current);
+    const nextScore =
+      blocksScoreRef.current + 12 + lockedState.clearedRows * lockedState.clearedRows * 120;
+    const nextLevel = Math.floor(nextScore / 700) + 1;
+    const nextPiece = createPiece();
+
+    blocksBoardRef.current = lockedState.board;
+    blocksScoreRef.current = nextScore;
+    blocksLevelRef.current = nextLevel;
+    setBlocksBoard(lockedState.board);
+    setBlocksScore(nextScore);
+    setBlocksLevel(nextLevel);
+
+    if (!isPieceValid(lockedState.board, nextPiece)) {
+      endBlocks(nextScore);
+      return;
+    }
+
+    blocksPieceRef.current = nextPiece;
+    setBlocksPiece(nextPiece);
+  }, [endBlocks, moveBlocksPiece]);
+
   useEffect(() => {
     gameStatusRef.current = gameStatus;
   }, [gameStatus]);
 
   useEffect(() => {
-    document.body.classList.toggle("meteor-game-active", gameOpen);
+    document.body.classList.toggle("meteor-game-active", Boolean(selectedGame || selectorOpen));
 
     return () => {
       document.body.classList.remove("meteor-game-active");
     };
-  }, [gameOpen]);
+  }, [selectedGame, selectorOpen]);
 
   useEffect(() => {
-    if (!gameOpen || gameStatus !== "playing") {
+    if (selectedGame !== "asteroids" || gameStatus !== "playing") {
       return undefined;
     }
 
@@ -223,10 +381,10 @@ export default function Hero({ sceneMode }) {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [closeGame, gameOpen, gameStatus]);
+  }, [closeGame, gameStatus, selectedGame]);
 
   useEffect(() => {
-    if (!gameOpen || gameStatus !== "playing") {
+    if (selectedGame !== "asteroids" || gameStatus !== "playing") {
       return undefined;
     }
 
@@ -240,10 +398,10 @@ export default function Hero({ sceneMode }) {
       spawnTimerRef.current += delta;
       shotTimerRef.current += delta;
 
-      const nextLevel = Math.floor(scoreRef.current / 320) + 1;
-      if (nextLevel !== levelRef.current) {
-        levelRef.current = nextLevel;
-        setLevel(nextLevel);
+      const nextAsteroidsLevel = Math.floor(asteroidsScoreRef.current / 320) + 1;
+      if (nextAsteroidsLevel !== asteroidsLevelRef.current) {
+        asteroidsLevelRef.current = nextAsteroidsLevel;
+        setAsteroidsLevel(nextAsteroidsLevel);
       }
 
       const currentShip = { ...shipRef.current };
@@ -288,9 +446,9 @@ export default function Hero({ sceneMode }) {
         }))
         .filter((shot) => shot.age < 1.55);
 
-      const nextScore = scoreRef.current + delta * (5 + levelRef.current);
-      scoreRef.current = nextScore;
-      setScore(Math.floor(nextScore));
+      const nextScore = asteroidsScoreRef.current + delta * (5 + asteroidsLevelRef.current);
+      asteroidsScoreRef.current = nextScore;
+      setAsteroidsScore(Math.floor(nextScore));
 
       let nextAsteroids = asteroidsRef.current.map((asteroid) => ({
         ...asteroid,
@@ -300,11 +458,11 @@ export default function Hero({ sceneMode }) {
       }));
 
       if (
-        spawnTimerRef.current > Math.max(0.7, 2.3 - levelRef.current * 0.12) &&
-        nextAsteroids.length < Math.min(5 + levelRef.current, 13)
+        spawnTimerRef.current > Math.max(0.7, 2.3 - asteroidsLevelRef.current * 0.12) &&
+        nextAsteroids.length < Math.min(5 + asteroidsLevelRef.current, 13)
       ) {
         spawnTimerRef.current = 0;
-        nextAsteroids = [...nextAsteroids, createAsteroid(levelRef.current)];
+        nextAsteroids = [...nextAsteroids, createAsteroid(asteroidsLevelRef.current)];
       }
 
       const survivingShots = [];
@@ -324,20 +482,20 @@ export default function Hero({ sceneMode }) {
         }
 
         destroyedAsteroidIds.add(target.id);
-        scoreRef.current += Math.round(34 + target.size * 8);
-        setScore(Math.floor(scoreRef.current));
+        asteroidsScoreRef.current += Math.round(34 + target.size * 8);
+        setAsteroidsScore(Math.floor(asteroidsScoreRef.current));
 
         if (target.size > 3.4) {
           brokenAsteroids.push(
             {
-              ...createAsteroid(levelRef.current, target.size * 0.58),
+              ...createAsteroid(asteroidsLevelRef.current, target.size * 0.58),
               x: target.x,
               y: target.y,
               vx: target.vx + 5 + Math.random() * 4,
               vy: target.vy - 5 - Math.random() * 4,
             },
             {
-              ...createAsteroid(levelRef.current, target.size * 0.58),
+              ...createAsteroid(asteroidsLevelRef.current, target.size * 0.58),
               x: target.x,
               y: target.y,
               vx: target.vx - 5 - Math.random() * 4,
@@ -353,12 +511,12 @@ export default function Hero({ sceneMode }) {
         ...brokenAsteroids,
       ];
 
-      const shipWasHit = nextAsteroids.some(
-        (asteroid) => getDistance(currentShip, asteroid) < asteroid.size * 0.58 + 2.2
-      );
-
-      if (shipWasHit) {
-        endGame(scoreRef.current);
+      if (
+        nextAsteroids.some(
+          (asteroid) => getDistance(currentShip, asteroid) < asteroid.size * 0.58 + 2.2
+        )
+      ) {
+        endAsteroids(asteroidsScoreRef.current);
       }
 
       shotsRef.current = nextShots;
@@ -374,17 +532,67 @@ export default function Hero({ sceneMode }) {
     return () => {
       window.cancelAnimationFrame(animationFrameRef.current);
     };
-  }, [endGame, gameOpen, gameStatus]);
+  }, [endAsteroids, fireShot, gameStatus, selectedGame]);
+
+  useEffect(() => {
+    if (selectedGame !== "blocks" || gameStatus !== "playing") {
+      return undefined;
+    }
+
+    const tickSpeed = Math.max(160, 780 - blocksLevel * 70);
+    const intervalId = window.setInterval(dropBlocksPiece, tickSpeed);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [blocksLevel, dropBlocksPiece, gameStatus, selectedGame]);
+
+  useEffect(() => {
+    if (selectedGame !== "blocks") {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeGame();
+      }
+
+      if (gameStatusRef.current !== "playing") {
+        return;
+      }
+
+      if (event.key === "ArrowLeft" || event.key.toLowerCase() === "a") {
+        moveBlocksPiece(-1, 0);
+      }
+
+      if (event.key === "ArrowRight" || event.key.toLowerCase() === "d") {
+        moveBlocksPiece(1, 0);
+      }
+
+      if (event.key === "ArrowDown" || event.key.toLowerCase() === "s") {
+        dropBlocksPiece();
+      }
+
+      if (event.key === "ArrowUp" || event.key.toLowerCase() === "w" || event.key === " ") {
+        event.preventDefault();
+        rotateBlocksPiece();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [closeGame, dropBlocksPiece, moveBlocksPiece, rotateBlocksPiece, selectedGame]);
+
+  const visibleBlocksBoard = mergeBoardAndPiece(blocksBoard, blocksPiece);
+  const gameOverlayOpen = Boolean(selectedGame);
 
   return (
     <div
-      className={`hero hero--${sceneMode}${gameOpen ? " hero--game-open" : ""}`}
+      className={`hero hero--${sceneMode}${gameOverlayOpen ? " hero--game-open" : ""}`}
       id="home"
-      onClick={handleHeroClick}
-      onKeyDown={handleHeroKeyDown}
-      role="button"
-      tabIndex="0"
-      aria-label="Open a hidden Asteroids-style game"
     >
       <div className="hero__stars" aria-hidden="true"></div>
       <div className="sun" aria-hidden="true"></div>
@@ -404,14 +612,73 @@ export default function Hero({ sceneMode }) {
         I help clinics and service teams turn websites, forms, bookings, and
         back-office workflows into tools that feel clear and dependable.
       </p>
-      <div className="hero__emoji slide-up">🙋🏻‍♂️</div>
-      {gameOpen && (
+      <button
+        className="hero__emoji slide-up"
+        type="button"
+        onClick={() => setSelectorOpen(true)}
+        aria-label="Open hidden game selector"
+      >
+        🙋🏻‍♂️
+      </button>
+      {selectorOpen && (
+        <div
+          className="game-selector"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Choose a hidden game"
+          onClick={() => setSelectorOpen(false)}
+        >
+          <div className="game-selector__panel" onClick={(event) => event.stopPropagation()}>
+            <p className="game-selector__eyebrow">Hidden arcade</p>
+            <h2 className="game-selector__title">Choose a quick game</h2>
+            <div className="game-selector__choices">
+              <button
+                className="game-selector__choice"
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  startAsteroids();
+                }}
+                aria-label="Play Asteroids"
+              >
+                <span className="game-selector__icon">△</span>
+                <span>
+                  <strong>Asteroids</strong>
+                  Shoot rocks, survive longer, and climb levels.
+                </span>
+              </button>
+              <button
+                className="game-selector__choice"
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  startBlocks();
+                }}
+                aria-label="Play Falling Blocks"
+              >
+                <span className="game-selector__icon game-selector__icon--blocks">▦</span>
+                <span>
+                  <strong>Falling Blocks</strong>
+                  Stack shapes, clear rows, and speed up as you score.
+                </span>
+              </button>
+            </div>
+            <button
+              className="game-selector__close"
+              type="button"
+              onClick={() => setSelectorOpen(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+      {selectedGame === "asteroids" && (
         <div
           className="meteor-game"
           role="dialog"
           aria-modal="true"
           aria-label="Asteroids mini game"
-          onClick={(event) => event.stopPropagation()}
           onPointerMove={(event) => updatePointer(event)}
           onPointerDown={(event) => updatePointer(event, true)}
           onPointerLeave={() => {
@@ -421,15 +688,15 @@ export default function Hero({ sceneMode }) {
           <div className="meteor-game__hud">
             <div>
               <p className="meteor-game__label">Score</p>
-              <p className="meteor-game__value">{score}</p>
+              <p className="meteor-game__value">{asteroidsScore}</p>
             </div>
             <div>
               <p className="meteor-game__label">Level</p>
-              <p className="meteor-game__value">{level}</p>
+              <p className="meteor-game__value">{asteroidsLevel}</p>
             </div>
             <div>
               <p className="meteor-game__label">Best</p>
-              <p className="meteor-game__value">{highScore}</p>
+              <p className="meteor-game__value">{asteroidsHighScore}</p>
             </div>
             <button className="meteor-game__close" type="button" onClick={closeGame}>
               Exit
@@ -478,8 +745,57 @@ export default function Hero({ sceneMode }) {
           {gameStatus === "gameover" && (
             <div className="meteor-game__panel">
               <h2 className="meteor-game__title">Nice run</h2>
-              <p className="meteor-game__summary">Score {score}</p>
-              <button className="meteor-game__restart" type="button" onClick={startGame}>
+              <p className="meteor-game__summary">Score {asteroidsScore}</p>
+              <button className="meteor-game__restart" type="button" onClick={startAsteroids}>
+                Play again
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+      {selectedGame === "blocks" && (
+        <div className="blocks-game" role="dialog" aria-modal="true" aria-label="Falling blocks game">
+          <div className="blocks-game__hud">
+            <div>
+              <p className="blocks-game__label">Score</p>
+              <p className="blocks-game__value">{blocksScore}</p>
+            </div>
+            <div>
+              <p className="blocks-game__label">Level</p>
+              <p className="blocks-game__value">{blocksLevel}</p>
+            </div>
+            <div>
+              <p className="blocks-game__label">Best</p>
+              <p className="blocks-game__value">{blocksHighScore}</p>
+            </div>
+            <button className="blocks-game__close" type="button" onClick={closeGame}>
+              Exit
+            </button>
+          </div>
+          <div className="blocks-game__board" aria-hidden="true">
+            {visibleBlocksBoard.flatMap((row, rowIndex) =>
+              row.map((cell, columnIndex) => (
+                <span
+                  className={`blocks-game__cell${cell ? ` blocks-game__cell--${cell}` : ""}`}
+                  key={`${rowIndex}-${columnIndex}`}
+                />
+              ))
+            )}
+          </div>
+          <div className="blocks-game__controls" aria-label="Falling blocks controls">
+            <button type="button" onClick={() => moveBlocksPiece(-1, 0)}>Left</button>
+            <button type="button" onClick={rotateBlocksPiece}>Rotate</button>
+            <button type="button" onClick={() => moveBlocksPiece(1, 0)}>Right</button>
+            <button type="button" onClick={dropBlocksPiece}>Drop</button>
+          </div>
+          <p className="blocks-game__instructions">
+            Move, rotate, and clear rows. The board speeds up every level.
+          </p>
+          {gameStatus === "gameover" && (
+            <div className="blocks-game__panel">
+              <h2 className="blocks-game__title">Stack finished</h2>
+              <p className="blocks-game__summary">Score {blocksScore}</p>
+              <button className="blocks-game__restart" type="button" onClick={startBlocks}>
                 Play again
               </button>
             </div>
