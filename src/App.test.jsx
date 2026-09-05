@@ -47,15 +47,16 @@ test("opens the hidden game selector and launches a mini-game from the hero emoj
   expect(screen.getByRole("button", { name: /asteroids/i })).toBeInTheDocument();
   expect(screen.getByRole("button", { name: /falling blocks/i })).toBeInTheDocument();
   expect(screen.getByRole("button", { name: /space invaders/i })).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: /pac-man style maze chase/i })).toBeInTheDocument();
 
-  fireEvent.click(screen.getByRole("button", { name: /space invaders/i }));
+  fireEvent.click(screen.getByRole("button", { name: /pac-man style maze chase/i }));
 
-  expect(screen.getByRole("dialog", { name: /space invaders game/i })).toBeInTheDocument();
-  expect(screen.getByText(/move and fire/i)).toBeInTheDocument();
+  expect(screen.getByRole("dialog", { name: /maze chase game/i })).toBeInTheDocument();
+  expect(screen.getByText(/eat dots and avoid chasers/i)).toBeInTheDocument();
 
   fireEvent.click(screen.getByRole("button", { name: /exit/i }));
 
-  expect(screen.queryByRole("dialog", { name: /space invaders game/i })).not.toBeInTheDocument();
+  expect(screen.queryByRole("dialog", { name: /maze chase game/i })).not.toBeInTheDocument();
 });
 
 test("fires in Space Invaders when the playfield is clicked", () => {

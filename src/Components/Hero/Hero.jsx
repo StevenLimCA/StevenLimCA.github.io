@@ -42,6 +42,32 @@ const EMPTY_BOARD = Array.from({ length: BOARD_HEIGHT }, () =>
 const ASTEROIDS_HIGH_SCORE_KEY = "asteroidsHighScore";
 const BLOCKS_HIGH_SCORE_KEY = "blocksHighScore";
 const INVADERS_HIGH_SCORE_KEY = "invadersHighScore";
+const PACMAN_HIGH_SCORE_KEY = "mazeChaseHighScore";
+const PACMAN_MAZE = [
+  "###############",
+  "#.............#",
+  "#.###.###.###.#",
+  "#o#.........#o#",
+  "#.###.#.#.###.#",
+  "#.....#.#.....#",
+  "###.#.#.#.#.###",
+  "#...#.....#...#",
+  "###.#.###.#.###",
+  "#.....#.#.....#",
+  "#.###.#.#.###.#",
+  "#o#.........#o#",
+  "#.###.###.###.#",
+  "#.............#",
+  "###############",
+];
+const PACMAN_DIRECTIONS = {
+  up: { name: "up", x: 0, y: -1 },
+  down: { name: "down", x: 0, y: 1 },
+  left: { name: "left", x: -1, y: 0 },
+  right: { name: "right", x: 1, y: 0 },
+};
+const PACMAN_WIDTH = PACMAN_MAZE[0].length;
+const PACMAN_HEIGHT = PACMAN_MAZE.length;
 
 const PIECES = [
   { name: "i", cells: [[0, 1], [1, 1], [2, 1], [3, 1]] },
@@ -123,6 +149,58 @@ const createInvaders = (level) =>
     }))
   ).flat();
 
+const createPacmanPellets = () => {
+  const pellets = new Map();
+
+  PACMAN_MAZE.forEach((row, y) => {
+    [...row].forEach((cell, x) => {
+      if (cell === "." || cell === "o") {
+        pellets.set(`${x}-${y}`, cell);
+      }
+    });
+  });
+
+  return pellets;
+};
+
+const canMoveInMaze = (x, y) =>
+  x >= 0 &&
+  x < PACMAN_WIDTH &&
+  y >= 0 &&
+  y < PACMAN_HEIGHT &&
+  PACMAN_MAZE[y][x] !== "#";
+
+const createPacmanGhosts = (level) =>
+  [
+    { id: "cyan", x: 7, y: 6, color: "cyan", direction: PACMAN_DIRECTIONS.left },
+    { id: "pink", x: 7, y: 8, color: "pink", direction: PACMAN_DIRECTIONS.right },
+    { id: "orange", x: 6, y: 7, color: "orange", direction: PACMAN_DIRECTIONS.up },
+    { id: "green", x: 8, y: 7, color: "green", direction: PACMAN_DIRECTIONS.down },
+  ].slice(0, Math.min(4, 2 + Math.floor(level / 2)));
+
+const choosePacmanGhostDirection = (ghost, pacman, level) => {
+  const options = Object.values(PACMAN_DIRECTIONS).filter((direction) =>
+    canMoveInMaze(ghost.x + direction.x, ghost.y + direction.y)
+  );
+  const currentDirection = options.find(
+    (direction) => direction.name === ghost.direction?.name
+  );
+
+  if (currentDirection && Math.random() < Math.max(0.18, 0.42 - level * 0.04)) {
+    return currentDirection;
+  }
+
+  return options
+    .map((direction) => ({
+      direction,
+      score:
+        Math.abs(ghost.x + direction.x - pacman.x) +
+        Math.abs(ghost.y + direction.y - pacman.y) +
+        Math.random() * Math.max(0.5, 3 - level * 0.25),
+    }))
+    .sort((first, second) => first.score - second.score)[0]?.direction || PACMAN_DIRECTIONS.left;
+};
+
 export default function Hero({ sceneMode }) {
   const [selectorOpen, setSelectorOpen] = useState(false);
   const [selectedGame, setSelectedGame] = useState(null);
@@ -151,6 +229,18 @@ export default function Hero({ sceneMode }) {
   const [invadersHighScore, setInvadersHighScore] = useState(() =>
     getStoredScore(INVADERS_HIGH_SCORE_KEY)
   );
+  const [pacman, setPacman] = useState({
+    x: 1,
+    y: 1,
+    direction: PACMAN_DIRECTIONS.right,
+  });
+  const [pacmanPellets, setPacmanPellets] = useState(createPacmanPellets);
+  const [pacmanGhosts, setPacmanGhosts] = useState(() => createPacmanGhosts(1));
+  const [pacmanScore, setPacmanScore] = useState(0);
+  const [pacmanLevel, setPacmanLevel] = useState(1);
+  const [pacmanHighScore, setPacmanHighScore] = useState(() =>
+    getStoredScore(PACMAN_HIGH_SCORE_KEY)
+  );
   const animationFrameRef = useRef(null);
   const invadersAnimationFrameRef = useRef(null);
   const lastFrameRef = useRef(0);
@@ -177,6 +267,12 @@ export default function Hero({ sceneMode }) {
   const invadersDirectionRef = useRef(1);
   const invadersScoreRef = useRef(0);
   const invadersLevelRef = useRef(1);
+  const pacmanRef = useRef({ x: 1, y: 1, direction: PACMAN_DIRECTIONS.right });
+  const pacmanNextDirectionRef = useRef(PACMAN_DIRECTIONS.right);
+  const pacmanPelletsRef = useRef(createPacmanPellets());
+  const pacmanGhostsRef = useRef(createPacmanGhosts(1));
+  const pacmanScoreRef = useRef(0);
+  const pacmanLevelRef = useRef(1);
   const gameStatusRef = useRef(gameStatus);
 
   const saveHighScore = (key, score, setter) => {
@@ -254,6 +350,28 @@ export default function Hero({ sceneMode }) {
     setInvadersLevel(1);
   }, []);
 
+  const startPacman = useCallback(() => {
+    const startingPacman = { x: 1, y: 1, direction: PACMAN_DIRECTIONS.right };
+    const startingPellets = createPacmanPellets();
+    const startingGhosts = createPacmanGhosts(1);
+
+    setSelectorOpen(false);
+    setSelectedGame("pacman");
+    setGameStatus("playing");
+    gameStatusRef.current = "playing";
+    pacmanRef.current = startingPacman;
+    pacmanNextDirectionRef.current = PACMAN_DIRECTIONS.right;
+    pacmanPelletsRef.current = startingPellets;
+    pacmanGhostsRef.current = startingGhosts;
+    pacmanScoreRef.current = 0;
+    pacmanLevelRef.current = 1;
+    setPacman(startingPacman);
+    setPacmanPellets(startingPellets);
+    setPacmanGhosts(startingGhosts);
+    setPacmanScore(0);
+    setPacmanLevel(1);
+  }, []);
+
   const endAsteroids = useCallback((finalScore) => {
     setGameStatus("gameover");
     gameStatusRef.current = "gameover";
@@ -272,6 +390,12 @@ export default function Hero({ sceneMode }) {
     saveHighScore(INVADERS_HIGH_SCORE_KEY, finalScore, setInvadersHighScore);
   }, []);
 
+  const endPacman = useCallback((finalScore) => {
+    setGameStatus("gameover");
+    gameStatusRef.current = "gameover";
+    saveHighScore(PACMAN_HIGH_SCORE_KEY, finalScore, setPacmanHighScore);
+  }, []);
+
   const closeGame = useCallback(() => {
     setSelectorOpen(false);
     setSelectedGame(null);
@@ -287,6 +411,8 @@ export default function Hero({ sceneMode }) {
     setInvaders([]);
     setDefenderShots([]);
     setInvaderShots([]);
+    pacmanGhostsRef.current = [];
+    setPacmanGhosts([]);
     keysRef.current = { left: false, right: false, thrust: false, fire: false };
     pointerRef.current.active = false;
   }, []);
@@ -415,6 +541,10 @@ export default function Hero({ sceneMode }) {
     moveInvaderDefenderToPointer(event.clientX);
     fireDefenderShot(true);
   };
+
+  const changePacmanDirection = useCallback((directionName) => {
+    pacmanNextDirectionRef.current = PACMAN_DIRECTIONS[directionName];
+  }, []);
 
   useEffect(() => {
     gameStatusRef.current = gameStatus;
@@ -870,6 +1000,147 @@ export default function Hero({ sceneMode }) {
     };
   }, [endInvaders, fireDefenderShot, gameStatus, selectedGame]);
 
+  useEffect(() => {
+    if (selectedGame !== "pacman") {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      const key = event.key.toLowerCase();
+
+      if (event.key === "Escape") {
+        closeGame();
+      }
+
+      if (gameStatusRef.current !== "playing") {
+        return;
+      }
+
+      if (event.key === "ArrowUp" || key === "w") {
+        event.preventDefault();
+        changePacmanDirection("up");
+      }
+
+      if (event.key === "ArrowDown" || key === "s") {
+        event.preventDefault();
+        changePacmanDirection("down");
+      }
+
+      if (event.key === "ArrowLeft" || key === "a") {
+        event.preventDefault();
+        changePacmanDirection("left");
+      }
+
+      if (event.key === "ArrowRight" || key === "d") {
+        event.preventDefault();
+        changePacmanDirection("right");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [changePacmanDirection, closeGame, selectedGame]);
+
+  useEffect(() => {
+    if (selectedGame !== "pacman" || gameStatus !== "playing") {
+      return undefined;
+    }
+
+    const intervalId = window.setInterval(() => {
+      if (gameStatusRef.current !== "playing") {
+        return;
+      }
+
+      const currentPacman = pacmanRef.current;
+      const requestedDirection = pacmanNextDirectionRef.current;
+      const activeDirection = canMoveInMaze(
+        currentPacman.x + requestedDirection.x,
+        currentPacman.y + requestedDirection.y
+      )
+        ? requestedDirection
+        : currentPacman.direction;
+      const nextPacman = canMoveInMaze(
+        currentPacman.x + activeDirection.x,
+        currentPacman.y + activeDirection.y
+      )
+        ? {
+            x: currentPacman.x + activeDirection.x,
+            y: currentPacman.y + activeDirection.y,
+            direction: activeDirection,
+          }
+        : { ...currentPacman, direction: activeDirection };
+      const nextPellets = new Map(pacmanPelletsRef.current);
+      const pelletKey = `${nextPacman.x}-${nextPacman.y}`;
+
+      if (nextPellets.has(pelletKey)) {
+        const pellet = nextPellets.get(pelletKey);
+        nextPellets.delete(pelletKey);
+        pacmanScoreRef.current += pellet === "o" ? 50 : 10;
+      }
+
+      let nextGhosts = pacmanGhostsRef.current.map((ghost) => {
+        const direction = canMoveInMaze(
+          ghost.x + ghost.direction.x,
+          ghost.y + ghost.direction.y
+        )
+          ? choosePacmanGhostDirection(ghost, nextPacman, pacmanLevelRef.current)
+          : choosePacmanGhostDirection(ghost, nextPacman, pacmanLevelRef.current + 1);
+
+        return {
+          ...ghost,
+          x: ghost.x + direction.x,
+          y: ghost.y + direction.y,
+          direction,
+        };
+      });
+
+      if (nextGhosts.some((ghost) => ghost.x === nextPacman.x && ghost.y === nextPacman.y)) {
+        pacmanRef.current = nextPacman;
+        pacmanGhostsRef.current = nextGhosts;
+        setPacman(nextPacman);
+        setPacmanGhosts(nextGhosts);
+        setPacmanScore(pacmanScoreRef.current);
+        endPacman(pacmanScoreRef.current);
+        return;
+      }
+
+      if (!nextPellets.size) {
+        const nextLevel = pacmanLevelRef.current + 1;
+        const resetPacman = { x: 1, y: 1, direction: PACMAN_DIRECTIONS.right };
+        const resetPellets = createPacmanPellets();
+
+        pacmanScoreRef.current += 200 + nextLevel * 50;
+        pacmanLevelRef.current = nextLevel;
+        pacmanNextDirectionRef.current = PACMAN_DIRECTIONS.right;
+        nextGhosts = createPacmanGhosts(nextLevel);
+        pacmanRef.current = resetPacman;
+        pacmanPelletsRef.current = resetPellets;
+        pacmanGhostsRef.current = nextGhosts;
+        setPacman(resetPacman);
+        setPacmanPellets(resetPellets);
+        setPacmanGhosts(nextGhosts);
+        setPacmanLevel(nextLevel);
+        setPacmanScore(pacmanScoreRef.current);
+        return;
+      }
+
+      pacmanRef.current = nextPacman;
+      pacmanPelletsRef.current = nextPellets;
+      pacmanGhostsRef.current = nextGhosts;
+      setPacman(nextPacman);
+      setPacmanPellets(nextPellets);
+      setPacmanGhosts(nextGhosts);
+      setPacmanScore(pacmanScoreRef.current);
+    }, Math.max(110, 230 - pacmanLevel * 18));
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [endPacman, gameStatus, pacmanLevel, selectedGame]);
+
   const visibleBlocksBoard = mergeBoardAndPiece(blocksBoard, blocksPiece);
   const gameOverlayOpen = Boolean(selectedGame);
 
@@ -959,6 +1230,21 @@ export default function Hero({ sceneMode }) {
                 <span>
                   <strong>Space Invaders</strong>
                   Defend the base, clear waves, and dodge return fire.
+                </span>
+              </button>
+              <button
+                className="game-selector__choice"
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  startPacman();
+                }}
+                aria-label="Play Pac-Man style Maze Chase"
+              >
+                <span className="game-selector__icon game-selector__icon--pacman">●</span>
+                <span>
+                  <strong>Maze Chase</strong>
+                  Eat dots, avoid chasers, and clear each maze faster.
                 </span>
               </button>
             </div>
@@ -1095,6 +1381,99 @@ export default function Hero({ sceneMode }) {
               <h2 className="blocks-game__title">Stack finished</h2>
               <p className="blocks-game__summary">Score {blocksScore}</p>
               <button className="blocks-game__restart" type="button" onClick={startBlocks}>
+                Play again
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+      {selectedGame === "pacman" && (
+        <div
+          className="pacman-game"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Maze Chase game"
+        >
+          <div className="pacman-game__hud">
+            <div>
+              <p className="pacman-game__label">Score</p>
+              <p className="pacman-game__value">{pacmanScore}</p>
+            </div>
+            <div>
+              <p className="pacman-game__label">Maze</p>
+              <p className="pacman-game__value">{pacmanLevel}</p>
+            </div>
+            <div>
+              <p className="pacman-game__label">Best</p>
+              <p className="pacman-game__value">{pacmanHighScore}</p>
+            </div>
+            <button className="pacman-game__close" type="button" onClick={closeGame}>
+              Exit
+            </button>
+          </div>
+          <div className="pacman-game__board" aria-hidden="true">
+            {PACMAN_MAZE.flatMap((row, y) =>
+              [...row].map((cell, x) => {
+                const pellet = pacmanPellets.get(`${x}-${y}`);
+
+                return (
+                  <span
+                    className={`pacman-game__cell${
+                      cell === "#" ? " pacman-game__cell--wall" : ""
+                    }`}
+                    key={`${x}-${y}`}
+                  >
+                    {pellet && (
+                      <span
+                        className={`pacman-game__pellet${
+                          pellet === "o" ? " pacman-game__pellet--power" : ""
+                        }`}
+                      ></span>
+                    )}
+                  </span>
+                );
+              })
+            )}
+            <span
+              className={`pacman-game__player pacman-game__player--${pacman.direction.name}`}
+              style={{
+                left: `${((pacman.x + 0.5) / PACMAN_WIDTH) * 100}%`,
+                top: `${((pacman.y + 0.5) / PACMAN_HEIGHT) * 100}%`,
+              }}
+            ></span>
+            {pacmanGhosts.map((ghost) => (
+              <span
+                className={`pacman-game__ghost pacman-game__ghost--${ghost.color}`}
+                key={ghost.id}
+                style={{
+                  left: `${((ghost.x + 0.5) / PACMAN_WIDTH) * 100}%`,
+                  top: `${((ghost.y + 0.5) / PACMAN_HEIGHT) * 100}%`,
+                }}
+              ></span>
+            ))}
+          </div>
+          <div className="pacman-game__controls" aria-label="Maze Chase controls">
+            <button type="button" onClick={() => changePacmanDirection("up")}>
+              Up
+            </button>
+            <button type="button" onClick={() => changePacmanDirection("left")}>
+              Left
+            </button>
+            <button type="button" onClick={() => changePacmanDirection("right")}>
+              Right
+            </button>
+            <button type="button" onClick={() => changePacmanDirection("down")}>
+              Down
+            </button>
+          </div>
+          <p className="pacman-game__instructions">
+            Eat dots and avoid chasers. Each cleared maze adds speed and pressure.
+          </p>
+          {gameStatus === "gameover" && (
+            <div className="pacman-game__panel">
+              <h2 className="pacman-game__title">Caught in the maze</h2>
+              <p className="pacman-game__summary">Score {pacmanScore}</p>
+              <button className="pacman-game__restart" type="button" onClick={startPacman}>
                 Play again
               </button>
             </div>

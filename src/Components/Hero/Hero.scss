@@ -239,6 +239,7 @@ body.meteor-game-active {
 
 .game-selector,
 .blocks-game,
+.pacman-game,
 .invaders-game {
     background:
         radial-gradient(circle at 50% 18%, rgba(246, 240, 207, 0.18), transparent 10rem),
@@ -340,6 +341,10 @@ body.meteor-game-active {
 
 .game-selector__icon--invaders {
     color: #7b2c86;
+}
+
+.game-selector__icon--pacman {
+    color: #c49100;
 }
 
 .game-selector__close {
@@ -584,7 +589,8 @@ body.meteor-game-active {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .meteor-game__stars {
+    .meteor-game__stars,
+    .pacman-game__player {
         animation: none;
     }
 }
@@ -729,6 +735,239 @@ body.meteor-game-active {
 .blocks-game__title {
     color: rgba(244, 248, 255, 0.98);
     line-height: 1.2;
+}
+
+.pacman-game {
+    align-items: center;
+    align-content: center;
+    display: grid;
+    gap: 0.65rem;
+    grid-template-rows: auto auto auto auto;
+    justify-items: center;
+    padding: 1rem;
+}
+
+.pacman-game__hud {
+    align-items: center;
+    background: rgba(8, 19, 43, 0.72);
+    border: 1px solid rgba(166, 201, 255, 0.28);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.24);
+    display: flex;
+    gap: 0.8rem;
+    justify-content: space-between;
+    max-width: 34rem;
+    padding: 0.75rem 1rem;
+    width: min(34rem, calc(100% - 2rem));
+    z-index: 5;
+}
+
+.pacman-game__label,
+.pacman-game__value,
+.pacman-game__summary,
+.pacman-game__instructions {
+    color: rgba(244, 248, 255, 0.96);
+    margin: 0;
+}
+
+.pacman-game__label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.pacman-game__value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.pacman-game__close,
+.pacman-game__restart,
+.pacman-game__controls button {
+    background: rgba(244, 248, 255, 0.92);
+    border: 0;
+    border-radius: 0.5rem;
+    color: #061226;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    padding: 0.55rem 0.75rem;
+}
+
+.pacman-game__board {
+    aspect-ratio: 1;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(255, 226, 122, 0.08), transparent 16rem),
+        rgba(1, 8, 24, 0.76);
+    border: 1px solid rgba(166, 201, 255, 0.28);
+    border-radius: 0.5rem;
+    box-shadow: inset 0 0 2rem rgba(0, 0, 0, 0.28), 0 1rem 3rem rgba(0, 0, 0, 0.28);
+    display: grid;
+    gap: 0.08rem;
+    grid-template-columns: repeat(15, 1fr);
+    max-height: calc(100dvh - 19rem);
+    padding: 0.35rem;
+    position: relative;
+    width: min(25rem, calc(100vw - 2rem));
+    z-index: 2;
+
+    @include tablet {
+        max-height: calc(100dvh - 16rem);
+        width: min(30rem, calc(100vw - 2rem));
+    }
+}
+
+.pacman-game__cell {
+    align-items: center;
+    border-radius: 0.18rem;
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+}
+
+.pacman-game__cell--wall {
+    background: linear-gradient(135deg, #17476f, #356ea0);
+    box-shadow: inset 0 0 0 1px rgba(217, 248, 255, 0.12);
+}
+
+.pacman-game__pellet {
+    background: #f6f0cf;
+    border-radius: 50%;
+    box-shadow: 0 0 0.5rem rgba(246, 240, 207, 0.45);
+    height: 0.24rem;
+    width: 0.24rem;
+}
+
+.pacman-game__pellet--power {
+    height: 0.52rem;
+    width: 0.52rem;
+}
+
+.pacman-game__player,
+.pacman-game__ghost {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}
+
+.pacman-game__player {
+    animation: pacmanMouth 0.26s steps(2, end) infinite;
+    background: #ffe24f;
+    border-radius: 50%;
+    box-shadow: 0 0 1rem rgba(255, 226, 79, 0.45);
+    clip-path: polygon(0 0, 100% 0, 100% 38%, 58% 50%, 100% 62%, 100% 100%, 0 100%);
+    height: clamp(1rem, 4.8vw, 1.65rem);
+    width: clamp(1rem, 4.8vw, 1.65rem);
+}
+
+.pacman-game__player--left {
+    rotate: 180deg;
+}
+
+.pacman-game__player--up {
+    rotate: -90deg;
+}
+
+.pacman-game__player--down {
+    rotate: 90deg;
+}
+
+.pacman-game__ghost {
+    border-radius: 0.75rem 0.75rem 0.25rem 0.25rem;
+    height: clamp(1rem, 4.7vw, 1.55rem);
+    width: clamp(1rem, 4.7vw, 1.55rem);
+
+    &::before,
+    &::after {
+        background: #020817;
+        border-radius: 50%;
+        content: "";
+        height: 0.2rem;
+        position: absolute;
+        top: 0.42rem;
+        width: 0.2rem;
+    }
+
+    &::before {
+        left: 0.36rem;
+    }
+
+    &::after {
+        right: 0.36rem;
+    }
+}
+
+.pacman-game__ghost--cyan {
+    background: #7ee3ff;
+    box-shadow: 0 0 1rem rgba(126, 227, 255, 0.35);
+}
+
+.pacman-game__ghost--pink {
+    background: #ff9fd4;
+    box-shadow: 0 0 1rem rgba(255, 159, 212, 0.35);
+}
+
+.pacman-game__ghost--orange {
+    background: #ffad66;
+    box-shadow: 0 0 1rem rgba(255, 173, 102, 0.35);
+}
+
+.pacman-game__ghost--green {
+    background: #8cf7b2;
+    box-shadow: 0 0 1rem rgba(140, 247, 178, 0.35);
+}
+
+.pacman-game__controls {
+    display: grid;
+    gap: 0.45rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: 34rem;
+    width: min(34rem, 100%);
+    z-index: 5;
+}
+
+.pacman-game__instructions {
+    background: rgba(8, 19, 43, 0.45);
+    border: 1px solid rgba(166, 201, 255, 0.18);
+    border-radius: 0.5rem;
+    font-size: 0.82rem;
+    max-width: min(34rem, 100%);
+    padding: 0.45rem 0.7rem;
+    text-align: center;
+    z-index: 5;
+}
+
+.pacman-game__panel {
+    background: rgba(8, 19, 43, 0.88);
+    border: 1px solid rgba(166, 201, 255, 0.34);
+    border-radius: 0.5rem;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.35);
+    left: 50%;
+    padding: 1.5rem;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(22rem, calc(100% - 2rem));
+    z-index: 6;
+}
+
+.pacman-game__title {
+    color: rgba(244, 248, 255, 0.98);
+    line-height: 1.2;
+}
+
+@keyframes pacmanMouth {
+    0%,
+    100% {
+        clip-path: polygon(0 0, 100% 0, 100% 38%, 58% 50%, 100% 62%, 100% 100%, 0 100%);
+    }
+
+    50% {
+        clip-path: circle(50%);
+    }
 }
 
 .invaders-game {
