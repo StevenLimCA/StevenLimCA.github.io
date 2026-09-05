@@ -380,8 +380,8 @@ export default function Hero({ sceneMode }) {
     setBlocksPiece(nextPiece);
   }, [endBlocks, moveBlocksPiece]);
 
-  const fireDefenderShot = useCallback(() => {
-    if (defenderFireTimerRef.current < 0.22) {
+  const fireDefenderShot = useCallback((forceShot = false) => {
+    if (!forceShot && defenderFireTimerRef.current < 0.22) {
       return;
     }
 
@@ -398,6 +398,23 @@ export default function Hero({ sceneMode }) {
     defenderShotsRef.current = nextShots;
     setDefenderShots(nextShots);
   }, []);
+
+  const moveInvaderDefenderToPointer = (clientX) => {
+    invaderPlayerXRef.current = Math.max(
+      6,
+      Math.min(94, (clientX / window.innerWidth) * 100)
+    );
+    setInvaderPlayerX(invaderPlayerXRef.current);
+  };
+
+  const handleInvadersPointerDown = (event) => {
+    if (event.target.closest("button")) {
+      return;
+    }
+
+    moveInvaderDefenderToPointer(event.clientX);
+    fireDefenderShot(true);
+  };
 
   useEffect(() => {
     gameStatusRef.current = gameStatus;
@@ -1091,12 +1108,9 @@ export default function Hero({ sceneMode }) {
           aria-modal="true"
           aria-label="Space Invaders game"
           onPointerMove={(event) => {
-            invaderPlayerXRef.current = Math.max(
-              6,
-              Math.min(94, (event.clientX / window.innerWidth) * 100)
-            );
-            setInvaderPlayerX(invaderPlayerXRef.current);
+            moveInvaderDefenderToPointer(event.clientX);
           }}
+          onPointerDown={handleInvadersPointerDown}
         >
           <div className="invaders-game__hud">
             <div>
@@ -1162,7 +1176,7 @@ export default function Hero({ sceneMode }) {
             >
               Left
             </button>
-            <button type="button" onClick={fireDefenderShot}>
+            <button type="button" onClick={() => fireDefenderShot(true)}>
               Fire
             </button>
             <button

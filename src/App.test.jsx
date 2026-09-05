@@ -58,6 +58,18 @@ test("opens the hidden game selector and launches a mini-game from the hero emoj
   expect(screen.queryByRole("dialog", { name: /space invaders game/i })).not.toBeInTheDocument();
 });
 
+test("fires in Space Invaders when the playfield is clicked", () => {
+  render(<App />);
+
+  fireEvent.click(screen.getByRole("button", { name: /hidden game selector/i }));
+  fireEvent.click(screen.getByRole("button", { name: /space invaders/i }));
+  fireEvent.pointerDown(screen.getByRole("dialog", { name: /space invaders game/i }), {
+    clientX: 240,
+  });
+
+  expect(document.querySelector(".invaders-game__defender-shot")).toBeInTheDocument();
+});
+
 test("marks empty contact fields invalid", () => {
   render(<App />);
 
