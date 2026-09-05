@@ -238,7 +238,8 @@ body.meteor-game-active {
 }
 
 .game-selector,
-.blocks-game {
+.blocks-game,
+.invaders-game {
     background:
         radial-gradient(circle at 50% 18%, rgba(246, 240, 207, 0.18), transparent 10rem),
         radial-gradient(circle at 20% 78%, rgba(86, 150, 255, 0.16), transparent 14rem),
@@ -335,6 +336,10 @@ body.meteor-game-active {
 
 .game-selector__icon--blocks {
     color: #17476f;
+}
+
+.game-selector__icon--invaders {
+    color: #7b2c86;
 }
 
 .game-selector__close {
@@ -722,6 +727,229 @@ body.meteor-game-active {
 }
 
 .blocks-game__title {
+    color: rgba(244, 248, 255, 0.98);
+    line-height: 1.2;
+}
+
+.invaders-game {
+    overflow: hidden;
+}
+
+.invaders-game__stars {
+    animation: meteorStars 18s linear infinite;
+    background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.95) 0 0.07rem, transparent 0.09rem),
+        radial-gradient(circle, rgba(139, 201, 255, 0.85) 0 0.06rem, transparent 0.08rem);
+    background-position: 2rem 3rem, 8rem 6rem;
+    background-size: 10rem 8rem, 15rem 11rem;
+    inset: 0;
+    opacity: 0.8;
+    position: absolute;
+}
+
+.invaders-game__hud {
+    align-items: center;
+    background: rgba(8, 19, 43, 0.72);
+    border: 1px solid rgba(166, 201, 255, 0.28);
+    border-radius: 0.5rem;
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.24);
+    display: flex;
+    gap: 0.8rem;
+    justify-content: space-between;
+    left: 50%;
+    max-width: calc(100% - 2rem);
+    padding: 0.75rem 1rem;
+    position: absolute;
+    top: 1rem;
+    transform: translateX(-50%);
+    width: min(34rem, calc(100% - 2rem));
+    z-index: 5;
+}
+
+.invaders-game__label,
+.invaders-game__value,
+.invaders-game__summary,
+.invaders-game__instructions {
+    color: rgba(244, 248, 255, 0.96);
+    margin: 0;
+}
+
+.invaders-game__label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.invaders-game__value {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.invaders-game__close,
+.invaders-game__restart,
+.invaders-game__controls button {
+    background: rgba(244, 248, 255, 0.92);
+    border: 0;
+    border-radius: 0.5rem;
+    color: #061226;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+    padding: 0.55rem 0.8rem;
+}
+
+.invaders-game__enemy {
+    background: #8cf7b2;
+    border-radius: 0.3rem 0.3rem 0.6rem 0.6rem;
+    box-shadow: 0 0 1rem rgba(125, 255, 178, 0.35);
+    height: 1.6rem;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 2rem;
+    z-index: 3;
+
+    &::before,
+    &::after {
+        background: #020817;
+        border-radius: 50%;
+        content: "";
+        height: 0.28rem;
+        position: absolute;
+        top: 0.5rem;
+        width: 0.28rem;
+    }
+
+    &::before {
+        left: 0.5rem;
+    }
+
+    &::after {
+        right: 0.5rem;
+    }
+}
+
+.invaders-game__enemy--1 {
+    background: #bca7ff;
+    box-shadow: 0 0 1rem rgba(188, 167, 255, 0.35);
+}
+
+.invaders-game__enemy--2 {
+    background: #7ee3ff;
+    box-shadow: 0 0 1rem rgba(126, 227, 255, 0.35);
+}
+
+.invaders-game__defender-shot,
+.invaders-game__enemy-shot {
+    border-radius: 999px;
+    height: 0.9rem;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 0.22rem;
+    z-index: 4;
+}
+
+.invaders-game__defender-shot {
+    background: #d9f8ff;
+    box-shadow: 0 0 0.75rem rgba(139, 226, 255, 0.9);
+}
+
+.invaders-game__enemy-shot {
+    background: #ffad66;
+    box-shadow: 0 0 0.75rem rgba(255, 173, 102, 0.8);
+}
+
+.invaders-game__defender {
+    bottom: 8.4rem;
+    height: 2.8rem;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 4rem;
+    z-index: 4;
+
+    &::before {
+        background: linear-gradient(180deg, #d9f8ff, #7ee3ff);
+        border-radius: 0.45rem 0.45rem 0.2rem 0.2rem;
+        bottom: 0;
+        content: "";
+        height: 1.5rem;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+        width: 3.5rem;
+    }
+
+    &::after {
+        border-bottom: 2rem solid rgba(244, 248, 255, 0.95);
+        border-left: 1.2rem solid transparent;
+        border-right: 1.2rem solid transparent;
+        bottom: 0.8rem;
+        content: "";
+        filter: drop-shadow(0 0 0.75rem rgba(139, 201, 255, 0.55));
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+    }
+}
+
+.invaders-game__defender-window {
+    background: #17476f;
+    border: 0.1rem solid rgba(139, 226, 255, 0.82);
+    border-radius: 50%;
+    height: 0.45rem;
+    left: 50%;
+    position: absolute;
+    top: 0.8rem;
+    transform: translateX(-50%);
+    width: 0.45rem;
+    z-index: 1;
+}
+
+.invaders-game__controls {
+    bottom: 1rem;
+    display: grid;
+    gap: 0.45rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    left: 50%;
+    max-width: calc(100% - 2rem);
+    position: absolute;
+    transform: translateX(-50%);
+    width: min(26rem, calc(100% - 2rem));
+    z-index: 5;
+}
+
+.invaders-game__instructions {
+    background: rgba(8, 19, 43, 0.45);
+    border: 1px solid rgba(166, 201, 255, 0.18);
+    border-radius: 0.5rem;
+    bottom: 4.45rem;
+    font-size: 0.82rem;
+    left: 50%;
+    max-width: calc(100% - 2rem);
+    padding: 0.45rem 0.7rem;
+    position: absolute;
+    text-align: center;
+    transform: translateX(-50%);
+    width: max-content;
+    z-index: 5;
+}
+
+.invaders-game__panel {
+    background: rgba(8, 19, 43, 0.88);
+    border: 1px solid rgba(166, 201, 255, 0.34);
+    border-radius: 0.5rem;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.35);
+    left: 50%;
+    padding: 1.5rem;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(22rem, calc(100% - 2rem));
+    z-index: 6;
+}
+
+.invaders-game__title {
     color: rgba(244, 248, 255, 0.98);
     line-height: 1.2;
 }

@@ -41,6 +41,7 @@ const EMPTY_BOARD = Array.from({ length: BOARD_HEIGHT }, () =>
 );
 const ASTEROIDS_HIGH_SCORE_KEY = "asteroidsHighScore";
 const BLOCKS_HIGH_SCORE_KEY = "blocksHighScore";
+const INVADERS_HIGH_SCORE_KEY = "invadersHighScore";
 
 const PIECES = [
   { name: "i", cells: [[0, 1], [1, 1], [2, 1], [3, 1]] },
@@ -112,6 +113,16 @@ const mergeBoardAndPiece = (board, piece) => {
   return mergedBoard;
 };
 
+const createInvaders = (level) =>
+  Array.from({ length: Math.min(5, 3 + Math.floor(level / 2)) }, (_, rowIndex) =>
+    Array.from({ length: 7 }, (_, columnIndex) => ({
+      id: `${level}-${rowIndex}-${columnIndex}-${Date.now()}`,
+      x: 16 + columnIndex * 11,
+      y: 18 + rowIndex * 7,
+      row: rowIndex,
+    }))
+  ).flat();
+
 export default function Hero({ sceneMode }) {
   const [selectorOpen, setSelectorOpen] = useState(false);
   const [selectedGame, setSelectedGame] = useState(null);
@@ -131,10 +142,23 @@ export default function Hero({ sceneMode }) {
   const [blocksHighScore, setBlocksHighScore] = useState(() =>
     getStoredScore(BLOCKS_HIGH_SCORE_KEY)
   );
+  const [invaderPlayerX, setInvaderPlayerX] = useState(50);
+  const [invaders, setInvaders] = useState([]);
+  const [defenderShots, setDefenderShots] = useState([]);
+  const [invaderShots, setInvaderShots] = useState([]);
+  const [invadersScore, setInvadersScore] = useState(0);
+  const [invadersLevel, setInvadersLevel] = useState(1);
+  const [invadersHighScore, setInvadersHighScore] = useState(() =>
+    getStoredScore(INVADERS_HIGH_SCORE_KEY)
+  );
   const animationFrameRef = useRef(null);
+  const invadersAnimationFrameRef = useRef(null);
   const lastFrameRef = useRef(0);
+  const invadersLastFrameRef = useRef(0);
   const spawnTimerRef = useRef(0);
   const shotTimerRef = useRef(0);
+  const invaderFireTimerRef = useRef(0);
+  const defenderFireTimerRef = useRef(0);
   const keysRef = useRef({ left: false, right: false, thrust: false, fire: false });
   const pointerRef = useRef({ active: false, x: 50, y: 72 });
   const shipRef = useRef({ x: 50, y: 72, vx: 0, vy: 0, angle: -90 });
@@ -146,6 +170,13 @@ export default function Hero({ sceneMode }) {
   const blocksPieceRef = useRef(createPiece());
   const blocksScoreRef = useRef(0);
   const blocksLevelRef = useRef(1);
+  const invaderPlayerXRef = useRef(50);
+  const invadersRef = useRef([]);
+  const defenderShotsRef = useRef([]);
+  const invaderShotsRef = useRef([]);
+  const invadersDirectionRef = useRef(1);
+  const invadersScoreRef = useRef(0);
+  const invadersLevelRef = useRef(1);
   const gameStatusRef = useRef(gameStatus);
 
   const saveHighScore = (key, score, setter) => {
@@ -198,6 +229,31 @@ export default function Hero({ sceneMode }) {
     setBlocksLevel(1);
   }, []);
 
+  const startInvaders = useCallback(() => {
+    const startingInvaders = createInvaders(1);
+
+    setSelectorOpen(false);
+    setSelectedGame("invaders");
+    setGameStatus("playing");
+    gameStatusRef.current = "playing";
+    invaderPlayerXRef.current = 50;
+    invadersRef.current = startingInvaders;
+    defenderShotsRef.current = [];
+    invaderShotsRef.current = [];
+    invadersDirectionRef.current = 1;
+    invadersScoreRef.current = 0;
+    invadersLevelRef.current = 1;
+    invaderFireTimerRef.current = 0;
+    defenderFireTimerRef.current = 0;
+    invadersLastFrameRef.current = 0;
+    setInvaderPlayerX(50);
+    setInvaders(startingInvaders);
+    setDefenderShots([]);
+    setInvaderShots([]);
+    setInvadersScore(0);
+    setInvadersLevel(1);
+  }, []);
+
   const endAsteroids = useCallback((finalScore) => {
     setGameStatus("gameover");
     gameStatusRef.current = "gameover";
@@ -210,6 +266,12 @@ export default function Hero({ sceneMode }) {
     saveHighScore(BLOCKS_HIGH_SCORE_KEY, finalScore, setBlocksHighScore);
   }, []);
 
+  const endInvaders = useCallback((finalScore) => {
+    setGameStatus("gameover");
+    gameStatusRef.current = "gameover";
+    saveHighScore(INVADERS_HIGH_SCORE_KEY, finalScore, setInvadersHighScore);
+  }, []);
+
   const closeGame = useCallback(() => {
     setSelectorOpen(false);
     setSelectedGame(null);
@@ -219,6 +281,12 @@ export default function Hero({ sceneMode }) {
     shotsRef.current = [];
     setAsteroids([]);
     setShots([]);
+    invadersRef.current = [];
+    defenderShotsRef.current = [];
+    invaderShotsRef.current = [];
+    setInvaders([]);
+    setDefenderShots([]);
+    setInvaderShots([]);
     keysRef.current = { left: false, right: false, thrust: false, fire: false };
     pointerRef.current.active = false;
   }, []);
@@ -311,6 +379,25 @@ export default function Hero({ sceneMode }) {
     blocksPieceRef.current = nextPiece;
     setBlocksPiece(nextPiece);
   }, [endBlocks, moveBlocksPiece]);
+
+  const fireDefenderShot = useCallback(() => {
+    if (defenderFireTimerRef.current < 0.22) {
+      return;
+    }
+
+    defenderFireTimerRef.current = 0;
+    const nextShots = [
+      ...defenderShotsRef.current.slice(-2),
+      {
+        id: `${Date.now()}-${Math.random()}`,
+        x: invaderPlayerXRef.current,
+        y: 84,
+      },
+    ];
+
+    defenderShotsRef.current = nextShots;
+    setDefenderShots(nextShots);
+  }, []);
 
   useEffect(() => {
     gameStatusRef.current = gameStatus;
@@ -586,6 +673,186 @@ export default function Hero({ sceneMode }) {
     };
   }, [closeGame, dropBlocksPiece, moveBlocksPiece, rotateBlocksPiece, selectedGame]);
 
+  useEffect(() => {
+    if (selectedGame !== "invaders") {
+      return undefined;
+    }
+
+    const handleKeyDown = (event) => {
+      const key = event.key.toLowerCase();
+
+      if (event.key === "Escape") {
+        closeGame();
+      }
+
+      if (gameStatusRef.current !== "playing") {
+        return;
+      }
+
+      if (event.key === "ArrowLeft" || key === "a") {
+        keysRef.current.left = true;
+      }
+
+      if (event.key === "ArrowRight" || key === "d") {
+        keysRef.current.right = true;
+      }
+
+      if (event.key === " " || event.key === "ArrowUp" || key === "w") {
+        event.preventDefault();
+        keysRef.current.fire = true;
+      }
+    };
+
+    const handleKeyUp = (event) => {
+      const key = event.key.toLowerCase();
+
+      if (event.key === "ArrowLeft" || key === "a") {
+        keysRef.current.left = false;
+      }
+
+      if (event.key === "ArrowRight" || key === "d") {
+        keysRef.current.right = false;
+      }
+
+      if (event.key === " " || event.key === "ArrowUp" || key === "w") {
+        keysRef.current.fire = false;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, [closeGame, selectedGame]);
+
+  useEffect(() => {
+    if (selectedGame !== "invaders" || gameStatus !== "playing") {
+      return undefined;
+    }
+
+    const runFrame = (timestamp) => {
+      if (gameStatusRef.current !== "playing") {
+        return;
+      }
+
+      const delta = Math.min((timestamp - (invadersLastFrameRef.current || timestamp)) / 1000, 0.04);
+      invadersLastFrameRef.current = timestamp;
+      invaderFireTimerRef.current += delta;
+      defenderFireTimerRef.current += delta;
+
+      const horizontalMove = Number(keysRef.current.right) - Number(keysRef.current.left);
+      if (horizontalMove) {
+        const nextPlayerX = Math.max(
+          6,
+          Math.min(94, invaderPlayerXRef.current + horizontalMove * delta * 48)
+        );
+        invaderPlayerXRef.current = nextPlayerX;
+        setInvaderPlayerX(nextPlayerX);
+      }
+
+      if (keysRef.current.fire) {
+        fireDefenderShot();
+      }
+
+      let nextDefenderShots = defenderShotsRef.current
+        .map((shot) => ({ ...shot, y: shot.y - delta * 58 }))
+        .filter((shot) => shot.y > -4);
+      let nextInvaderShots = invaderShotsRef.current
+        .map((shot) => ({ ...shot, y: shot.y + delta * (31 + invadersLevelRef.current * 2.2) }))
+        .filter((shot) => shot.y < 106);
+      let nextInvaders = invadersRef.current.map((invader) => ({
+        ...invader,
+        x: invader.x + invadersDirectionRef.current * delta * (9 + invadersLevelRef.current * 2.4),
+      }));
+
+      const reachedEdge = nextInvaders.some((invader) => invader.x < 7 || invader.x > 93);
+      if (reachedEdge) {
+        invadersDirectionRef.current *= -1;
+        nextInvaders = nextInvaders.map((invader) => ({
+          ...invader,
+          x: Math.max(7, Math.min(93, invader.x)),
+          y: invader.y + 4 + invadersLevelRef.current * 0.45,
+        }));
+      }
+
+      const hitInvaderIds = new Set();
+      const survivingDefenderShots = [];
+
+      nextDefenderShots.forEach((shot) => {
+        const target = nextInvaders.find(
+          (invader) => !hitInvaderIds.has(invader.id) && getDistance(shot, invader) < 4.4
+        );
+
+        if (!target) {
+          survivingDefenderShots.push(shot);
+          return;
+        }
+
+        hitInvaderIds.add(target.id);
+        invadersScoreRef.current += 40 + invadersLevelRef.current * 8;
+      });
+
+      nextDefenderShots = survivingDefenderShots;
+      nextInvaders = nextInvaders.filter((invader) => !hitInvaderIds.has(invader.id));
+
+      if (
+        invaderFireTimerRef.current >
+          Math.max(0.32, 1.15 - invadersLevelRef.current * 0.07) &&
+        nextInvaders.length
+      ) {
+        invaderFireTimerRef.current = 0;
+        const shooter = nextInvaders[Math.floor(Math.random() * nextInvaders.length)];
+        nextInvaderShots = [
+          ...nextInvaderShots,
+          {
+            id: `${Date.now()}-${Math.random()}`,
+            x: shooter.x,
+            y: shooter.y + 3,
+          },
+        ];
+      }
+
+      const defenderWasHit = nextInvaderShots.some(
+        (shot) => Math.abs(shot.x - invaderPlayerXRef.current) < 4 && shot.y > 82
+      );
+      const invadersLanded = nextInvaders.some((invader) => invader.y > 82);
+
+      if (defenderWasHit || invadersLanded) {
+        endInvaders(invadersScoreRef.current);
+      }
+
+      if (!nextInvaders.length && gameStatusRef.current === "playing") {
+        const nextLevel = invadersLevelRef.current + 1;
+        invadersLevelRef.current = nextLevel;
+        invadersScoreRef.current += 150 + nextLevel * 30;
+        nextInvaders = createInvaders(nextLevel);
+        nextDefenderShots = [];
+        nextInvaderShots = [];
+        invadersDirectionRef.current = nextLevel % 2 === 0 ? -1 : 1;
+        setInvadersLevel(nextLevel);
+      }
+
+      invadersRef.current = nextInvaders;
+      defenderShotsRef.current = nextDefenderShots;
+      invaderShotsRef.current = nextInvaderShots;
+      setInvaders(nextInvaders);
+      setDefenderShots(nextDefenderShots);
+      setInvaderShots(nextInvaderShots);
+      setInvadersScore(Math.floor(invadersScoreRef.current));
+
+      invadersAnimationFrameRef.current = window.requestAnimationFrame(runFrame);
+    };
+
+    invadersAnimationFrameRef.current = window.requestAnimationFrame(runFrame);
+
+    return () => {
+      window.cancelAnimationFrame(invadersAnimationFrameRef.current);
+    };
+  }, [endInvaders, fireDefenderShot, gameStatus, selectedGame]);
+
   const visibleBlocksBoard = mergeBoardAndPiece(blocksBoard, blocksPiece);
   const gameOverlayOpen = Boolean(selectedGame);
 
@@ -660,6 +927,21 @@ export default function Hero({ sceneMode }) {
                 <span>
                   <strong>Falling Blocks</strong>
                   Stack shapes, clear rows, and speed up as you score.
+                </span>
+              </button>
+              <button
+                className="game-selector__choice"
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  startInvaders();
+                }}
+                aria-label="Play Space Invaders"
+              >
+                <span className="game-selector__icon game-selector__icon--invaders">▥</span>
+                <span>
+                  <strong>Space Invaders</strong>
+                  Defend the base, clear waves, and dodge return fire.
                 </span>
               </button>
             </div>
@@ -796,6 +1078,116 @@ export default function Hero({ sceneMode }) {
               <h2 className="blocks-game__title">Stack finished</h2>
               <p className="blocks-game__summary">Score {blocksScore}</p>
               <button className="blocks-game__restart" type="button" onClick={startBlocks}>
+                Play again
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+      {selectedGame === "invaders" && (
+        <div
+          className="invaders-game"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Space Invaders game"
+          onPointerMove={(event) => {
+            invaderPlayerXRef.current = Math.max(
+              6,
+              Math.min(94, (event.clientX / window.innerWidth) * 100)
+            );
+            setInvaderPlayerX(invaderPlayerXRef.current);
+          }}
+        >
+          <div className="invaders-game__hud">
+            <div>
+              <p className="invaders-game__label">Score</p>
+              <p className="invaders-game__value">{invadersScore}</p>
+            </div>
+            <div>
+              <p className="invaders-game__label">Wave</p>
+              <p className="invaders-game__value">{invadersLevel}</p>
+            </div>
+            <div>
+              <p className="invaders-game__label">Best</p>
+              <p className="invaders-game__value">{invadersHighScore}</p>
+            </div>
+            <button className="invaders-game__close" type="button" onClick={closeGame}>
+              Exit
+            </button>
+          </div>
+          <div className="invaders-game__stars" aria-hidden="true"></div>
+          {invaders.map((invader) => (
+            <span
+              className={`invaders-game__enemy invaders-game__enemy--${invader.row % 3}`}
+              key={invader.id}
+              style={{ left: `${invader.x}%`, top: `${invader.y}%` }}
+              aria-hidden="true"
+            />
+          ))}
+          {defenderShots.map((shot) => (
+            <span
+              className="invaders-game__defender-shot"
+              key={shot.id}
+              style={{ left: `${shot.x}%`, top: `${shot.y}%` }}
+              aria-hidden="true"
+            />
+          ))}
+          {invaderShots.map((shot) => (
+            <span
+              className="invaders-game__enemy-shot"
+              key={shot.id}
+              style={{ left: `${shot.x}%`, top: `${shot.y}%` }}
+              aria-hidden="true"
+            />
+          ))}
+          <div
+            className="invaders-game__defender"
+            style={{ left: `${invaderPlayerX}%` }}
+            aria-hidden="true"
+          >
+            <span className="invaders-game__defender-window"></span>
+          </div>
+          <div className="invaders-game__controls" aria-label="Space Invaders controls">
+            <button
+              type="button"
+              onPointerDown={() => {
+                keysRef.current.left = true;
+              }}
+              onPointerUp={() => {
+                keysRef.current.left = false;
+              }}
+              onPointerLeave={() => {
+                keysRef.current.left = false;
+              }}
+            >
+              Left
+            </button>
+            <button type="button" onClick={fireDefenderShot}>
+              Fire
+            </button>
+            <button
+              type="button"
+              onPointerDown={() => {
+                keysRef.current.right = true;
+              }}
+              onPointerUp={() => {
+                keysRef.current.right = false;
+              }}
+              onPointerLeave={() => {
+                keysRef.current.right = false;
+              }}
+            >
+              Right
+            </button>
+          </div>
+          <p className="invaders-game__instructions">
+            Move and fire. Clear each wave before it reaches you.
+          </p>
+          {gameStatus === "gameover" && (
+            <div className="invaders-game__panel">
+              <h2 className="invaders-game__title">Base overrun</h2>
+              <p className="invaders-game__summary">Score {invadersScore}</p>
+              <button className="invaders-game__restart" type="button" onClick={startInvaders}>
                 Play again
               </button>
             </div>

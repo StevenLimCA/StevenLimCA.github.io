@@ -46,15 +46,16 @@ test("opens the hidden game selector and launches a mini-game from the hero emoj
   expect(screen.getByRole("dialog", { name: /choose a hidden game/i })).toBeInTheDocument();
   expect(screen.getByRole("button", { name: /asteroids/i })).toBeInTheDocument();
   expect(screen.getByRole("button", { name: /falling blocks/i })).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: /space invaders/i })).toBeInTheDocument();
 
-  fireEvent.click(screen.getByRole("button", { name: /falling blocks/i }));
+  fireEvent.click(screen.getByRole("button", { name: /space invaders/i }));
 
-  expect(screen.getByRole("dialog", { name: /falling blocks game/i })).toBeInTheDocument();
-  expect(screen.getByText(/move, rotate, and clear rows/i)).toBeInTheDocument();
+  expect(screen.getByRole("dialog", { name: /space invaders game/i })).toBeInTheDocument();
+  expect(screen.getByText(/move and fire/i)).toBeInTheDocument();
 
   fireEvent.click(screen.getByRole("button", { name: /exit/i }));
 
-  expect(screen.queryByRole("dialog", { name: /falling blocks game/i })).not.toBeInTheDocument();
+  expect(screen.queryByRole("dialog", { name: /space invaders game/i })).not.toBeInTheDocument();
 });
 
 test("marks empty contact fields invalid", () => {
